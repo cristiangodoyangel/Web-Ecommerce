@@ -1,0 +1,740 @@
+@import "tailwindcss";
+
+@theme {
+  --color-life-pink: #f83258;
+  --color-life-red: #8c000f;
+  --color-life-green: #087441;
+  --color-life-dark-green: #055e31;
+  --color-life-blue: #092499;
+  --color-life-dark-blue: #0609a0;
+  --color-life-yellow: #f3a712;
+  --color-life-light-yellow: #f9d56e;
+  --color-life-gray: #f5f5f5;
+  --color-life-principal: #8c000f;
+  --color-life-sec: #f83258;
+  --color-life-ter: #FCEDF8;
+}
+
+.display {
+  font-family: "Alan Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.playfair-display {
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+/* Estilos generales */
+body {
+  font-family: "Playfair Display", serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+h1, h2, h3 {
+  font-weight: bold;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #087441;
+  padding: 15px 30px;
+  color: white;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.header .logo h1 {
+  font-size: 2rem;
+}
+
+.header .navigation ul {
+  list-style: none;
+  display: flex;
+}
+
+.header .navigation ul li {
+  margin: 0 15px;
+}
+
+.header .search input {
+  padding: 5px;
+}
+
+/* Contenido principal */
+.main-content {
+  margin-top: 100px;
+  padding: 50px 20px;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  text-align: center;
+  font-size: 3rem;
+  color: #055e31;
+}
+
+.description {
+  text-align: center;
+  color: #555;
+  margin-top: 10px;
+}
+
+.categories {
+  margin-top: 40px;
+}
+
+.category-list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.category {
+  background-color: #ffffff;
+  padding: 20px;
+  width: 20%;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.category img {
+  width: 80%;
+  max-height: 150px;
+  margin-bottom: 10px;
+  border-radius: 50%;
+}
+
+.products-section {
+  margin-top: 50px;
+}
+
+.products {
+  display: flex;
+  justify-content: space-around;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.product-card {
+  background-color: white;
+  padding: 20px;
+  width: 30%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.product-card img {
+  width: 80%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.product-card h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-top: 10px;
+}
+
+.product-card p {
+  color: #888;
+}
+
+.product-card button {
+  background-color: #0609a0;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  margin-top: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.product-card button:hover {
+  background-color: #098a79;
+}
+
+/* Footer */
+.footer {
+  background-color: #092499;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 50px;
+  position: relative;
+}
+
+.weblogicacl {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* FOOTER SOCIAL ICONS - FORZAR TAMAÑOS GRANDES CON SELECTORES MÁS ESPECÍFICOS */
+footer .social-icon-button,
+.social-icon-button {
+  height: 3rem !important;
+  width: 3rem !important;
+  min-height: 3rem !important;
+  min-width: 3rem !important;
+  max-height: 3rem !important;
+  max-width: 3rem !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+
+
+/* Específico para botones con variant outline */
+button.social-icon-button {
+  height: 3rem !important;
+  width: 3rem !important;
+}
+
+button.social-icon-button svg {
+  height: 2rem !important;
+  width: 2rem !important;
+}
+
+/* Responsive Design - DESDE 1080px HACIA ABAJO */
+@media (max-width: 1080px) {
+
+  /* Container responsive */
+  .container {
+    max-width: 100% !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  /* FOOTER MÓVIL - ICONOS ENORMES */
+  footer .social-icon-button,
+  .social-icon-button {
+    height: 6rem !important;
+    width: 65rem !important;
+    min-height: 4rem !important;
+    min-width: 4rem !important;
+    max-height: 4rem !important;
+    max-width: 4rem !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+ 
+  /* Específico para botones con variant outline en móvil */
+
+
+ 
+
+  /* Footer texto más grande en móvil */
+  footer .display {
+    font-size: 1.2rem !important;
+  }
+
+  footer h4 {
+    font-size: 1.4rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  /* CATEGORIES COMPONENT - GRID 2x3 RESPONSIVE */
+  /* Forzar grid de 2 columnas en lugar de usar md:grid-cols-6 */
+  .grid.grid-cols-2.md\:grid-cols-6 {
+    grid-template-columns: 1fr 1fr 1fr !important;
+    grid-template-rows: repeat(2, 1fr) !important;
+    gap: 1.5rem !important;
+    justify-items: center !important;
+    padding: 1.5rem !important;
+  }
+
+  /* Ajustar el tamaño de cada categoría */
+  .grid.grid-cols-2.md\:grid-cols-6 > div {
+    width: 140px !important;
+    min-height: 120px !important;
+    padding: 1rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  /* Imágenes de categorías más grandes */
+  .grid.grid-cols-2.md\:grid-cols-6 > div img {
+    width: 60px !important;
+    height: 60px !important;
+    margin-bottom: 0.75rem !important;
+    margin-top: 0.5rem !important;
+  }
+
+  /* Texto de categorías más grande */
+  .grid.grid-cols-2.md\:grid-cols-6 > div h3 {
+    font-size: 1.1rem !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  /* Centrar todo el contenedor de categorías */
+  .grid.grid-cols-2.md\:grid-cols-6 {
+    max-width: 400px !important;
+    margin: 0 auto !important;
+  }
+  
+  /* HEADER MÓVIL - FORZAR MENÚ HAMBURGUESA */
+  /* Ocultar navegación de escritorio */
+  .hidden.md\:block {
+    display: none !important;
+  }
+  
+  /* Ocultar barra de búsqueda de escritorio */
+  .hidden.md\:flex,
+  .md\:flex.flex-1.max-w-2xl {
+    display: none !important;
+  }
+  
+  /* Mostrar menú hamburguesa SIEMPRE */
+  .md\:hidden {
+    display: block !important;
+  }
+  
+  /* Mostrar búsqueda móvil */
+  .md\:hidden.pb-4 {
+    display: block !important;
+  }
+  
+  /* Contenedor principal del header */
+  .max-w-7xl.mx-auto.px-4 {
+    padding: 0 1rem !important;
+  }
+  
+  /* Contenedor de elementos del header */
+  .flex.items-center.justify-between.h-16.gap-4 {
+    height: auto !important;
+    padding: 1rem 0 !important;
+    gap: 1rem !important;
+  }
+  
+  /* Logo con espaciado superior e inferior */
+  .flex.items-center.flex-shrink-0.pl-8 {
+    padding: 1rem 0 !important;
+    padding-left: 0 !important;
+  }
+  
+  .flex.items-center.flex-shrink-0.pl-8 img {
+    height: 4rem !important;
+    padding: 0.5rem 0 !important;
+  }
+  
+  /* Iconos más grandes en móvil */
+  .flex.items-center.gap-2 {
+    gap: 1rem !important;
+  }
+  
+  /* Botones de carrito, wishlist y menú hamburguesa */
+  .flex.items-center.gap-2 > button {
+    padding: 0.75rem !important;
+    min-height: 48px !important;
+    min-width: 48px !important;
+  }
+  
+  /* Iconos más grandes */
+  .flex.items-center.gap-2 > button svg {
+    height: 1.75rem !important;
+    width: 1.75rem !important;
+  }
+  
+  /* Menú hamburguesa específico - MÁS GRANDE */
+  .md\:hidden.p-1 svg,
+  .md\:hidden.p-2 svg {
+    height: 2rem !important;
+    width: 2rem !important;
+  }
+  
+  /* Badge de contador más grande */
+  .absolute.-top-2.-right-2.h-5.w-5 {
+    height: 1.5rem !important;
+    width: 1.5rem !important;
+    font-size: 0.875rem !important;
+    top: -0.5rem !important;
+    right: -0.5rem !important;
+  }
+  
+  /* Búsqueda en móvil con más padding */
+  .md\:hidden.pb-4 {
+    padding: 1rem 0 1.5rem 0 !important;
+    display: block !important;
+  }
+  
+  /* Input de búsqueda más grande */
+  .md\:hidden.pb-4 input {
+    height: 3rem !important;
+    font-size: 1rem !important;
+    padding-left: 2.5rem !important;
+  }
+  
+  /* Ícono de búsqueda en móvil */
+  .md\:hidden.pb-4 .absolute.left-3 svg {
+    height: 1.25rem !important;
+    width: 1.25rem !important;
+    left: 0.75rem !important;
+  }
+  
+  /* Navegación móvil */
+  .md\:hidden.border-t.py-4 {
+    padding: 1.5rem 0 !important;
+    display: block !important;
+  }
+  
+  .md\:hidden.border-t.py-4 button {
+    padding: 1rem !important;
+    font-size: 1.1rem !important;
+    min-height: 48px !important;
+  }
+  
+  .md\:hidden.border-t.py-4 button svg {
+    height: 1.25rem !important;
+    width: 1.25rem !important;
+  }
+  
+  /* ProductSlider móvil - forzar layout vertical */
+  .mobile-slider-container {
+    overflow: visible !important;
+  }
+  
+  .mobile-slider-content {
+    flex-direction: column !important;
+    transform: none !important;
+    gap: 20px !important;
+  }
+  
+  .mobile-product-item {
+    width: 80% !important;
+    max-width: 100% !important;
+    flex-shrink: 1 !important;
+    margin: 0 auto !important;
+  }
+  
+  /* ProductCard responsive */
+  .group {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 500px !important;
+    margin-bottom: 20px !important;
+  }
+  
+  /* IMÁGENES RESPONSIVE */
+  .group img,
+  [data-slot="card"] img,
+  .mobile-product-item img {
+    width: 100% !important;
+    height: 200px !important;
+    min-height: 250px !important;
+    max-height: 100px !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    border-radius: 8px !important;
+  }
+  
+  /* Asegurar que el contenedor de la imagen tenga el tamaño correcto */
+  div[style*="height: 250px"] {
+    height: 200px !important;
+  }
+
+  /* HERO SECTION RESPONSIVE - MÓVIL */
+/* Ocultar imagen del hero */
+.hidden.lg\:block {
+  display: none !important;
+}
+
+/* Ocultar flechas de navegación */
+.absolute.left-148,
+.absolute.right-8 {
+  display: none !important;
+}
+
+/* Grid del hero - convertir a single column */
+.grid.lg\:grid-cols-2 {
+  grid-template-columns: 1fr !important;
+  gap: 0 !important;
+}
+
+/* Contenedor del hero - centrado y column */
+.relative.min-h-\[500px\] {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  padding: 2rem 1rem !important;
+  min-height: 400px !important;
+}
+
+/* Contenido del hero - centrado */
+.text-white.space-y-6 {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* Título del hero más grande en móvil */
+.text-4xl.lg\:text-6xl {
+  font-size: 2.5rem !important;
+  text-align: center !important;
+}
+
+/* Descripción centrada */
+.text-xl.lg\:text-2xl {
+  font-size: 1.3rem !important;
+  text-align: center !important;
+  max-width: 90% !important;
+}
+
+/* Botones del hero - stack vertical centrado */
+.flex.flex-col.sm\:flex-row {
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 1rem !important;
+  width: 100% !important;
+  padding-left: 0 !important;
+}
+
+/* Botones más grandes para móvil */
+.flex.flex-col.sm\:flex-row button {
+  width: 80% !important;
+  max-width: 300px !important;
+  font-size: 1.1rem !important;
+  padding: 1rem 2rem !important;
+}
+
+/* Badge centrado */
+.bg-white\/20 {
+  justify-content: center !important;
+  max-width: fit-content !important;
+}
+
+
+/* Indicadores de puntos - centrados */
+.absolute.bottom-6 {
+  position: relative !important;
+  bottom: auto !important;
+  left: auto !important;
+  transform: none !important;
+  margin-top: 2rem !important;
+  justify-content: center !important;
+}
+
+/* Ocultar control de auto-play */
+.absolute.top-0.right-8 {
+  display: none !important;
+}
+
+/* Ajustar contenedor principal */
+.container.mx-auto.px-8 {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+  /* AUMENTAR TAMAÑO DEL TEXTO */
+  /* Títulos de productos */
+  h3,
+  .display,
+  [data-slot="card"] h3 {
+    font-size: 1.6rem !important;
+    line-height: 1.2 !important;
+  }
+  
+  /* Descripción de productos */
+  p,
+  .text-sm,
+  [data-slot="card"] p {
+    font-size: 1.4rem !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Badge de oferta personalizado */
+  .absolute.top-2.left-2 > div,
+  div[style*="backgroundColor: #f83258"] {
+    padding: 8px 12px !important;
+    font-size: 1.1rem !important;
+    min-height: 32px !important;
+    border-radius: 20px !important;
+  }
+
+  /* Ícono dentro del badge de oferta SOLAMENTE */
+  .display.absolute.top-2.left-2 > div svg {
+    height: 16px !important;
+    width: 16px !important;
+  }
+
+  /* Texto del porcentaje de descuento */
+  .absolute.top-2.left-2 > div,
+  .px-2.py-1 {
+    font-size: 1.5rem !important;
+    font-weight: 600 !important;
+    line-height: 1.2 !important;
+  }
+  
+  /* Precios */
+  .text-lg,
+  span[style*="color"] {
+    font-size: 1.5rem !important;
+  }
+  
+  /* Precio más grande */
+  .text-lg.font-bold {
+    font-size: 1.8rem !important;
+  }
+  
+  /* Categoría */
+  .text-xs {
+    font-size: 0.9rem !important;
+  }
+  
+  /* Botones */
+  button {
+    font-size: 1.1rem !important;
+    padding: 14px 20px !important;
+    min-height: 48px !important;
+  }
+  
+  /* Stock/Disponibilidad */
+  .text-xs {
+    font-size: 1rem !important;
+  }
+  
+  /* Badge de oferta */
+  .text-xs.font-semibold {
+    font-size: 1.1rem !important;
+  }
+
+  /* Ocultar controles del slider */
+  .hidden\.sm\:flex {
+    display: none !important;
+  }
+  
+  /* Categories responsive (OLD - para compatibilidad) */
+  .category {
+    width: 100% !important;
+    margin-bottom: 15px !important;
+  }
+  
+  .category-list {
+    flex-direction: column !important;
+    gap: 15px !important;
+  }
+  
+  /* Headers responsive */
+  .header {
+    padding: 10px 15px !important;
+    min-height: 60px !important;
+  }
+  
+  .header .logo h1 {
+    font-size: 1.8rem !important;
+    padding: 14px 20px !important;
+  }
+  
+  /* Títulos responsive */
+  .title {
+    font-size: 2.2rem !important;
+  }
+  
+  h2.text-2xl {
+    font-size: 2rem !important;
+  }
+  
+  /* Banner oculto */
+  .advertisement-banner,
+  [class*="advertisement"] {
+    display: none !important;
+  }
+
+  .py-6.sm\:py-8 {
+    text-align: center !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  /* Corrección específica para iconos de wishlist en ProductCard */
+  .absolute.top-2.right-2 button svg,
+  .absolute.sm\\:top-3.sm\\:right-3 button svg {
+    height: 1.25rem !important; /* h-5 en mobile */
+    width: 1.25rem !important;
+  }
+
+  /* Regla específica para botones de wishlist solamente */
+  .wishlist-button svg {
+    fill: #f83258 !important;
+    color: #f83258 !important;
+    stroke: #f83258 !important;
+    stroke-width: 2.5 !important;
+    height: 1.25rem !important;
+    width: 1.25rem !important;
+    opacity: 1 !important;
+    display: block !important;
+    visibility: visible !important;
+  }
+
+  /* Para wishlist activos (fondo oscuro) */
+  .wishlist-button[style*="background: rgb(140, 0, 15)"] svg,
+  .wishlist-button[style*="background: #8c000f"] svg {
+    fill: #fff !important;
+    color: #fff !important;
+    stroke: #fff !important;
+  }
+
+  @media (min-width: 640px) {
+    .absolute.top-2.right-2 button svg,
+    .absolute.sm\\:top-3.sm\\:right-3 button svg {
+      height: 1rem !important; /* h-4 en desktop */
+      width: 1rem !important;
+    }
+    
+    .wishlist-button svg {
+      height: 1rem !important;
+      width: 1rem !important;
+    }
+  }
+}
+
+/* OVERRIDE ABSOLUTO PARA WISHLIST - MÁXIMA ESPECIFICIDAD */
+.group:hover .wishlist-button svg,
+.group .wishlist-button svg,
+button.wishlist-button svg,
+div button.wishlist-button svg {
+  fill: #f83258 !important;
+  stroke: #f83258 !important;
+  color: #f83258 !important;
+  stroke-width: 2.5 !important;
+  opacity: 1 !important;
+}
+
+/* Para el estado activo */
+.group:hover .wishlist-button[style*="#8c000f"] svg,
+.group .wishlist-button[style*="#8c000f"] svg,
+button.wishlist-button[style*="#8c000f"] svg {
+  fill: #fff !important;
+  stroke: #fff !important;
+  color: #fff !important;
+}

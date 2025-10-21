@@ -1,0 +1,37 @@
+{% extends "emails/base.html" %}
+
+{% block content %}
+<h2>¡Bienvenido/a a Life Sex Shop! 🎉</h2>
+
+<p>Hola <strong>{{ usuario.get_full_name|default:usuario.email }}</strong>,</p>
+
+<p>¡Gracias por registrarte en Life Sex Shop! Estamos emocionados de tenerte como parte de nuestra comunidad.</p>
+
+<div class="info-box">
+    <p><strong>🔐 Tu cuenta ha sido creada exitosamente</strong></p>
+    <p>Email: {{ usuario.email }}</p>
+    <p>Fecha de registro: {{ usuario.date_joined|date:"d/m/Y H:i" }}</p>
+</div>
+
+<p>En Life Sex Shop encontrarás:</p>
+<ul style="margin: 20px 0; padding-left: 20px;">
+    <li>✨ Productos de alta calidad y discretos</li>
+    <li>🚚 Envío discreto y seguro</li>
+    <li>🔒 Máxima privacidad y confidencialidad</li>
+    <li>💝 Ofertas exclusivas para miembros</li>
+    <li>🎯 Atención personalizada</li>
+</ul>
+
+<div style="text-align: center; margin: 30px 0;">
+    <a href="{{ site_url }}" class="button">
+        🛍️ Explorar Productos
+    </a>
+</div>
+
+<p>Si tienes alguna pregunta o necesitas ayuda, no dudes en contactarnos. Nuestro equipo está aquí para ayudarte.</p>
+
+<p>¡Disfruta explorando nuestros productos!</p>
+
+<p>Con cariño,<br>
+<strong>El equipo de Life Sex Shop</strong></p>
+{% endblock %}

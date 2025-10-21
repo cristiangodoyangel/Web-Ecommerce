@@ -1,0 +1,27 @@
+{% extends "admin/change_list.html" %}
+{% load i18n admin_urls static %}
+
+{% block object-tools-items %}
+    {{ block.super }}
+    
+    {# Botón personalizado para añadir oferta con estilo bonito #}
+    <li>
+        <a href="{% url 'admin:ofertas_oferta_add' %}" class="addlink" style="
+            background-color: #ebc6f0 !important;
+            background-image: linear-gradient(180deg, #1fac94, #0f963c) !important;
+            color: white !important;
+            padding: 6px 12px !important;
+            border-radius: 4px !important;
+            text-decoration: none !important;
+            font-weight: bold !important;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 5px !important;
+            transition: all 0.3s ease !important;
+        " onmouseover="this.style.backgroundColor='#fb8c00'; this.style.transform='translateY(-1px)'; this.style.boxShadow='0 3px 6px rgba(0,0,0,0.3)';" 
+           onmouseout="this.style.backgroundColor='#ff9800'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.2)';">
+            + Añadir oferta
+        </a>
+    </li>
+{% endblock %}

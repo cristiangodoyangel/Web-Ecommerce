@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ titulo }}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 0;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #e91e63, #ad1457);
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .header h1 {
+            color: white;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #fce4ec;
+            font-size: 16px;
+        }
+        
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .content h2 {
+            color: #e91e63;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .content p {
+            margin-bottom: 15px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #e91e63, #ad1457);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
+        }
+        
+        .info-box {
+            background-color: #fce4ec;
+            border-left: 4px solid #e91e63;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .footer {
+            background-color: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            border-radius: 0 0 10px 10px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .footer p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .social-links {
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #e91e63;
+            text-decoration: none;
+        }
+        
+        .unsubscribe {
+            font-size: 12px;
+            color: #999;
+            margin-top: 20px;
+        }
+        
+        .unsubscribe a {
+            color: #e91e63;
+            text-decoration: none;
+        }
+        
+        @media only screen and (max-width: 600px) {
+            .container {
+                margin: 10px;
+                border-radius: 5px;
+            }
+            
+            .header, .content, .footer {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .content h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Life Sex Shop</h1>
+            <p>Tu tienda de confianza para productos íntimos</p>
+        </div>
+        
+        <!-- Content -->
+        <div class="content">
+            {% block content %}
+            <!-- El contenido específico irá aquí -->
+            {% endblock %}
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>Life Sex Shop</strong></p>
+            <p>Tu privacidad y satisfacción son nuestra prioridad</p>
+            
+            <div class="social-links">
+                <a href="#" target="_blank">📱 WhatsApp</a>
+                <a href="#" target="_blank">📧 Email</a>
+                <a href="#" target="_blank">🌐 Sitio Web</a>
+            </div>
+            
+            <p>📍 Santiago, Chile | 📞 +56 9 XXXX XXXX</p>
+            
+            <div class="unsubscribe">
+                <p>
+                    ¿No deseas recibir estos correos? 
+                    <a href="{{ unsubscribe_url }}">Darse de baja</a>
+                </p>
+                <p>Este correo fue enviado a {{ email_destinatario }}</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,81 @@
+/* Botón de wishlist ultra simple - Solo corazón */
+.simple-heart-btn {
+  background: none !important;
+  border: none !important;
+  padding: 12px !important;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+/* En mobile, más padding */
+@media (max-width: 640px) {
+  .simple-heart-btn {
+    padding: 16px !important;
+  }
+}
+
+/* Hover effect */
+.simple-heart-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Estado activo (presionado) */
+.simple-heart-btn:active {
+  transform: scale(0.95);
+}
+
+/* Estado disabled */
+.simple-heart-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Icono de corazón - FORZADO Y MÁS GRANDE */
+.simple-heart-icon {
+  width: 32px !important;
+  height: 32px !important;
+  stroke: #8c000f !important;
+  stroke-width: 2.5 !important;
+  fill: none !important;
+  color: #8c000f !important;
+}
+
+/* Cuando está en mobile, hacer AÚN más grande */
+.simple-heart-btn.mobile .simple-heart-icon {
+  width: 40px !important;
+  height: 40px !important;
+  stroke-width: 3 !important;
+}
+
+/* Estado activo (en wishlist) */
+.simple-heart-btn.active .simple-heart-icon {
+  fill: #8c000f !important;
+  stroke: #8c000f !important;
+  color: #8c000f !important;
+}
+
+/* Responsive - hacer MUCHO más grande en pantallas pequeñas */
+@media (max-width: 640px) {
+  .simple-heart-icon {
+    width: 44px !important;
+    height: 44px !important;
+    stroke-width: 3.5 !important;
+  }
+}
+
+/* Override absoluto para asegurar que se vea */
+.simple-heart-btn *,
+.simple-heart-btn svg {
+  stroke: #8c000f !important;
+  color: #8c000f !important;
+  stroke-width: 2 !important;
+}
+
+.simple-heart-btn.active * {
+  fill: #8c000f !important;
+}
