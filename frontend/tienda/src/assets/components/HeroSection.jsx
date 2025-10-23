@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { Button } from './ui/button.jsx';
 import { Badge } from './ui/badge.jsx';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-// import sensImge from '../img/banner/sensaciones.png';
-// import parejasImg from '../img/banner/parejas.png';
-// import rolImg from '../img/banner/rol.png';
+import blkImge from '../img/banner/black.png';
+import pnkImg from '../img/banner/pink.png';
+import blImg from '../img/banner/blue.png';
 import { Sparkles, ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
 
 const slides = [
@@ -23,7 +23,7 @@ const slides = [
         Perfumes de lujo y fragancias exclusivas para cada ocasión especial
       </span>
     ),
-    image: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=600&fit=crop",
+    image: blkImge
   },
   {
     badge: <span style={{ color: "var(--color-life-principal)" }}>
@@ -40,7 +40,7 @@ const slides = [
         Sets de perfumes para compartir. Encuentra la fragancia que os una como pareja
       </span>
     ),
-    image: "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=800&h=600&fit=crop"
+    image: pnkImg
   },
   {
     badge: <span style={{ color: "var(--color-life-principal)" }}>
@@ -57,7 +57,7 @@ const slides = [
         Envíos express en embalaje de lujo. Tu fragancia llegará en perfectas condiciones.
       </span>
     ),
-    image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=800&h=600&fit=crop"
+    image: blImg
   }
 ];
 
@@ -133,20 +133,18 @@ export function HeroSection() {
                 </Button>
               </div>
             </div>
-
             {/* Hero image */}
-<div className="hidden lg:block relative">
-  <div className="relative">
-    <ImageWithFallback
-      src={slides[current].image}
-      alt={`Slide ${current + 1}`}
-      className="w-full h-96 object-contain transition-all duration-500 ease-in-out"
-    />
-  </div>
-</div>
+            <div className="hidden lg:block relative">
+              <div className="relative">
+                <ImageWithFallback
+                  src={slides[current].image}
+                  alt={`Slide ${current + 1}`}
+                  className="w-full h-96 object-contain transition-all duration-500 ease-in-out"
+                />
+              </div>
+            </div>
           </div>
         </div>
-
         {/* Auto-play indicator - oculto en móvil */}
         <div className="hidden sm:block absolute top-2 sm:top-4 md:top-6 right-2 sm:right-4 md:right-8 z-20">
           <Button

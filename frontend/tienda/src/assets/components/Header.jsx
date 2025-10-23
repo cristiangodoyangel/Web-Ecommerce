@@ -316,7 +316,7 @@ export function Header({ onSearchResults }) {
                             <h4 className="font-medium text-sm" style={{ color: '#8c000f' }}>
                               {product.nombre}
                             </h4>
-                            <p className="text-xs" style={{ color: '#f83258' }}>
+                            <p className="text-xs" style={{ color: '#fabb47ff' }}>
                               {product.categoria}
                             </p>
                             <p className="text-sm font-semibold" style={{ color: '#8c000f' }}>
@@ -329,7 +329,7 @@ export function Header({ onSearchResults }) {
                         <button
                           type="submit"
                           className="display w-full text-center text-sm font-medium"
-                          style={{ color: '#f83258' }}
+                          style={{ color: '#fabb47ff' }}
                         >
                           Ver todos los resultados para "{searchQuery}"
                         </button>
@@ -376,7 +376,7 @@ export function Header({ onSearchResults }) {
                       <Button 
                         variant="ghost" 
                         className="w-full text-left px-4 py-2 hover:bg-gray-100" 
-                        style={{ color: '#8c000f' }}
+                        style={{ color: '#fabb47ff' }}
                         onClick={() => window.location.href = '/deseados'}
                       >
                         Lista de Deseados
@@ -384,7 +384,7 @@ export function Header({ onSearchResults }) {
                       <Button 
                         variant="ghost" 
                         className="w-full text-left px-4 py-2 hover:bg-gray-100" 
-                        style={{ color: '#8c000f' }}
+                        style={{ color: '#fabb47ff' }}
                         onClick={() => window.location.href = '/carrito'}
                       >
                         Carrito de Compra
@@ -392,7 +392,7 @@ export function Header({ onSearchResults }) {
                       <Button
                         variant="ghost"
                         className="w-full text-left px-4 py-2 hover:bg-gray-100"
-                        style={{ color: '#f83258' }}
+                        style={{ color: '#000000ff' }}
                         onClick={handleLogout}
                       >
                         Cerrar Sesión
