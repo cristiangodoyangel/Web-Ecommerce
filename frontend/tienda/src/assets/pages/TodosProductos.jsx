@@ -4,6 +4,7 @@ import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Input } from '../components/ui/input';
 import ProductCard from '../components/ProductCard';
+import API_BASE_URL from '../../config';
 
 const TodosProductos = () => {
   const [productos, setProductos] = useState([]);
@@ -19,7 +20,7 @@ const TodosProductos = () => {
     const fetchProductos = async () => {
       setLoading(true);
       try {
-        const response = await fetch('https://lifesexshop.cl/api/productos/');
+        const response = await fetch(`${API_BASE_URL}/productos/`);
         if (response.ok) {
           const data = await response.json();
           setProductos(data);

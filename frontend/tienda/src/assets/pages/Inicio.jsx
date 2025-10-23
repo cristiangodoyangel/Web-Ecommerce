@@ -5,6 +5,7 @@ import AdvertisementBanner2 from "../components/AdversisementBanner2";
 import ProductCard from "../components/ProductCard";
 import React, { useEffect, useState } from "react";
 import { HeroSection } from "../components/HeroSection";
+import API_BASE_URL from '../../config';
 
 const Inicio = () => {
   const [products, setProducts] = useState([]);
@@ -16,7 +17,7 @@ const Inicio = () => {
     // Cargar productos nuevos
     const fetchProducts = async () => {
       try {
-        const response = await fetch('https://lifesexshop.cl/api/productos/');
+        const response = await fetch(`${API_BASE_URL}/productos/`);
         if (response.ok) {
           const data = await response.json();
           // Ordenar por fecha de creación (más nuevos primero)
@@ -35,7 +36,7 @@ const Inicio = () => {
     // Cargar ofertas activas
     const fetchOfertas = async () => {
       try {
-        const response = await fetch('https://lifesexshop.cl/api/ofertas/');
+  const response = await fetch(`${API_BASE_URL}/ofertas/`);
         if (response.ok) {
           const data = await response.json();
            // Para debug

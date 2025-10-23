@@ -4,6 +4,7 @@ import { Button } from '../components/ui/button';
 import { Heart, ShoppingCart, ArrowLeft, Star, Plus, Minus } from 'lucide-react';
 import { useCarrito } from '../../context/CarritoContext.jsx';
 import { useDeseos } from '../../context/DeseosContext.jsx';
+import API_BASE_URL from '../../config';
 
 export default function ProductoDetalle() {
   const { id } = useParams();
@@ -25,14 +26,14 @@ export default function ProductoDetalle() {
     const fetchProduct = async () => {
       try {
         // Obtener producto
-        const productResponse = await fetch(`https://lifesexshop.cl/api/productos/${id}/`);
+        const productResponse = await fetch(`${API_BASE_URL}/productos/${id}/`);
         if (productResponse.ok) {
           const productData = await productResponse.json();
           setProduct(productData);
           
           // Verificar si hay ofertas activas para este producto
           try {
-            const ofertasResponse = await fetch('https://lifesexshop.cl/api/ofertas/');
+            const ofertasResponse = await fetch(`${API_BASE_URL}/ofertas/`);
             if (ofertasResponse.ok) {
               const ofertasData = await ofertasResponse.json();
               const ofertaActiva = ofertasData.find(o => 

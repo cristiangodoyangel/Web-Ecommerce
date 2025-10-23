@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { Button } from './ui/button.jsx';
 import { Badge } from './ui/badge.jsx';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import sensImge from '../img/banner/sensaciones.png';
-import parejasImg from '../img/banner/parejas.png';
-import rolImg from '../img/banner/rol.png';
+// import sensImge from '../img/banner/sensaciones.png';
+// import parejasImg from '../img/banner/parejas.png';
+// import rolImg from '../img/banner/rol.png';
 import { Sparkles, ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
 
 const slides = [
@@ -15,15 +15,15 @@ const slides = [
     title: (
       <>
         <span className="block" style={{ color: "var(--color-life-red)" }}>Descubre tu</span>
-        <span className="block" style={{ color: "var(--color-life-sec)" }}>Lado Más Íntimo</span>
+        <span className="block" style={{ color: "var(--color-life-sec)" }}>Fragancia Perfecta</span>
       </>
     ),
     description: (
       <span className="display" style={{ color: "var(--color-life-principal)" }}>
-        Productos de calidad premium para parejas que buscan explorar y conectar
+        Perfumes de lujo y fragancias exclusivas para cada ocasión especial
       </span>
     ),
-    image: sensImge,
+    image: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=600&fit=crop",
   },
   {
     badge: <span style={{ color: "var(--color-life-principal)" }}>
@@ -31,33 +31,33 @@ const slides = [
       </span>,
     title: (
       <>
-        <span className="playfair-display" style={{ color: "var(--color-life-red)" }}>Vive el placer</span>
-        <span className="block" style={{ color: "var(--color-life-sec)" }}>en compañía</span>
+        <span className="playfair-display" style={{ color: "var(--color-life-red)" }}>Aromas que</span>
+        <span className="block" style={{ color: "var(--color-life-sec)" }}>Enamoran</span>
       </>
     ),
     description: (
       <span className="display" style={{ color: "var(--color-life-principal)" }}>
-        Juguetes y accesorios para disfrutar juntos. ¡Explora nuestras novedades!
+        Sets de perfumes para compartir. Encuentra la fragancia que os una como pareja
       </span>
     ),
-    image: parejasImg
+    image: "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=800&h=600&fit=crop"
   },
   {
     badge: <span style={{ color: "var(--color-life-principal)" }}>
-        "Lencería y Más"
+        "Envíos Premium"
       </span>,
     title: (
       <>
-        <span className="block" style={{ color: "var(--color-life-red)" }}>Discreción</span>
-        <span className="block" style={{ color: "var(--color-life-sec)" }}>En nuestros envíos</span>
+        <span className="block" style={{ color: "var(--color-life-red)" }}>Entrega</span>
+        <span className="block" style={{ color: "var(--color-life-sec)" }}>Rápida y Segura</span>
       </>
     ),
     description: (
       <span className="display" style={{ color: "var(--color-life-principal)" }}>
-        Delivery en paquetes sin logos ni marcas. Tu privacidad es nuestra prioridad.
+        Envíos express en embalaje de lujo. Tu fragancia llegará en perfectas condiciones.
       </span>
     ),
-    image: rolImg
+    image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=800&h=600&fit=crop"
   }
 ];
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { User, Mail, Lock, Eye, EyeOff, Phone, MapPin, Calendar, CheckCircle } from 'lucide-react';
 import { Button } from '../components/ui/button.jsx';
 import { Card, CardContent } from '../components/ui/card.jsx';
+import API_BASE_URL from '../../config';
 
 const Registro = () => {
   const [formData, setFormData] = useState({
@@ -131,7 +132,7 @@ const handleSubmit = async (e) => {
       codigo_postal: formData.codigo_postal || null
     };
 
-        const response = await fetch('https://lifesexshop.cl/api/usuarios/registro/', {
+  const response = await fetch(`${API_BASE_URL}/usuarios/registro/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

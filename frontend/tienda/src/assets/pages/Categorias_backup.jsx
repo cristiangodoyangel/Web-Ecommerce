@@ -4,6 +4,7 @@ import { ArrowLeft, Filter, Grid3X3, List, ShoppingCart } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import ProductCard from '../components/ProductCard';
+import API_BASE_URL from '../../config';
 
 const Categorias = () => {
   const { categoriaNombre } = useParams();
@@ -38,7 +39,7 @@ const Categorias = () => {
     setError(null);
     try {
       // Usar el nombre mapeado de la categoría para la consulta al backend
-      let url = `https://lifesexshop.cl/api/productos/?categorias__nombre=${encodeURIComponent(categoryName)}`;
+      let url = `${API_BASE_URL}/productos/?categorias__nombre=${encodeURIComponent(categoryName)}`;
       
       // Agregar ordenamiento
       if (sortBy === 'precio_asc') {

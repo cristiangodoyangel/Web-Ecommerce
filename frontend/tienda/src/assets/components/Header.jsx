@@ -6,6 +6,7 @@ import { Badge } from './ui/badge';
 import logo from '../img/logo.png';
 import { useCarrito } from '../../context/CarritoContext';
 import { useDeseos } from '../../context/DeseosContext';
+import API_BASE_URL from '../../config';
 
 // Categorías con slugs simplificados
 const categories = [
@@ -63,7 +64,7 @@ export function Header({ onSearchResults }) {
   // Función para obtener datos del usuario
   const fetchUserData = async (userId, token) => {
     try {
-      const response = await fetch(`https://lifesexshop.cl/api/usuarios/${userId}/`, {
+      const response = await fetch(`${API_BASE_URL}/usuarios/${userId}/`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -100,7 +101,7 @@ export function Header({ onSearchResults }) {
     try {
       // Buscar usando el parámetro search del backend con Django Filter
       const response = await fetch(
-        `https://lifesexshop.cl/api/productos/?search=${encodeURIComponent(query)}`,
+  `${API_BASE_URL}/productos/?search=${encodeURIComponent(query)}`,
         {
           headers: {
             'Content-Type': 'application/json'

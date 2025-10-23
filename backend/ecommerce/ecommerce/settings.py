@@ -28,7 +28,7 @@ ENV_FILE = BASE_DIR / '.env'
 if not ENV_FILE.exists():
     ENV_FILE = BASE_DIR / '.env.production'
 
-config = Config(RepositoryEnv(str(ENV_FILE))) if ENV_FILE.exists() else Config()
+config = Config(RepositoryEnv(str(ENV_FILE))) if ENV_FILE.exists() else Config(RepositoryEnv(''))
 
 # Build paths inside th# Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -150,31 +150,13 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# Configuración de base de datos: MySQL en producción, SQLite en desarrollo
-if config('DB_NAME', default=None):
-    # Producción - MySQL
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': config('DB_NAME'),
-            'USER': config('DB_USER'),
-            'PASSWORD': config('DB_PASSWORD'),
-            'HOST': config('DB_HOST', default='localhost'),
-            'PORT': config('DB_PORT', default='3306'),
-            'OPTIONS': {
-                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-                'charset': 'utf8mb4',
-            },
-        }
+# Configuración de base de datos: Solo SQLite local
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
-else:
-    # Desarrollo - SQLite
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+}
 
 # Legacy: Configuración para producción con MySQL (descomentar en producción)
 # DATABASES = {

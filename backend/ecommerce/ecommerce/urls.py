@@ -10,7 +10,7 @@ from deseos.views import DeseoViewSet
 from categorias.views import CategoriaViewSet
 from django.conf import settings
 from django.conf.urls.static import static
-from debug_ofertas_view import debug_ofertas_view
+from django.views.generic import RedirectView
 
 router = DefaultRouter()
 router.register(r'productos', ProductoViewSet, basename='producto') 
@@ -24,6 +24,9 @@ usuarios_router.register(r'usuarios-admin', UsuarioViewSet, basename='usuario-ad
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # Root redirect to API docs (avoid 404 on '/').
+    path('', RedirectView.as_view(url='/api/swagger/', permanent=False)),
 
     # USUARIOS PRIMERO - ANTES DEL ROUTER
     path('api/', include('usuarios.urls')),
@@ -49,9 +52,6 @@ urlpatterns = [
     # Auth
     path('api/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-
-    # Debug temporal (REMOVER EN PRODUCCIÓN)
-    path('debug/ofertas/', debug_ofertas_view, name='debug-ofertas'),
 
     # Documentación de la API
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
+import API_BASE_URL from '../../config';
 
 export default function Productos() {
   const [products, setProducts] = useState([]);
@@ -9,7 +10,7 @@ export default function Productos() {
     const fetchProducts = async () => {
       try {
         // Corregido: usar fetch en lugar de api.get (que no está definido)
-        const response = await fetch('https://lifesexshop.cl/api/productos/');
+        const response = await fetch(`${API_BASE_URL}/productos/`);
         if (response.ok) {
           const data = await response.json();
           setProducts(data);
