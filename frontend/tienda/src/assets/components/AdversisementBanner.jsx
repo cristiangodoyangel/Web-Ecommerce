@@ -25,7 +25,7 @@ const AdvertisementBanner = ({
     <div 
       className="w-mid h-64 md:h-80 flex items-center justify-center text-white cursor-pointer group"
       style={{
-        background: 'linear-gradient(135deg, #f83258 0%, #8c000f 100%)'
+        background: 'linear-gradient(135deg, #c8d418ff 0%, #000000ff 100%)'
       }}
       onClick={handleClick}
     >

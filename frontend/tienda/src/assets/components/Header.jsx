@@ -13,10 +13,8 @@ const categories = [
   { name: 'Para Ella', slug: 'ella' },
   { name: 'Para Él', slug: 'el' },
   { name: 'Parejas', slug: 'parejas' },
-  { name: 'Cosmética Erótica', slug: 'cosmetica' },
-  { name: 'Lencería', slug: 'lenceria' },
-  { name: 'Accesorios', slug: 'accesorios' },
-  { name: 'Línea Premium', slug: 'linea-premium' }
+  { name: 'Cena', slug: 'cena' },
+  { name: 'Diario', slug: 'diario' },
 ];
 
 export function Header({ onSearchResults }) {
@@ -255,7 +253,7 @@ export function Header({ onSearchResults }) {
   return (
     <header className="sticky top-0 z-50 bg-white border-b shadow">
       {/* Barra de anuncio superior */}
-      <div className="display py-2 px-4 text-center text-white" style={{ background: 'linear-gradient(to right, #8c000f, #f83258)' }}>
+      <div className="display py-2 px-4 text-center text-black" style={{ background: 'linear-gradient(to right,var(--color-life-principal), var(--color-life-principal))' }}>
         <p> Envío gratis en compras sobre $50.000 </p>
       </div>
 
@@ -275,7 +273,7 @@ export function Header({ onSearchResults }) {
           {/* Barra de búsqueda */}
           <div className="hidden md:flex flex-1 max-w-2xl mx-8" ref={searchRef}>
             <form onSubmit={handleSearchSubmit} className="relative w-full">
-              <Search className="display absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4" style={{ color: '#f6dae7' }} />
+              <Search className="display absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4" style={{ color: '#e2e2e2ff' }} />
               <Input
                 type="search"
                 placeholder="Busca productos, categorías..."
@@ -283,9 +281,9 @@ export function Header({ onSearchResults }) {
                 onChange={handleSearchChange}
                 className="display pl-10 pr-4 h-12 border-2 rounded-full"
                 style={{
-                  borderColor: '#f83258',
-                  backgroundColor: '#fff',
-                  color: '#8c000f'
+                  borderColor: '#000000ff',
+                  backgroundColor: '#dfdfdfff',
+                  color: '#000000ff'
                 }}
               />
               
@@ -293,7 +291,7 @@ export function Header({ onSearchResults }) {
               {showSearchResults && (
                 <div className="display absolute top-full left-0 right-0 mt-2 bg-white border rounded-md shadow-lg z-50 max-h-96 overflow-y-auto">
                   {isSearching ? (
-                    <div className="display p-4 text-center" style={{ color: '#8c000f' }}>
+                    <div className="display p-4 text-center" style={{ color: '#b7df08ff' }}>
                       Buscando productos...
                     </div>
                   ) : searchResults.length > 0 ? (
@@ -313,13 +311,13 @@ export function Header({ onSearchResults }) {
                             }}
                           />
                           <div className="flex-1">
-                            <h4 className="font-medium text-sm" style={{ color: '#8c000f' }}>
+                            <h4 className="font-medium text-sm" style={{ color: '#000000ff' }}>
                               {product.nombre}
                             </h4>
                             <p className="text-xs" style={{ color: '#fabb47ff' }}>
                               {product.categoria}
                             </p>
-                            <p className="text-sm font-semibold" style={{ color: '#8c000f' }}>
+                            <p className="text-sm font-semibold" style={{ color: '#080001ff' }}>
                               {formatPrice(product.precio)}
                             </p>
                           </div>
@@ -336,7 +334,7 @@ export function Header({ onSearchResults }) {
                       </div>
                     </>
                   ) : (
-                    <div className="display p-4 text-center" style={{ color: '#8c000f' }}>
+                    <div className="display p-4 text-center" style={{ color: '#d4c709ff' }}>
                       No se encontraron productos para "{searchQuery}"
                     </div>
                   )}
@@ -354,7 +352,7 @@ export function Header({ onSearchResults }) {
                   variant="ghost"
                   size="sm"
                   className="display hidden md:flex items-center gap-2"
-                  style={{ color: '#8c000f' }}
+                  style={{ color: '#070001ff' }}
                   onClick={toggleSubMenu}
                 >
                   <User className="h-4 w-4" />
@@ -368,7 +366,7 @@ export function Header({ onSearchResults }) {
                       <Button 
                         variant="ghost" 
                         className="w-full text-left px-4 py-2 hover:bg-gray-100" 
-                        style={{ color: '#8c000f' }}
+                        style={{ color: '#000000ff' }}
                         onClick={() => window.location.href = '/historial-compras'}
                       >
                         Historial de Compras
@@ -376,7 +374,7 @@ export function Header({ onSearchResults }) {
                       <Button 
                         variant="ghost" 
                         className="w-full text-left px-4 py-2 hover:bg-gray-100" 
-                        style={{ color: '#fabb47ff' }}
+                        style={{ color: '#000000ff' }}
                         onClick={() => window.location.href = '/deseados'}
                       >
                         Lista de Deseados
@@ -384,7 +382,7 @@ export function Header({ onSearchResults }) {
                       <Button 
                         variant="ghost" 
                         className="w-full text-left px-4 py-2 hover:bg-gray-100" 
-                        style={{ color: '#fabb47ff' }}
+                        style={{ color: '#000000ff' }}
                         onClick={() => window.location.href = '/carrito'}
                       >
                         Carrito de Compra
@@ -406,7 +404,7 @@ export function Header({ onSearchResults }) {
                 variant="ghost"
                 size="sm"
                 className="display hidden md:flex items-center gap-2"
-                style={{ color: '#8c000f' }}
+                style={{ color: '#000000ff' }}
                 onClick={() => window.location.href = '/login'}
               >
                 <User className="h-4 w-4" />
@@ -421,12 +419,12 @@ export function Header({ onSearchResults }) {
               className="relative p-1 sm:p-2"
               onClick={() => window.location.href = '/deseados'}
             >
-              <Heart className="h-5 w-5 sm:h-5 sm:w-5" style={{ color: '#f83258' }} />
+              <Heart className="h-5 w-5 sm:h-5 sm:w-5" style={{ color: '#000000ff' }} />
               {deseosResumen?.total_items > 0 && (
                 <Badge
                   variant="secondary"
                   className="display absolute -top-1 -right-1 h-4 w-4 sm:h-5 sm:w-5 flex items-center justify-center p-0 text-white text-[10px] sm:text-xs"
-                  style={{ backgroundColor: '#f83258' }}
+                  style={{ backgroundColor: '#000000ff' }}
                 >
                   {deseosResumen.total_items}
                 </Badge>
@@ -440,12 +438,12 @@ export function Header({ onSearchResults }) {
               className="relative p-1 sm:p-2"
               onClick={() => window.location.href = '/carrito'}
             >
-              <ShoppingBag className="h-5 w-5 sm:h-5 sm:w-5" style={{ color: '#8c000f' }} />
+              <ShoppingBag className="h-5 w-5 sm:h-5 sm:w-5" style={{ color: '#000000ff' }} />
               {carritoResumen?.total_items > 0 && (
                 <Badge
                   variant="secondary"
                   className="display absolute -top-1 -right-1 h-4 w-4 sm:h-5 sm:w-5 flex items-center justify-center p-0 text-white text-[10px] sm:text-xs"
-                  style={{ backgroundColor: '#8c000f' }}
+                  style={{ backgroundColor: '#000000ff' }}
                 >
                   {carritoResumen.total_items}
                 </Badge>
@@ -457,7 +455,7 @@ export function Header({ onSearchResults }) {
               variant="ghost"
               size="sm"
               className="md:hidden p-1 sm:p-2"
-              style={{ color: '#8c000f' }}
+              style={{ color: '#000000ff' }}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -470,7 +468,7 @@ export function Header({ onSearchResults }) {
           <form onSubmit={handleSearchSubmit} className="relative">
             <Search
               className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4"
-              style={{ color: '#f6dae7' }}
+              style={{ color: '#020001ff' }}
             />
             <Input
               type="search"
@@ -479,9 +477,9 @@ export function Header({ onSearchResults }) {
               onChange={handleSearchChange}
               className="pl-10 pr-4 h-10 border-2 rounded-full"
               style={{
-                borderColor: '#f83258',
-                backgroundColor: '#fff',
-                color: '#8c000f'
+                borderColor: '#000000ff',
+                backgroundColor: '#d1d1d1ff',
+                color: '#000000ff'
               }}
             />
           </form>
@@ -494,13 +492,13 @@ export function Header({ onSearchResults }) {
             <Button
               variant="ghost"
               className="flex items-center gap-2 transition-colors ml-8"
-              style={{ color: '#8c000f' }}
+              style={{ color: '#000000ff' }}
               onMouseOver={e => {
-                e.currentTarget.style.color = '#f83258';
-                e.currentTarget.style.backgroundColor = '#f6dae7';
+                e.currentTarget.style.color = '#000000ff';
+                e.currentTarget.style.backgroundColor = 'var(--color-life-principal)';
               }}
               onMouseOut={e => {
-                e.currentTarget.style.color = '#8c000f';
+                e.currentTarget.style.color = '#000000ff';
                 e.currentTarget.style.backgroundColor = 'transparent';
               }}
               onClick={handleLogoClick}
@@ -516,13 +514,13 @@ export function Header({ onSearchResults }) {
                   key={category.slug}
                   variant="ghost"
                   className="transition-colors whitespace-nowrap text-sm xl:text-base px-2 xl:px-3"
-                  style={{ color: '#8c000f' }}
+                  style={{ color: '#000000ff' }}
                   onMouseOver={e => {
-                    e.currentTarget.style.color = '#f83258';
-                    e.currentTarget.style.backgroundColor = '#f6dae7';
+                    e.currentTarget.style.color = '#000000ff';
+                    e.currentTarget.style.backgroundColor = 'var(--color-life-principal)';
                   }}
                   onMouseOut={e => {
-                    e.currentTarget.style.color = '#8c000f';
+                    e.currentTarget.style.color = '#000000ff';
                     e.currentTarget.style.backgroundColor = 'transparent';
                   }}
                   onClick={() => window.location.href = `/categoria/${category.slug}`}
@@ -543,7 +541,7 @@ export function Header({ onSearchResults }) {
             <Button
               variant="ghost"
               className="justify-start"
-              style={{ color: '#8c000f' }}
+              style={{ color: '#000000ff' }}
               onClick={handleLogoClick}
             >
               <Home className="h-4 w-4 mr-2" />
@@ -552,7 +550,7 @@ export function Header({ onSearchResults }) {
             <Button
               variant="ghost"
               className="justify-start"
-              style={{ color: '#8c000f' }}
+              style={{ color: '#000000ff' }}
               onClick={() => window.location.href = '/login'}
             >
               <User className="h-4 w-4 mr-2" />
@@ -563,13 +561,13 @@ export function Header({ onSearchResults }) {
                 key={category.slug}
                 variant="ghost"
                 className="justify-start"
-                style={{ color: '#8c000f' }}
+                style={{ color: '#000000ff' }}
                 onMouseOver={e => {
-                  e.currentTarget.style.color = '#f83258';
-                  e.currentTarget.style.backgroundColor = '#f6dae7';
+                  e.currentTarget.style.color = '#0c0002ff';
+                  e.currentTarget.style.backgroundColor = 'var(--color-life-principal)';
                 }}
                 onMouseOut={e => {
-                  e.currentTarget.style.color = '#8c000f';
+                  e.currentTarget.style.color = '#070001ff';
                   e.currentTarget.style.backgroundColor = 'transparent';
                 }}
                 onClick={() => window.location.href = `/categoria/${category.slug}`}

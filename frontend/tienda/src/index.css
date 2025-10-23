@@ -1,15 +1,6 @@
 @import "tailwindcss";
 
 @theme {
-  --color-life-pink: #f83258;
-  --color-life-red: #8c000f;
-  --color-life-green: #087441;
-  --color-life-dark-green: #055e31;
-  --color-life-blue: #092499;
-  --color-life-dark-blue: #0609a0;
-  --color-life-yellow: #f3a712;
-  --color-life-light-yellow: #f9d56e;
-  --color-life-gray: #f5f5f5;
   --color-life-principal: #e1bb43;
   --color-life-sec: #000000;
   --color-life-ter: #dddddd;
@@ -33,8 +24,8 @@ body {
   font-family: "Playfair Display", serif;
   margin: 0;
   padding: 0;
-  background-color: #f9f9f9;
-  color: #333;
+  background-color: var(--color-life-ter);
+  color: var(--color-life-sec);
 }
 
 h1, h2, h3 {
@@ -46,9 +37,9 @@ h1, h2, h3 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #087441;
+  background-color: var(--color-life-principal);
   padding: 15px 30px;
-  color: white;
+  color: var(--color-life-sec);
   position: fixed;
   width: 100%;
   top: 0;
@@ -76,19 +67,19 @@ h1, h2, h3 {
 .main-content {
   margin-top: 100px;
   padding: 50px 20px;
-  background-color: white;
+  background-color: var(--color-life-ter);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .title {
   text-align: center;
   font-size: 3rem;
-  color: #055e31;
+  color: var(--color-life-sec);
 }
 
 .description {
   text-align: center;
-  color: #555;
+  color: var(--color-life-sec);
   margin-top: 10px;
 }
 
@@ -104,7 +95,7 @@ h1, h2, h3 {
 }
 
 .category {
-  background-color: #ffffff;
+  background-color: var(--color-life-ter);
   padding: 20px;
   width: 20%;
   text-align: center;
@@ -131,7 +122,7 @@ h1, h2, h3 {
 }
 
 .product-card {
-  background-color: white;
+  background-color: var(--color-life-ter);
   padding: 20px;
   width: 30%;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -148,17 +139,17 @@ h1, h2, h3 {
 
 .product-card h3 {
   font-size: 1.5rem;
-  color: #333;
+  color: var(--color-life-sec);
   margin-top: 10px;
 }
 
 .product-card p {
-  color: #888;
+  color: var(--color-life-sec);
 }
 
 .product-card button {
-  background-color: #0609a0;
-  color: white;
+  background-color: var(--color-life-sec);
+  color: var(--color-life-principal);
   padding: 10px 20px;
   border: none;
   margin-top: 20px;
@@ -167,13 +158,13 @@ h1, h2, h3 {
 }
 
 .product-card button:hover {
-  background-color: #098a79;
+  background-color: var(--color-life-principal);
 }
 
 /* Footer */
 .footer {
-  background-color: #092499;
-  color: white;
+  background-color: var(--color-life-sec);
+  color: var(--color-life-principal);
   text-align: center;
   padding: 20px;
   margin-top: 50px;
@@ -181,7 +172,7 @@ h1, h2, h3 {
 }
 
 .weblogicacl {
-  color: #ffffff;
+  color: var(--color-life-principal);
   text-decoration: none;
   font-weight: bold;
 }
@@ -685,9 +676,9 @@ button.social-icon-button svg {
 
   /* Regla específica para botones de wishlist solamente */
   .wishlist-button svg {
-    fill: #f83258 !important;
-    color: #f83258 !important;
-    stroke: #f83258 !important;
+    fill: #070002 !important;
+    color: #0c0003 !important;
+    stroke: #0f0003 !important;
     stroke-width: 2.5 !important;
     height: 1.25rem !important;
     width: 1.25rem !important;
@@ -723,9 +714,9 @@ button.social-icon-button svg {
 .group .wishlist-button svg,
 button.wishlist-button svg,
 div button.wishlist-button svg {
-  fill: #f83258 !important;
-  stroke: #f83258 !important;
-  color: #f83258 !important;
+  fill: #080002 !important;
+  stroke: #070001 !important;
+  color: #0e0003 !important;
   stroke-width: 2.5 !important;
   opacity: 1 !important;
 }

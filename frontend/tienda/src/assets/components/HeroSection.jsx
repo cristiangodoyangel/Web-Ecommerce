@@ -94,7 +94,7 @@ export function HeroSection() {
       <div
         className="relative min-h-[400px] sm:min-h-[450px] md:min-h-[500px] lg:min-h-[550px] flex items-center py-6 sm:py-8 md:py-10 transition-all duration-500 ease-in-out"
         style={{
-          background: 'var(--color-life-ter)'
+          background: 'var(--color-life-sec)'
         }}
       >
         <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
@@ -155,12 +155,12 @@ export function HeroSection() {
           >
             {isAutoPlaying ? (
               <>
-                <Pause className="h-3 w-3 sm:h-4 sm:w-4" style={{ color: '#f83258' }} />
+                <Pause className="h-3 w-3 sm:h-4 sm:w-4" style={{ color: '#000000ff' }} />
                 <span className="hidden md:inline">Pausar</span>
               </>
             ) : (
               <>
-                <Play className="h-3 w-3 sm:h-4 sm:w-4" style={{ color: '#f83258' }} />
+                <Play className="h-3 w-3 sm:h-4 sm:w-4" style={{ color: '#000000ff' }} />
                 <span className="hidden md:inline">Reproducir</span>
               </>
             )}

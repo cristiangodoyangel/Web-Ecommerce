@@ -2,22 +2,23 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 // Importar las imágenes directamente para asegurar la ruta correcta
-import ellaImg from "../img/ella.png";
 import elImg from "../img/el.png";
-import bothImg from "../img/both.png";
-import cosmImg from "../img/cosm.png";
-import dessImg from "../img/dress.png";
-import acceImg from "../img/acce.png";
+import ellaImg from "../img/ella.png";
+import unisexImg from "../img/unisex.png";
+import floralesImg from "../img/florales.png";
+import citricosImg from "../img/citricos.png";
+import amaderadosImg from "../img/amaderados.png";
+import orientalImg from "../img/orientales.png";
 
 // Añadir identificadores únicos (id) a las categorías y slug para la URL
 const categories = [
-  { id: 1, img: ellaImg, alt: "Para Ella", slug: "ella" },
-  { id: 2, img: elImg, alt: "Para Él", slug: "el" },
-  { id: 3, img: bothImg, alt: "Para Parejas", slug: "parejas" },
-  { id: 4, img: cosmImg, alt: "Cosmética Erótica", slug: "cosmetica" },
-  { id: 5, img: dessImg, alt: "Lencería", slug: "lenceria" },
-  { id: 6, img: acceImg, alt: "Accesorios", slug: "accesorios" },
-  { id: 7, img: cosmImg, alt: "Línea Premium", slug: "linea-premium" }, // Usando cosmImg temporalmente
+  { id: 1, img: elImg, alt: "El", slug: "el" },
+  { id: 2, img: ellaImg, alt: "Ella", slug: "ella" },
+  { id: 3, img: unisexImg, alt: "Unisex", slug: "unisex" },
+  { id: 4, img: floralesImg, alt: "Florales", slug: "florales" },
+  { id: 5, img: citricosImg, alt: "Cítricos", slug: "citricos" },
+  { id: 6, img: amaderadosImg, alt: "Amaderados", slug: "amaderados" },
+  { id: 7, img: orientalImg, alt: "Oriental", slug: "oriental" },
 ];
 
 const Categories = () => {
@@ -39,8 +40,8 @@ const Categories = () => {
               background: "#ffe7f2ff", // Terciario
               boxShadow: "0 2px 8px 0 rgba(248,50,88,0.10)" // Sombra rosa suave
             }}
-            onMouseEnter={(e) => e.currentTarget.style.boxShadow = "0 8px 15px 0 rgba(248,50,88,0.25)"}
-            onMouseLeave={(e) => e.currentTarget.style.boxShadow = "0 2px 8px 0 rgba(248,50,88,0.10)"}
+            onMouseEnter={(e) => e.currentTarget.style.boxShadow = "0 8px 15px 0 rgba(151, 149, 10, 0.25)"}
+            onMouseLeave={(e) => e.currentTarget.style.boxShadow = "0 2px 8px 0 rgba(207, 194, 12, 0.1)"}
             onClick={() => handleCategoryClick(cat.slug)}
           >
             <img
@@ -50,7 +51,7 @@ const Categories = () => {
             />
             <h3
               className="text-xs sm:text-sm md:text-base xl:text-lg font-semibold text-center leading-tight"
-              style={{ color: "#8c000f" }}
+              style={{ color: "#000000ff" }}
             >
               {cat.alt}
             </h3>
