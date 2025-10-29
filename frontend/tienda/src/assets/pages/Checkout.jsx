@@ -340,8 +340,8 @@ const Checkout = () => {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 mx-auto mb-4" style={{ borderColor: '#f83258' }}></div>
-          <p style={{ color: '#8c000f' }}>Cargando checkout...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 mx-auto mb-4" style={{ borderColor: '#283655' }}></div>
+          <p style={{ color: '#283655' }}>Cargando checkout...</p>
         </div>
       </div>
     );
@@ -357,13 +357,13 @@ const Checkout = () => {
               variant="ghost"
               onClick={() => window.location.href = '/carrito'}
               className="flex items-center gap-2"
-              style={{ color: '#8c000f' }}
+              style={{ color: '#283655' }}
             >
               <ArrowLeft className="h-4 w-4" />
               Volver al Carrito
             </Button>
             <div>
-              <h1 className="text-3xl font-bold" style={{ color: '#8c000f' }}>
+              <h1 className="text-3xl font-bold" style={{ color: '#283655' }}>
                 Finalizar Compra
               </h1>
               <p className="text-gray-600 mt-1">
@@ -422,7 +422,7 @@ const Checkout = () => {
             {step === 1 && (
               <Card>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2" style={{ color: '#8c000f' }}>
+                  <CardTitle className="flex items-center gap-2" style={{ color: '#283655' }}>
                     <User className="h-5 w-5" />
                     {isAuthenticated ? 'Confirmar Información' : 'Información de Contacto'}
                   </CardTitle>
@@ -577,7 +577,7 @@ const Checkout = () => {
                     <Button
                       onClick={handleNextStep}
                       className="px-6 py-2 text-white"
-                      style={{ backgroundColor: '#f83258' }}
+                      style={{ backgroundColor: '#4D648D' }}
                     >
                       Continuar
                     </Button>
@@ -589,7 +589,7 @@ const Checkout = () => {
             {step === 2 && (
               <Card>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2" style={{ color: '#8c000f' }}>
+                  <CardTitle className="flex items-center gap-2" style={{ color: '#283655' }}>
                     <ShoppingBag className="h-5 w-5" />
                     Resumen del Pedido
                   </CardTitle>

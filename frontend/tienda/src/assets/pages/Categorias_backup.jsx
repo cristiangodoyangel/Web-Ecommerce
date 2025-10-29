@@ -120,7 +120,7 @@ const Categorias = () => {
           {/* Layout responsivo: vertical en móvil, horizontal en tablets (768x1024+) */}
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
-              <h1 className="text-3xl font-bold" style={{ color: '#8c000f' }}>
+              <h1 className="text-3xl font-bold" style={{ color: '#283655' }}>
                 {categoryName}
               </h1>
               <p className="text-gray-600">
@@ -136,12 +136,12 @@ const Categorias = () => {
               <div className="flex flex-col sm:flex-row items-center gap-4">
                 {/* Selector de ordenamiento */}
                 <div className="display flex items-center gap-2">
-                  <Filter className="h-4 w-4" style={{ color: '#8c000f' }} />
+                  <Filter className="h-4 w-4" style={{ color: '#283655' }} />
                   <select
                     value={sortBy}
                     onChange={(e) => handleSortChange(e.target.value)}
                     className="border rounded-md px-3 py-2 text-sm"
-                    style={{ borderColor: '#f83258', color: '#8c000f' }}
+                    style={{ borderColor: '#4D648D', color: '#283655' }}
                   >
                     <option value="nombre">Nombre A-Z</option>
                     <option value="precio_asc">Precio: Menor a Mayor</option>
@@ -151,7 +151,7 @@ const Categorias = () => {
                 </div>
 
                 {/* Selector de vista */}
-                <div className="inline-flex rounded-md border" style={{ borderColor: '#f83258' }}>
+                <div className="inline-flex rounded-md border" style={{ borderColor: '#4D648D' }}>
                   <button
                     onClick={() => setViewMode('grid')}
                     className={`px-3 py-2 text-sm font-medium rounded-l-md border-r ${
@@ -201,7 +201,7 @@ const Categorias = () => {
             <Button
               onClick={() => navigate('/')}
               className="text-white px-8 py-3"
-              style={{ backgroundColor: '#8c000f' }}
+              style={{ backgroundColor: '#283655' }}
             >
               Explorar Todas las Categorías
             </Button>
@@ -244,7 +244,7 @@ const Categorias = () => {
                           {producto.descripcion}
                         </p>
                         <div className="flex items-center justify-between">
-                          <span className="text-xl font-bold" style={{ color: '#8c000f' }}>
+                          <span className="text-xl font-bold" style={{ color: '#283655' }}>
                             {formatPrice(producto.precio)}
                           </span>
                           <div className="flex items-center gap-2">
@@ -254,7 +254,7 @@ const Categorias = () => {
                             <Button
                               onClick={() => window.location.href = `/producto/${producto.id}`}
                               className="text-white px-4 py-2"
-                              style={{ backgroundColor: '#8c000f' }}
+                              style={{ backgroundColor: '#283655' }}
                             >
                               Ver Detalles
                             </Button>
@@ -273,7 +273,7 @@ const Categorias = () => {
             variant="ghost"
             onClick={handleBackClick}
             className="mb-4 flex items-center gap-2"
-            style={{ color: '#8c000f' }}
+            style={{ color: '#283655' }}
           >
             <ArrowLeft className="h-4 w-4" />
             Volver

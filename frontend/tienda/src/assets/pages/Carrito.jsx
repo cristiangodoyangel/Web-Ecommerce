@@ -111,8 +111,8 @@ export default function Carrito() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 mx-auto mb-4" style={{ borderColor: '#f83258' }}></div>
-          <p style={{ color: '#8c000f' }}>Cargando carrito...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 mx-auto mb-4" style={{ borderColor: '#283655' }}></div>
+          <p style={{ color: '#283655' }}>Cargando carrito...</p>
         </div>
       </div>
     );
@@ -121,7 +121,7 @@ export default function Carrito() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header de la página */}
-      <div className="bg-white shadow-sm border-b">
+  <div className="bg-[#4D648D] shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 py-4 sm:py-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
@@ -129,14 +129,14 @@ export default function Carrito() {
                 variant="ghost"
                 onClick={handleGoBack}
                 className="flex items-center gap-2 self-start"
-                style={{ color: '#8c000f' }}
+                style={{ color: '#283655' }}
               >
                 <ArrowLeft className="h-4 w-4" />
                 <span className="hidden sm:inline">Continuar Comprando</span>
                 <span className="sm:hidden">Volver</span>
               </Button>
               <div>
-                <h1 className="text-2xl sm:text-3xl font-bold" style={{ color: '#8c000f' }}>
+                <h1 className="text-2xl sm:text-3xl font-bold" style={{ color: '#283655' }}>
                   Carrito de Compras
                 </h1>
                 <p className="text-gray-600 mt-1 text-sm sm:text-base">
@@ -151,10 +151,10 @@ export default function Carrito() {
                 onClick={handleClearCart}
                 disabled={isClearing}
                 className="flex items-center gap-2 w-full sm:w-auto padding-2 mb-4"
-                style={{ borderColor: '#f83258', color: '#f83258' }}
+                style={{ borderColor: '#4D648D', color: '#4D648D' }}
               >
                 {isClearing ? (
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 p-1" style={{ borderColor: '#f83258' }}></div>
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 p-1" style={{ borderColor: '#283655' }}></div>
                 ) : (
                   <Trash2 className="h-4 w-4" />
                 )}
@@ -172,7 +172,7 @@ export default function Carrito() {
           // Carrito vacío
           <div className="flex flex-col items-center text-center py-12 sm:py-16 px-4">
             <ShoppingBag className="h-16 w-16 sm:h-24 sm:w-24 mb-6 text-gray-300" />
-            <h2 className="text-xl sm:text-2xl font-semibold mb-4" style={{ color: '#8c000f' }}>
+            <h2 className="text-xl sm:text-2xl font-semibold mb-4" style={{ color: '#283655' }}>
               Tu carrito está vacío
             </h2>
             <p className="text-gray-600 mb-6 sm:mb-8 max-w-md text-sm sm:text-base">
@@ -181,7 +181,7 @@ export default function Carrito() {
             <Button
               onClick={() => window.location.href = '/'}
               className="px-6 sm:px-8 py-3 text-white font-medium rounded-lg w-full sm:w-auto"
-              style={{ backgroundColor: '#f83258' }}
+              style={{ backgroundColor: '#4D648D' }}
             >
               Explorar Productos
             </Button>
@@ -216,7 +216,7 @@ export default function Carrito() {
                               handleRemoveItem(item.id);
                             }}
                             disabled={isRemoving === item.id}
-                            className="w-16 h-16 hover:bg-red-700 text-[#8c000f] hover:shadow-xl transition-all duration-200 flex items-center justify-center transform hover:scale-110 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="w-16 h-16 hover:bg-[#283655] text-[#4D648D] hover:shadow-xl transition-all duration-200 flex items-center justify-center transform hover:scale-110 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
                             style={{
                               minWidth: '74px',
                               minHeight: '74px'
@@ -258,7 +258,7 @@ export default function Carrito() {
                         <div className="flex flex-col gap-2">
                           <span className="text-xs text-gray-600">Precio unitario:</span>
                           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2">
-                            <p className="text-sm font-bold" style={{ color: item.tiene_oferta ? '#f83258' : '#8c000f' }}>
+                            <p className="text-sm font-bold" style={{ color: item.tiene_oferta ? '#4D648D' : '#283655' }}>
                               {formatPrice(item.precio_unitario || item.producto.precio)}
                             </p>
                             {item.tiene_oferta && (
@@ -308,7 +308,7 @@ export default function Carrito() {
 
                           {isUpdating[item.id] && (
                             <div className="flex justify-center">
-                              <div className="animate-spin rounded-full h-4 w-4 border-b-2" style={{ borderColor: '#f83258' }}></div>
+                              <div className="animate-spin rounded-full h-4 w-4 border-b-2" style={{ borderColor: '#283655' }}></div>
                             </div>
                           )}
                         </div>
@@ -318,7 +318,7 @@ export default function Carrito() {
                           <div className="flex justify-between items-center">
                             <span className="text-sm text-gray-700 font-medium">Subtotal:</span>
                             <div className="flex flex-col items-end">
-                              <p className="text-lg font-bold" style={{ color: '#8c000f' }}>
+                              <p className="text-lg font-bold" style={{ color: '#283655' }}>
                                 {formatPrice(item.subtotal || (item.precio_unitario || item.producto.precio) * item.cantidad)}
                               </p>
                               {item.tiene_oferta && (
@@ -464,13 +464,13 @@ export default function Carrito() {
             <div className="lg:col-span-1 mt-6 lg:mt-0 mb-10 lg:mb-0">
               <Card className="sticky top-4">
                 <CardContent className="p-4 sm:p-6">
-                  <h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6" style={{ color: '#8c000f' }}>
+                  <h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6" style={{ color: '#283655' }}>
                     Resumen del Pedido
                   </h3>
 
                   {/* Forma de Entrega */}
                   <div className="mb-6">
-                    <h4 className="text-md font-semibold mb-3" style={{ color: '#8c000f' }}>
+                    <h4 className="text-md font-semibold mb-3" style={{ color: '#283655' }}>
                       Forma de Entrega
                     </h4>
                     
@@ -586,15 +586,15 @@ export default function Carrito() {
                     <hr className="my-4" />
                     
                     <div className="flex justify-between text-base sm:text-lg font-bold">
-                      <span style={{ color: '#8c000f' }}>Total:</span>
-                      <span style={{ color: '#8c000f' }}>{formatPrice(calcularTotal())}</span>
+                      <span style={{ color: '#283655' }}>Total:</span>
+                      <span style={{ color: '#283655' }}>{formatPrice(calcularTotal())}</span>
                     </div>
                   </div>
 
                   <Button
                     onClick={handleCheckout}
                     className="w-full py-3 text-white font-medium rounded-lg flex items-center justify-center gap-2 text-sm sm:text-base"
-                    style={{ backgroundColor: '#f83258' }}
+                    style={{ backgroundColor: '#4D648D' }}
                     disabled={items.length === 0}
                   >
                     <CreditCard className="h-4 w-4 sm:h-5 sm:w-5" />

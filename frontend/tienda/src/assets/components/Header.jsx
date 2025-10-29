@@ -314,7 +314,7 @@ export function Header({ onSearchResults }) {
                             <h4 className="font-medium text-sm" style={{ color: '#000000ff' }}>
                               {product.nombre}
                             </h4>
-                            <p className="text-xs" style={{ color: '#fabb47ff' }}>
+                            <p className="text-xs" style={{ color: '#4D648D' }}>
                               {product.categoria}
                             </p>
                             <p className="text-sm font-semibold" style={{ color: '#080001ff' }}>
@@ -327,7 +327,7 @@ export function Header({ onSearchResults }) {
                         <button
                           type="submit"
                           className="display w-full text-center text-sm font-medium"
-                          style={{ color: '#fabb47ff' }}
+                          style={{ color: '#4D648D' }}
                         >
                           Ver todos los resultados para "{searchQuery}"
                         </button>

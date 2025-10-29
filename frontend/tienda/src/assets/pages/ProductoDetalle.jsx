@@ -100,7 +100,7 @@ export default function ProductoDetalle() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center" style={{ color: '#8c000f' }}>
+  <div className="text-center" style={{ color: '#283655' }}>
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto mb-4"></div>
           <div className="text-lg">Cargando producto...</div>
         </div>
@@ -111,12 +111,12 @@ export default function ProductoDetalle() {
   if (!product) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center" style={{ color: '#8c000f' }}>
+  <div className="text-center" style={{ color: '#283655' }}>
           <div className="text-lg">Producto no encontrado</div>
           <Button 
             onClick={() => navigate('/productos')}
             className="mt-4"
-            style={{ backgroundColor: '#8c000f', color: '#fff' }}
+            style={{ backgroundColor: '#283655', color: '#D0E1F9' }}
           >
             Volver a productos
           </Button>
@@ -147,7 +147,7 @@ export default function ProductoDetalle() {
             {oferta && (
               <div 
                 className="absolute top-4 left-4 px-3 py-1 rounded-full text-white text-sm font-bold"
-                style={{ backgroundColor: '#f83258' }}
+                style={{ backgroundColor: '#4D648D' }}
               >
                 -{oferta.porcentaje_descuento}% OFF
               </div>
@@ -174,10 +174,10 @@ export default function ProductoDetalle() {
           {/* Información del producto */}
           <div className="space-y-6 max-w-lg mx-auto">
             <div>
-              <p className="display text-sm font-medium uppercase tracking-wide mb-2 text-center" style={{ color: '#f83258' }}>
+              <p className="display text-sm font-medium uppercase tracking-wide mb-2 text-center" style={{ color: '#4D648D' }}>
                 {product.categoria}
               </p>
-              <h1 className="display text-2xl sm:text-3xl font-bold mb-4 text-center" style={{ color: '#8c000f' }}>
+              <h1 className="display text-2xl sm:text-3xl font-bold mb-4 text-center" style={{ color: '#283655' }}>
                 {product.nombre}
               </h1>
               
@@ -185,18 +185,18 @@ export default function ProductoDetalle() {
               <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4 mb-6">
                 {oferta ? (
                   <>
-                    <span className="display text-2xl sm:text-3xl font-bold" style={{ color: '#f83258' }}>
+                    <span className="display text-2xl sm:text-3xl font-bold" style={{ color: '#4D648D' }}>
                       {formatPrice(oferta.precio_con_descuento)}
                     </span>
                     <span className="display text-lg sm:text-xl line-through text-gray-500">
                       {formatPrice(product.precio)}
                     </span>
-                    <span className="display text-xs sm:text-sm font-medium px-2 py-1 rounded" style={{ backgroundColor: '#f83258', color: 'white' }}>
+                    <span className="display text-xs sm:text-sm font-medium px-2 py-1 rounded" style={{ backgroundColor: '#4D648D', color: '#D0E1F9' }}>
                       Ahorra {formatPrice(product.precio - oferta.precio_con_descuento)}
                     </span>
                   </>
                 ) : (
-                  <span className="display text-2xl sm:text-3xl font-bold" style={{ color: '#8c000f' }}>
+                  <span className="display text-2xl sm:text-3xl font-bold" style={{ color: '#283655' }}>
                     {formatPrice(product.precio)}
                   </span>
                 )}
@@ -206,7 +206,7 @@ export default function ProductoDetalle() {
               <div className="mb-6 text-center">
                 <span 
                   className="text-sm font-medium"
-                  style={{ color: hasStock ? '#1f7c0cff' : '#f83258' }}
+                  style={{ color: hasStock ? '#283655' : '#4D648D' }}
                 >
                   {hasStock ? `Disponible` : 'Sin stock'}
                 </span>
@@ -215,10 +215,10 @@ export default function ProductoDetalle() {
 
             {/* Descripción */}
             <div>
-              <h3 className="text-lg font-semibold mb-2" style={{ color: '#8c000f' }}>
+              <h3 className="text-lg font-semibold mb-2" style={{ color: '#283655' }}>
                 Descripción
               </h3>
-              <p style={{ color: '#666' }}>
+              <p style={{ color: '#4D648D' }}>
                 {product.descripcion}
               </p>
             </div>
@@ -227,7 +227,7 @@ export default function ProductoDetalle() {
             {hasStock && isActive && (
               <div className="space-y-4">
                 <div className="flex flex-col items-center gap-3">
-                  <label className="display text-sm font-medium" style={{ color: '#8c000f' }}>
+                  <label className="display text-sm font-medium" style={{ color: '#283655' }}>
                     Cantidad:
                   </label>
                   <div className="display flex items-center border-2 rounded-lg overflow-hidden bg-white shadow-sm">
@@ -300,8 +300,8 @@ export default function ProductoDetalle() {
             )}
 
             {(!hasStock || !isActive) && (
-              <div className="p-4 rounded-lg" style={{ backgroundColor: '#f6dae7' }}>
-                <p style={{ color: '#8c000f' }}>
+              <div className="p-4 rounded-lg" style={{ backgroundColor: '#D0E1F9' }}>
+                <p style={{ color: '#283655' }}>
                   {!isActive ? 'Producto no disponible' : 'Producto sin stock'}
                 </p>
                 {/* Botón de wishlist aún disponible cuando no hay stock */}
@@ -342,7 +342,7 @@ export default function ProductoDetalle() {
           variant="ghost"
           onClick={() => navigate(-1)}
           className="mb-6 flex items-center gap-4 mt-8"
-          style={{ color: '#8c000f' }}
+          style={{ color: '#283655' }}
         >
           <ArrowLeft className="h-4 w-4" />
           Volver

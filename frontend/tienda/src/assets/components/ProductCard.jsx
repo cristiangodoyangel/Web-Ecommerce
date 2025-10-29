@@ -130,10 +130,10 @@ const ProductCard = ({ product }) => {
         onMouseLeave={() => setIsHovered(false)}
         onClick={handleProductClick}
         style={{
-          background: '#ffffff',
+          background: '#fff',
           boxShadow: isHovered
-            ? '0 8px 32px 0 rgba(248, 50, 88, 0.25)'
-            : '0 2px px 0 rgba(140, 0, 15, 0.10)',
+            ? '0 8px 32px 0 rgba(77, 100, 141, 0.18)'
+            : '0 2px 8px 0 rgba(40, 54, 85, 0.08)',
           height: isMobile ? 'auto' : isTablet ? '520px' : '600px', 
           width: '100%',
           minHeight: isMobile ? '400px' : isTablet ? '520px' : '600px'
@@ -145,7 +145,8 @@ const ProductCard = ({ product }) => {
             <div 
               className="rounded-full text-white font-bold flex items-center gap-1 shadow-lg"
               style={{ 
-                backgroundColor: '#f83258',
+                backgroundColor: '#4D648D',
+                color: '#D0E1F9',
                 padding: isMobile ? '4px 8px' : '6px 12px',
                 fontSize: isMobile ? '10px' : '12px'
               }}
@@ -177,14 +178,14 @@ const ProductCard = ({ product }) => {
                 <Button
                   className="w-full"
                   style={{
-                    background: hasStock && isActive ? '#8c000f' : '#f83258',
-                    color: '#fff',
+                    background: hasStock && isActive ? '#283655' : '#4D648D',
+                    color: '#ffffff',
                     opacity: isAddingToCart ? 0.6 : 1,
                   }}
                   onClick={handleAddToCart}
                   disabled={!hasStock || !isActive || isAddingToCart}
                 >
-                  <ShoppingCart className="h-4 w-4 mr-2" style={{ color: '#fff' }} />
+                  <ShoppingCart className="h-4 w-4 mr-2" style={{ color: '#D0E1F9' }} />
                   {isAddingToCart 
                     ? 'Agregando...' 
                     : hasStock && isActive 
@@ -203,6 +204,8 @@ const ProductCard = ({ product }) => {
                 onClick={handleWishlistToggle}
                 disabled={isTogglingWishlist}
                 isMobile={isMobile}
+                color={isWishlisted ? '#283655' : '#4D648D'}
+                iconColor={isWishlisted ? '#283655' : '#4D648D'}
               />
             </div>
           </div>
@@ -210,11 +213,12 @@ const ProductCard = ({ product }) => {
           {/* Contenido - flex-1 para ocupar el espacio restante */}
           <div className="flex flex-col flex-1" style={{ 
             minHeight: isMobile ? '100px' : isTablet ? '120px' : '150px',
-            padding: isMobile ? '12px' : isTablet ? '14px' : '20px'
+            padding: isMobile ? '12px' : isTablet ? '14px' : '20px',
+            color: '#283655'
           }}>
             {/* Categoría - altura fija */}
             <div className="text-xs font-medium uppercase tracking-wide mb-1" style={{ 
-              color: '#8c000f', 
+              color: '#4D648D', 
               height: '14px', 
               fontSize: isMobile ? '10px' : isTablet ? '11px' : '12px' 
             }}>
@@ -225,7 +229,7 @@ const ProductCard = ({ product }) => {
             <h3 
               className="display font-semibold group-hover:underline transition-colors mb-2" 
               style={{ 
-                color: '#8c000f',
+                color: '#283655',
                 height: isMobile ? 'auto' : isTablet ? '54px' : '72px',
                 minHeight: isMobile ? '36px' : isTablet ? '54px' : '72px',
                 display: '-webkit-box',
@@ -244,7 +248,7 @@ const ProductCard = ({ product }) => {
               <p 
                 className="display mb-3" 
                 style={{ 
-                  color: '#f83258',
+                  color: '#4D648D',
                   minHeight: isTablet ? '36px' : '40px',
                   maxHeight: isTablet ? '40px' : '50px',
                   display: '-webkit-box',
@@ -271,7 +275,7 @@ const ProductCard = ({ product }) => {
               height: isMobile ? '16px' : isTablet ? '18px' : '20px' 
             }}>
               <div className="text-xs" style={{ 
-                color: hasStock ? '#066803ff' : '#f83258', 
+                color: hasStock ? '#283655' : '#4D648D', 
                 fontSize: isMobile ? '10px' : isTablet ? '11px' : '12px' 
               }}>
                 {hasStock ? `Disponible` : 'Sin stock'}
@@ -285,14 +289,14 @@ const ProductCard = ({ product }) => {
               <span 
                 className="font-bold text-center leading-tight" 
                 style={{ 
-                  color: isOnSale ? '#f83258' : '#8c000f',
+                  color: isOnSale ? '#4D648D' : '#283655',
                   fontSize: isMobile ? '16px' : isTablet ? '17px' : '18px'
                 }}
               >
                 {formatPrice(displayPrice)}
               </span>
               {isOnSale && originalPrice && (
-                <span className="line-through text-gray-500 text-center" style={{ 
+                <span className="line-through text-gray-400 text-center" style={{ 
                   fontSize: isMobile ? '11px' : isTablet ? '12px' : '14px' 
                 }}>
                   {formatPrice(originalPrice)}
@@ -305,8 +309,8 @@ const ProductCard = ({ product }) => {
               <Button
                 className="w-full h-full"
                 style={{
-                  background: hasStock && isActive ? '#8c000f' : '#f83258',
-                  color: '#fff',
+                  background: hasStock && isActive ? '#283655' : '#4D648D',
+                  color: '#D0E1F9',
                   opacity: isAddingToCart ? 0.6 : 1,
                   padding: isMobile ? '6px 12px' : '8px 14px',
                   fontSize: isMobile ? '13px' : '14px'
@@ -314,7 +318,7 @@ const ProductCard = ({ product }) => {
                 onClick={handleAddToCart}
                 disabled={!hasStock || !isActive || isAddingToCart}
               >
-                <ShoppingCart className={isMobile ? "h-3 w-3 mr-1" : "h-4 w-4 mr-2"} style={{ color: '#fff' }} />
+                <ShoppingCart className={isMobile ? "h-3 w-3 mr-1" : "h-4 w-4 mr-2"} style={{ color: '#D0E1F9' }} />
                 {isAddingToCart 
                   ? 'Agregando...' 
                   : hasStock && isActive 

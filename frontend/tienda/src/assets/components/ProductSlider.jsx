@@ -43,7 +43,7 @@ const ProductSlider = ({ products, title, maxVisible = 4, maxTotal = 8 }) => {
   return (
     <section className="py-8">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-semibold" style={{ color: '#f83258' }}>
+        <h2 className="text-2xl font-semibold" style={{ color: '#1E1F26' }}>
           {title}
         </h2>
         

@@ -61,18 +61,18 @@ const Inicio = () => {
   }, []);
 
   return (
-    <div className="bg-gray-100 min-h-screen">
+  <div style={{ backgroundColor: '#ffffff', minHeight: '100vh' }}>
       {/* HeroSection sin restricción de ancho */}
-      <div className="bg-white shadow-sm">
+      <div style={{ backgroundColor: '#ffffff', boxShadow: '0 2px 8px rgba(44, 62, 80, 0.08)' }}>
         <HeroSection />
       </div>
 
       {/* Contenido principal con contenedor responsivo */}
-      <div className="container mx-auto px-2 sm:px-4 md:px- lg:px-8">
-        <div className="py-4 space-y-6">
+      <div className="container mx-auto px-2 sm:px-4 md:px-8 lg:px-12">
+        <div style={{ padding: '2rem 0', gap: '2rem', display: 'flex', flexDirection: 'column' }}>
           {/* Productos en oferta */}
           {loadingOfertas ? (
-            <div className="text-center py-4" style={{ color: '#8c000f' }}>
+            <div className="text-center py-4" style={{ color: '#283655' }}>
               Cargando ofertas...
             </div>
           ) : ofertas.length > 0 ? (
@@ -85,7 +85,7 @@ const Inicio = () => {
               />
             </div>
           ) : (
-            <div className="text-center py-4" style={{ color: '#8c000f' }}>
+            <div className="text-center py-4" style={{ color: '#283655' }}>
               No hay ofertas disponibles en este momento.
             </div>
           )}
@@ -97,7 +97,7 @@ const Inicio = () => {
 
           {/* Nuevos productos con slider */}
           {loading ? (
-            <div className="text-center py-8" style={{ color: '#8c000f' }}>
+            <div className="text-center py-8" style={{ color: '#283655' }}>
             Cargando productos...
             </div>
           ) : (
@@ -117,7 +117,7 @@ const Inicio = () => {
               <button
                 onClick={() => window.location.href = '/TodosProductos'}
                 className="w-full sm:w-auto px-8 py-4 rounded-lg font-medium text-white transition-colors hover:opacity-90 shadow-lg"
-                style={{ backgroundColor: '#8c000f' }}
+                style={{ backgroundColor: '#4D648D', color: '#ffffff', border: '2px solid #D0E1F9' }}
               >
                 Ver todos los productos
               </button>
@@ -130,7 +130,7 @@ const Inicio = () => {
           </div>
 
           {/* Categorías */}
-          <div className="bg-white shadow-sm rounded-lg">
+          <div style={{ backgroundColor: '#ffffff', boxShadow: '0 2px 8px rgba(44, 62, 80, 0.08)', borderRadius: '1rem' }}>
             <section className="py-6 sm:py-8">
               <Categories />
             </section>
