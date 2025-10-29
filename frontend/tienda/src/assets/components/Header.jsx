@@ -486,7 +486,7 @@ export function Header({ onSearchResults }) {
         </div>
 
         {/* Navegación de escritorio */}
-        <nav className="hidden md:block border-t" style={{ borderColor: '#f6dae7' }}>
+        <nav className="hidden md:block border-t" style={{ borderColor: '#e3f6daff' }}>
           <div className="display flex items-center gap-8 py-3">
             {/* Botón HOME a la izquierda */}
             <Button

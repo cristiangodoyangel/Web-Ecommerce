@@ -76,7 +76,7 @@ INSTALLED_APPS = [
     'ofertas',
     'deseos',
     'analitica',
-    'notificaciones',  # Nueva app para notificaciones por correo
+    'notificaciones',  
     'corsheaders',
     'drf_spectacular',
     'categorias',
@@ -84,7 +84,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Para archivos estáticos
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',  
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -97,14 +97,11 @@ MIDDLEWARE = [
 
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # URL de tu frontend en desarrollo (ajústalo según sea necesario)
+    "http://localhost:3000", 
     "https://tu_dominio.com", 
     "http://localhost:5173",
     "http://localhost:5174",
-    "https://lifesexshop.cl",
-    "http://lifesexshop.cl",
-    "https://www.lifesexshop.cl",  # Con www
-    "http://www.lifesexshop.cl",   # Con www
+  
 ]
 
 CORS_ALLOW_HEADERS = [
@@ -117,10 +114,10 @@ CORS_ALLOW_HEADERS = [
 ]
 CORS_ALLOW_CREDENTIALS = True
 
-# Configuración CSRF para producción
+
 CSRF_TRUSTED_ORIGINS = [
-    "https://lifesexshop.cl",
-    "http://lifesexshop.cl",
+    "",
+    "",
 ]
 
 ROOT_URLCONF = 'ecommerce.urls'
@@ -129,8 +126,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'staticfiles' / 'frontend',  # Para React en producción
-            BASE_DIR / 'static' / 'frontend',        # Para React en desarrollo
+            BASE_DIR / 'staticfiles' / 'frontend',
+            BASE_DIR / 'static' / 'frontend',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -147,8 +144,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'ecommerce.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+
 
 # Configuración de base de datos: Solo SQLite local
 DATABASES = {
@@ -158,24 +154,6 @@ DATABASES = {
     }
 }
 
-# Legacy: Configuración para producción con MySQL (descomentar en producción)
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': config('DB_NAME'),
-#         'USER': config('DB_USER'),
-#         'PASSWORD': config('DB_PASSWORD'),
-#         'HOST': config('DB_HOST', default='localhost'),
-#         'PORT': config('DB_PORT', default='3306'),
-#         'OPTIONS': {
-#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-#             'charset': 'utf8mb4',
-#         },
-#     }
-# }
-
-# Password validation
-# https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -194,8 +172,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTH_USER_MODEL = 'usuarios.Usuario'
 
-# Internationalization
-# https://docs.djangoproject.com/en/4.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -206,11 +182,9 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = "home/lifesexs/public_html/statics"
+STATIC_ROOT = "statics"
 
 # Para desarrollo - directorio de archivos estáticos
 STATICFILES_DIRS = [
