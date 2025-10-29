@@ -253,7 +253,7 @@ export function Header({ onSearchResults }) {
   return (
     <header className="sticky top-0 z-50 bg-white border-b shadow">
       {/* Barra de anuncio superior */}
-      <div className="display py-2 px-4 text-center text-black" style={{ background: 'linear-gradient(to right,var(--color-life-principal), var(--color-life-principal))' }}>
+      <div className="display py-2 px-4 text-center text-white" style={{ background: 'linear-gradient(to right,var(--color-life-principal), var(--color-life-sec))' }}>
         <p> Envío gratis en compras sobre $50.000 </p>
       </div>
 
@@ -273,7 +273,7 @@ export function Header({ onSearchResults }) {
           {/* Barra de búsqueda */}
           <div className="hidden md:flex flex-1 max-w-2xl mx-8" ref={searchRef}>
             <form onSubmit={handleSearchSubmit} className="relative w-full">
-              <Search className="display absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4" style={{ color: '#e2e2e2ff' }} />
+              <Search className="display absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4" style={{ color: '#e4f5ffff' }} />
               <Input
                 type="search"
                 placeholder="Busca productos, categorías..."
@@ -281,7 +281,7 @@ export function Header({ onSearchResults }) {
                 onChange={handleSearchChange}
                 className="display pl-10 pr-4 h-12 border-2 rounded-full"
                 style={{
-                  borderColor: '#000000ff',
+                  borderColor: '#1E1F26',
                   backgroundColor: '#dfdfdfff',
                   color: '#000000ff'
                 }}
@@ -291,7 +291,7 @@ export function Header({ onSearchResults }) {
               {showSearchResults && (
                 <div className="display absolute top-full left-0 right-0 mt-2 bg-white border rounded-md shadow-lg z-50 max-h-96 overflow-y-auto">
                   {isSearching ? (
-                    <div className="display p-4 text-center" style={{ color: '#b7df08ff' }}>
+                    <div className="display p-4 text-center" style={{ color: '#c6e8e9ff' }}>
                       Buscando productos...
                     </div>
                   ) : searchResults.length > 0 ? (

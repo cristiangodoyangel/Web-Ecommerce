@@ -1,9 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --color-life-principal: #e1bb43;
-  --color-life-sec: #000000;
-  --color-life-ter: #dddddd;
+  /* Palette from design: mist, stone, shadow, autumn foliage */
+  --color-life-mist: #D0E1F9;   /* light / background */
+  --color-life-accent: #283655;  /* accent / buttons */
+  --color-life-sec: #1E1F26;     /* text / dark */
+  --color-life-principal: #4D648D; /* primary accent (autumn foliage) */
+  --color-life-ter: var(--color-life-mist);
 }
 
 .display {
@@ -39,7 +42,7 @@ h1, h2, h3 {
   align-items: center;
   background-color: var(--color-life-principal);
   padding: 15px 30px;
-  color: var(--color-life-sec);
+  color: var(--color-life-mist);
   position: fixed;
   width: 100%;
   top: 0;
@@ -148,8 +151,8 @@ h1, h2, h3 {
 }
 
 .product-card button {
-  background-color: var(--color-life-sec);
-  color: var(--color-life-principal);
+  background-color: var(--color-life-accent);
+  color: var(--color-life-mist);
   padding: 10px 20px;
   border: none;
   margin-top: 20px;
@@ -164,7 +167,7 @@ h1, h2, h3 {
 /* Footer */
 .footer {
   background-color: var(--color-life-sec);
-  color: var(--color-life-principal);
+  color: var(--color-life-mist);
   text-align: center;
   padding: 20px;
   margin-top: 50px;

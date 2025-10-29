@@ -5,7 +5,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import './index.css'; 
 import './App.css'; 
 import { Header } from "./assets/components/Header";
-import { Footer } from "./assets/components/Footer"; 
+import { Footer } from "./assets/components/footer"; 
 import { CarritoProvider } from './context/CarritoContext';
 import { DeseosProvider } from './context/DeseosContext';
 
