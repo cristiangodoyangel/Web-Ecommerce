@@ -5,17 +5,18 @@ import { ImageWithFallback } from './figma/ImageWithFallback';
 import blkImge from '../img/banner/black.png';
 import pnkImg from '../img/banner/pink.png';
 import blImg from '../img/banner/blue.png';
+import bgImg from '../img/background.png';
 import { Sparkles, ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
 
 const slides = [
   {
-    badge: <span style={{ color: "var(--color-life-principal)" }}>
+    badge: <span style={{ color: "#ffffff" }}>
         "Nueva Colección 2025"
       </span>,
     title: (
       <>
-        <span className="block" style={{ color: "var(--color-life-red)" }}>Descubre tu</span>
-        <span className="block" style={{ color: "var(--color-life-sec)" }}>Fragancia Perfecta</span>
+        <span className="block" style={{ color: "#D0E1F9" }}>Descubre tu</span>
+        <span className="block" style={{ color: "#D0E1F9" }}>Fragancia Perfecta</span>
       </>
     ),
     description: (
@@ -26,13 +27,13 @@ const slides = [
     image: blkImge
   },
   {
-    badge: <span style={{ color: "var(--color-life-principal)" }}>
+    badge: <span style={{ color: "#ffffff" }}>
         "Especial Parejas"
       </span>,
     title: (
       <>
-        <span className="playfair-display" style={{ color: "var(--color-life-red)" }}>Aromas que</span>
-        <span className="block" style={{ color: "var(--color-life-sec)" }}>Enamoran</span>
+        <span className="playfair-display" style={{ color: "#D0E1F9" }}>Aromas que</span>
+        <span className="block" style={{ color: "#D0E1F9" }}>Enamoran</span>
       </>
     ),
     description: (
@@ -43,13 +44,13 @@ const slides = [
     image: pnkImg
   },
   {
-    badge: <span style={{ color: "var(--color-life-principal)" }}>
+    badge: <span style={{ color: "#ffffff" }}>
         "Envíos Premium"
       </span>,
     title: (
       <>
-        <span className="block" style={{ color: "var(--color-life-red)" }}>Entrega</span>
-        <span className="block" style={{ color: "var(--color-life-sec)" }}>Rápida y Segura</span>
+        <span className="block" style={{ color: "#D0E1F9" }}>Entrega</span>
+        <span className="block" style={{ color: "#D0E1F9" }}>Rápida y Segura</span>
       </>
     ),
     description: (
@@ -94,31 +95,36 @@ export function HeroSection() {
       <div
         className="relative min-h-[400px] sm:min-h-[450px] md:min-h-[500px] lg:min-h-[550px] flex items-center py-6 sm:py-8 md:py-10 transition-all duration-500 ease-in-out"
         style={{
-          background: 'var(--color-life-sec)'
+          background: 'var(--color-life-sec)',
+          backgroundImage: `url(${bgImg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
         }}
       >
         <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-6 md:gap-8 items-center">
             {/* Content */}
-            <div className="text-white space-y-3 sm:space-y-4 md:space-y-6 flex flex-col items-center lg:items-start text-center lg:text-left">
-              <Badge className="bg-white/20 text-white border-0 px-3 py-1.5 sm:px-4 sm:py-2 flex items-center w-fit animate-fade-in text-xs sm:text-sm">
-                <Sparkles className="h-3 w-3 sm:h-4 sm:w-4 mr-1.5 sm:mr-2" />
-                {slides[current].badge}
-              </Badge>
-              
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight animate-slide-up">
-                {slides[current].title}
-              </h1>
-              
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 max-w-lg animate-slide-up">
-                {slides[current].description}
-              </p>
+            <div className="text-white space-y-3 sm:space-y-4 md:space-y-6 flex flex-col justify-center items-center text-center" style={{ minHeight: '420px', paddingLeft: '2rem' }}>
+              <div style={{ paddingLeft: '3rem', width: '100%' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+                  <Badge className="bg-white/20 text-white border-0 px-3 py-1.5 sm:px-4 sm:py-2 flex items-center w-fit animate-fade-in text-xs sm:text-sm">
+                    <Sparkles className="h-3 w-3 sm:h-4 sm:w-4 mr-1.5 sm:mr-2" />
+                    {slides[current].badge}
+                  </Badge>
+                </div>
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight animate-slide-up">
+                  {slides[current].title}
+                </h1>
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 max-w-lg animate-slide-up">
+                  {slides[current].description}
+                </p>
+              </div>
 
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-4 pl-0 lg:pl-8 xl:pl-16 w-full sm:w-auto items-center lg:items-start">
                 <Button
                   variant="outline"
                   size="lg"
-                  className="display text-white bg-[var(--color-life-principal)] border-[var(--color-life-principal)] hover:bg-transparent hover:text-[var(--color-life-principal)] hover:border-[var(--color-life-principal)] px-4 sm:px-6 md:px-8 py-2 sm:py-2.5 md:py-3 text-sm sm:text-base md:text-lg transition-all duration-300 w-full sm:w-auto"
+                   className="display text-white bg-[var(--color-life-principal)] border-white hover:bg-white hover:text-[var(--color-life-principal)] px-4 sm:px-6 md:px-8 py-2 sm:py-2.5 md:py-3 text-sm sm:text-base md:text-lg transition-all duration-300 w-full sm:w-auto"
                   onClick={() => window.location.href = '/TodosProductos'}
                 >
                   Explorar Productos

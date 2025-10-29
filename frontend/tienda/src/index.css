@@ -1,12 +1,17 @@
 @import "tailwindcss";
 
-@theme {
-  /* Palette from design: mist, stone, shadow, autumn foliage */
-  --color-life-mist: #D0E1F9;   /* light / background */
-  --color-life-accent: #283655;  /* accent / buttons */
-  --color-life-sec: #1E1F26;     /* text / dark */
-  --color-life-principal: #4D648D; /* primary accent (autumn foliage) */
-  --color-life-ter: var(--color-life-mist);
+:root {
+  /* Nueva paleta: FONDO, INDIGO, Blueberry, Celest Claro */
+  --color-life-background: #1E1F26;   /* FONDO */
+  --color-life-indigo: #283655;       /* AZUL INDIGO */
+  --color-life-blueberry: #4D648D;    /* Blueberry */
+  --color-life-celest: #D0E1F9;       /* Celest Claro */
+  /* Variables legacy para compatibilidad */
+  --color-life-mist: var(--color-life-celest);
+  --color-life-accent: var(--color-life-indigo);
+  --color-life-sec: var(--color-life-background);
+  --color-life-principal: var(--color-life-blueberry);
+  --color-life-ter: var(--color-life-celest);
 }
 
 .display {
@@ -30,6 +35,9 @@ body {
   background-color: var(--color-life-ter);
   color: var(--color-life-sec);
 }
+
+/********************************************/********************************************/********************************************/******************************************** */
+/* Custom hover for ghost variant login button */
 
 h1, h2, h3 {
   font-weight: bold;
@@ -731,4 +739,19 @@ button.wishlist-button[style*="#8c000f"] svg {
   fill: #fff !important;
   stroke: #fff !important;
   color: #fff !important;
+}
+
+.btn-ghost-login:hover {
+  background-color: #D0E1F9 !important;
+  color: #1E1F26 !important;
+}
+
+.btn-ghost-icon:hover {
+  background-color: #D0E1F9 !important;
+  color: #1E1F26 !important;
+}
+
+.btn-menu-home:hover {
+  background-color: #D0E1F9 !important;
+  color: #1E1F26 !important;
 }

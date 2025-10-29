@@ -259,13 +259,13 @@ export function Header({ onSearchResults }) {
 
       {/* Header principal */}
       <div className="max-w-7xl mx-auto px-2 sm:px-4">
-        <div className="flex items-center justify-between h-14 sm:h-16 gap-2 sm:gap-4">
+        <div className="flex items-center justify-between h-14 sm:h-26 gap-2 sm:gap-4">
           {/* Logo */}
           <div className="flex items-center flex-shrink-0 pl-0 sm:pl-8">
             <img 
               src={logo} 
               alt="Logo Life" 
-              className="h-12 sm:h-16 w-auto object-contain cursor-pointer" 
+              className="h-22 sm:h-26 w-auto object-contain cursor-pointer" 
               onClick={handleLogoClick}
             />
           </div>
@@ -282,7 +282,7 @@ export function Header({ onSearchResults }) {
                 className="display pl-10 pr-4 h-12 border-2 rounded-full"
                 style={{
                   borderColor: '#1E1F26',
-                  backgroundColor: '#dfdfdfff',
+                  backgroundColor: '#ffffff',
                   color: '#000000ff'
                 }}
               />
@@ -373,7 +373,7 @@ export function Header({ onSearchResults }) {
                       </Button>
                       <Button 
                         variant="ghost" 
-                        className="w-full text-left px-4 py-2 hover:bg-gray-100" 
+                        className="deseados w-full text-left px-4 py-2 hover:bg-gray-100" 
                         style={{ color: '#000000ff' }}
                         onClick={() => window.location.href = '/deseados'}
                       >
@@ -381,7 +381,7 @@ export function Header({ onSearchResults }) {
                       </Button>
                       <Button 
                         variant="ghost" 
-                        className="w-full text-left px-4 py-2 hover:bg-gray-100" 
+                        className="carrito w-full text-left px-4 py-2 hover:bg-gray-100" 
                         style={{ color: '#000000ff' }}
                         onClick={() => window.location.href = '/carrito'}
                       >
@@ -401,11 +401,11 @@ export function Header({ onSearchResults }) {
               </div>
             ) : (
               <Button
-                variant="ghost"
-                size="sm"
-                className="display hidden md:flex items-center gap-2"
-                style={{ color: '#000000ff' }}
-                onClick={() => window.location.href = '/login'}
+             variant="ghost"
+             size="sm"
+             className="display hidden md:flex items-center gap-2 btn-ghost-login"
+             style={{ color: '#000000ff' }}
+             onClick={() => window.location.href = '/login'}
               >
                 <User className="h-4 w-4" />
                 <span className="hidden lg:inline">Iniciar Sesión</span>
@@ -416,7 +416,7 @@ export function Header({ onSearchResults }) {
             <Button 
               variant="ghost" 
               size="sm" 
-              className="relative p-1 sm:p-2"
+              className="relative p-1 sm:p-2 btn-ghost-icon"
               onClick={() => window.location.href = '/deseados'}
             >
               <Heart className="h-5 w-5 sm:h-5 sm:w-5" style={{ color: '#000000ff' }} />
@@ -435,7 +435,7 @@ export function Header({ onSearchResults }) {
             <Button 
               variant="ghost" 
               size="sm" 
-              className="relative p-1 sm:p-2"
+              className="relative p-1 sm:p-2 btn-ghost-icon"
               onClick={() => window.location.href = '/carrito'}
             >
               <ShoppingBag className="h-5 w-5 sm:h-5 sm:w-5" style={{ color: '#000000ff' }} />
@@ -486,16 +486,16 @@ export function Header({ onSearchResults }) {
         </div>
 
         {/* Navegación de escritorio */}
-        <nav className="hidden md:block border-t" style={{ borderColor: '#e3f6daff' }}>
+        <nav className="hidden md:block border-t" style={{ borderColor: '#38b100ff' }}>
           <div className="display flex items-center gap-8 py-3">
             {/* Botón HOME a la izquierda */}
             <Button
               variant="ghost"
-              className="flex items-center gap-2 transition-colors ml-8"
+              className="flex items-center gap-2 transition-colors ml-8 btn-menu-home"
               style={{ color: '#000000ff' }}
               onMouseOver={e => {
-                e.currentTarget.style.color = '#000000ff';
-                e.currentTarget.style.backgroundColor = 'var(--color-life-principal)';
+                    e.currentTarget.style.color = '#1E1F26';
+                    e.currentTarget.style.backgroundColor = '#D0E1F9';
               }}
               onMouseOut={e => {
                 e.currentTarget.style.color = '#000000ff';
@@ -516,13 +516,13 @@ export function Header({ onSearchResults }) {
                   className="transition-colors whitespace-nowrap text-sm xl:text-base px-2 xl:px-3"
                   style={{ color: '#000000ff' }}
                   onMouseOver={e => {
-                    e.currentTarget.style.color = '#000000ff';
-                    e.currentTarget.style.backgroundColor = 'var(--color-life-principal)';
-                  }}
+                    e.currentTarget.style.color = '#1E1F26';
+                    e.currentTarget.style.backgroundColor = '#D0E1F9';
+              }}
                   onMouseOut={e => {
                     e.currentTarget.style.color = '#000000ff';
-                    e.currentTarget.style.backgroundColor = 'transparent';
-                  }}
+                   e.currentTarget.style.backgroundColor = 'transparent';
+              }}
                   onClick={() => window.location.href = `/categoria/${category.slug}`}
                 >
                   {category.name}
