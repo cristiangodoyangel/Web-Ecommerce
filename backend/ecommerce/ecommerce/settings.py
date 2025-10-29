@@ -1,3 +1,4 @@
+# Este es Copílot comentando
 """
 Django settings for ecommerce project.
 
@@ -116,8 +117,9 @@ CORS_ALLOW_CREDENTIALS = True
 
 
 CSRF_TRUSTED_ORIGINS = [
-    "",
-    "",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+    "https://tu_dominio.com"
 ]
 
 ROOT_URLCONF = 'ecommerce.urls'
