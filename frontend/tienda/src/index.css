@@ -685,26 +685,26 @@ button.social-icon-button svg {
     width: 1.25rem !important;
   }
 
-  /* Regla específica para botones de wishlist solamente */
+ /* Regla específica para botones de wishlist solamente */
   .wishlist-button svg {
     fill: #070002 !important;
     color: #0c0003 !important;
-    stroke: #0f0003 !important;
+    stroke: #139108 !important;
     stroke-width: 2.5 !important;
     height: 1.25rem !important;
     width: 1.25rem !important;
     opacity: 1 !important;
     display: block !important;
     visibility: visible !important;
-  }
+  } 
 
-  /* Para wishlist activos (fondo oscuro) */
+  /* Para wishlist activos (fondo oscuro) 
   .wishlist-button[style*="background: rgb(140, 0, 15)"] svg,
   .wishlist-button[style*="background: #8c000f"] svg {
     fill: #fff !important;
     color: #fff !important;
     stroke: #fff !important;
-  }
+  } */
 
   @media (min-width: 640px) {
     .absolute.top-2.right-2 button svg,
@@ -720,7 +720,7 @@ button.social-icon-button svg {
   }
 }
 
-/* OVERRIDE ABSOLUTO PARA WISHLIST - MÁXIMA ESPECIFICIDAD */
+/* OVERRIDE ABSOLUTO PARA WISHLIST - MÁXIMA ESPECIFICIDAD 
 .group:hover .wishlist-button svg,
 .group .wishlist-button svg,
 button.wishlist-button svg,
@@ -732,14 +732,14 @@ div button.wishlist-button svg {
   opacity: 1 !important;
 }
 
-/* Para el estado activo */
+
 .group:hover .wishlist-button[style*="#8c000f"] svg,
 .group .wishlist-button[style*="#8c000f"] svg,
 button.wishlist-button[style*="#8c000f"] svg {
   fill: #fff !important;
   stroke: #fff !important;
   color: #fff !important;
-}
+} */
 
 .btn-ghost-login:hover {
   background-color: #D0E1F9 !important;

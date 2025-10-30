@@ -23,7 +23,7 @@ const Modal = ({ isOpen, onClose, title, children, showCloseButton = true }) => 
       >
         {/* Header */}
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-semibold" style={{ color: '#8c000f' }}>
+          <h2 className="display text-xl font-semibold" style={{ color: '#1e1f26' }}>
             {title}
           </h2>
           {showCloseButton && (

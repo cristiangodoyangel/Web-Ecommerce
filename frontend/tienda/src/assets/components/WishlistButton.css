@@ -39,10 +39,10 @@
 .simple-heart-icon {
   width: 32px !important;
   height: 32px !important;
-  stroke: #8c000f !important;
+  stroke: #0b5f4a !important;
   stroke-width: 2.5 !important;
   fill: none !important;
-  color: #8c000f !important;
+  color: #067032 !important;
 }
 
 /* Cuando está en mobile, hacer AÚN más grande */
@@ -55,7 +55,7 @@
 /* Estado activo (en wishlist) */
 .simple-heart-btn.active .simple-heart-icon {
   fill: #8c000f !important;
-  stroke: #8c000f !important;
+  stroke: #09068b !important;
   color: #8c000f !important;
 }
 
@@ -71,8 +71,8 @@
 /* Override absoluto para asegurar que se vea */
 .simple-heart-btn *,
 .simple-heart-btn svg {
-  stroke: #8c000f !important;
-  color: #8c000f !important;
+  stroke: #052363 !important;
+  color: #00258c !important;
   stroke-width: 2 !important;
 }
 

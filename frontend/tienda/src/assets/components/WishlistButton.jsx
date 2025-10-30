@@ -19,7 +19,7 @@ const WishlistButton = ({
       <Heart 
         className="simple-heart-icon"
         strokeWidth={2}
-        fill={isWishlisted ? '#8c000f' : 'none'}
+        fill={isWishlisted ? '#D0E1F9' : 'none'}
       />
     </button>
   );
