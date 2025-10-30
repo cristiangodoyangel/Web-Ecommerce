@@ -97,7 +97,7 @@ const Inicio = () => {
 
           {/* Nuevos productos con slider */}
           {loading ? (
-            <div className="text-center py-8" style={{ color: '#283655' }}>
+            <div className="text-center py-8" style={{ color: '#' }}>
             Cargando productos...
             </div>
           ) : (

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Filter, Grid3X3, List, ShoppingCart } from 'lucide-react';
@@ -15,19 +16,21 @@ const Categorias = () => {
   const [viewMode, setViewMode] = useState('grid');
   const [totalProducts, setTotalProducts] = useState(0);
 
-  // Mapeo de slugs del frontend a nombres de categorías del backend
-  const categoryMapping = {
-    'ella': 'Para Ella',
-    'el': 'Para Él', 
-    'parejas': 'Parejas',
-    'cosmetica': 'Cosmética Erótica',
-    'lenceria': 'Lencería',
-    'accesorios': 'Accesorios',
-    'linea-premium': 'Línea Premium'
-  };
 
-  // Obtener el nombre real de la categoría desde el slug
-  const categoryName = categoryMapping[categoriaNombre] || categoriaNombre;
+
+    // Mapeo de slugs del frontend a nombres de categorías del backend
+    const categoryMapping = {
+      'ella': 'Para Ella',
+      'el': 'Para Él', 
+      'unisex': 'Unisex',
+      'florales': 'Florales',
+      'citricos': 'Citricos',
+      'amaderados': 'Amaderados',
+      'oriental': 'Oriental'
+    };
+
+    // Obtener el nombre real de la categoría desde el slug
+    const categoryName = categoryMapping[categoriaNombre] || categoriaNombre;
 
   useEffect(() => {
     fetchProductsByCategory();
@@ -80,10 +83,10 @@ const Categorias = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#1E1F26' }}>
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Cargando productos de {categoryName}...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-700 mx-auto mb-4"></div>
+          <p style={{ color: '#D0E1F9' }}>Cargando productos de {categoryName}...</p>
         </div>
       </div>
     );
@@ -91,11 +94,11 @@ const Categorias = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#1E1F26' }}>
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Error al cargar productos</h2>
-          <p className="text-gray-600 mb-6">{error}</p>
-          <Button onClick={() => navigate('/')} className="bg-red-600 hover:bg-red-700 text-white">
+          <h2 className="text-2xl font-bold mb-4" style={{ color: '#D0E1F9' }}>Error al cargar productos</h2>
+          <p className="mb-6" style={{ color: '#4D648D' }}>{error}</p>
+          <Button onClick={() => navigate('/')} style={{ backgroundColor: '#283655', color: '#D0E1F9' }}>
             Volver al inicio
           </Button>
         </div>
@@ -104,17 +107,17 @@ const Categorias = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen" style={{ backgroundColor: '#ffffff' }}>
       <div className="max-w-xl mx-auto xl:max-w-7xl px-4 py-8">
         {/* Header de la página */}
-        <div className="mb-8">
+  <div className="mb-8">
           {/* Layout responsivo: vertical en móvil, horizontal en tablets (768x1024+) */}
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
-              <h1 className="text-3xl font-bold mb-2" style={{ color: '#8c000f' }}>
+              <h1 className="display text-3xl font-bold mb-2" style={{ color: '#1E1F26' }}>
                 {categoryName}
               </h1>
-              <p className="text-gray-600">
+              <p style={{ color: '#4D648D' }}>
                 {totalProducts === 0 
                   ? 'No hay productos disponibles en esta categoría' 
                   : `${totalProducts} ${totalProducts === 1 ? 'producto encontrado' : 'productos encontrados'}`
@@ -127,12 +130,12 @@ const Categorias = () => {
               <div className="flex flex-col sm:flex-row items-center gap-4">
                 {/* Selector de ordenamiento */}
                 <div className="flex items-center gap-2">
-                  <Filter className="h-4 w-4" style={{ color: '#8c000f' }} />
+                  <Filter className="h-4 w-4" style={{ color: '#4D648D' }} />
                   <select
                     value={sortBy}
                     onChange={(e) => handleSortChange(e.target.value)}
                     className="border rounded-md px-3 py-2 text-sm"
-                    style={{ borderColor: '#f83258', color: '#8c000f' }}
+                    style={{ borderColor: '#283655', color: '#283655', backgroundColor: '#D0E1F9' }}
                   >
                     <option value="nombre">Nombre A-Z</option>
                     <option value="precio_asc">Precio: Menor a Mayor</option>
@@ -142,18 +145,18 @@ const Categorias = () => {
                 </div>
 
                 {/* Selector de vista */}
-                <div className="inline-flex rounded-md border" style={{ borderColor: '#f83258' }}>
+                <div className="inline-flex rounded-md border" style={{ borderColor: '#283655' }}>
                   <button
                     onClick={() => setViewMode('grid')}
                     className={`px-3 py-2 text-sm font-medium rounded-l-md border-r ${
                       viewMode === 'grid' 
                         ? 'text-white' 
-                        : 'hover:bg-gray-50'
+                        : 'hover:bg-blueberry'
                     }`}
                     style={{ 
-                      backgroundColor: viewMode === 'grid' ? '#8c000f' : 'transparent',
-                      color: viewMode === 'grid' ? '#fff' : '#8c000f',
-                      borderRightColor: '#f83258'
+                      backgroundColor: viewMode === 'grid' ? '#283655' : 'transparent',
+                      color: viewMode === 'grid' ? '#D0E1F9' : '#283655',
+                      borderRightColor: '#283655'
                     }}
                   >
                     <Grid3X3 className="h-4 w-4" />
@@ -163,11 +166,11 @@ const Categorias = () => {
                     className={`px-3 py-2 text-sm font-medium rounded-r-md ${
                       viewMode === 'list' 
                         ? 'text-white' 
-                        : 'hover:bg-gray-50'
+                        : 'hover:bg-blueberry'
                     }`}
                     style={{ 
-                      backgroundColor: viewMode === 'list' ? '#8c000f' : 'transparent',
-                      color: viewMode === 'list' ? '#fff' : '#8c000f'
+                      backgroundColor: viewMode === 'list' ? '#283655' : 'transparent',
+                      color: viewMode === 'list' ? '#D0E1F9' : '#283655'
                     }}
                   >
                     <List className="h-4 w-4" />
@@ -181,18 +184,18 @@ const Categorias = () => {
         {/* Contenido principal */}
         {productos.length === 0 ? (
           <div className="text-center py-16">
-            <ShoppingCart className="h-24 w-24 text-gray-300 mx-auto mb-6" />
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+            <ShoppingCart className="h-24 w-24 mx-auto mb-6" style={{ color: '#4D648D' }} />
+            <h2 className="display text-2xl font-semibold mb-4" style={{ color: '#1E1F26' }}>
               No hay productos en esta categoría
             </h2>
-            <p className="text-gray-600 mb-8 max-w-md mx-auto">
+            <p className="display mb-8 max-w-md mx-auto" style={{ color: '#4D648D' }}>
               Lo sentimos, actualmente no tenemos productos disponibles en la categoría "{categoryName}".
               Te invitamos a explorar nuestras otras categorías.
             </p>
             <Button
               onClick={() => navigate('/')}
-              className="text-white px-8 py-3"
-              style={{ backgroundColor: '#8c000f' }}
+              className="display px-8 py-3"
+              style={{ backgroundColor: '#283655', color: '#D0E1F9' }}
             >
               Explorar Todas las Categorías
             </Button>
@@ -211,15 +214,17 @@ const Categorias = () => {
         )}
       </div>
       
-      <Button
-        variant="ghost"
-        onClick={handleBackClick}
-        className="mb-4 flex items-center gap-2"
-        style={{ color: '#8c000f' }}
-      >
-        <ArrowLeft className="h-4 w-4" />
-        Volver
-      </Button>
+      <div className="pb-12">
+        <Button
+          variant="ghost"
+          onClick={handleBackClick}
+          className="flex items-center gap-2 px- py-2 ml-4 "
+          style={{ color: '#D0E1F9', backgroundColor: '#283655' }}
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Volver
+        </Button>
+      </div>
     </div>
   );
 };

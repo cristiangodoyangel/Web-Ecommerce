@@ -203,17 +203,17 @@ const handleSubmit = async (e) => {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 to-red-50 py-12 px-4">
+    <div className="min-h-screen bg-white py-12 px-4">
       {/* MOSTRAR MENSAJE DE ÉXITO */}
       {showSuccess && <SuccessMessage />}
       
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-red-500 to-pink-500 rounded-full mb-4">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-[#283655] rounded-full mb-4">
             <User className="h-8 w-8 text-white" />
           </div>
-          <h1 className="text-3xl font-bold mb-2" style={{ color: '#8c000f' }}>
+          <h1 className="text-3xl font-bold mb-2" style={{ color: '#283655' }}>
             Crear Cuenta
           </h1>
           <p className="text-gray-600">
@@ -229,7 +229,7 @@ const handleSubmit = async (e) => {
               {/* Nombre y Apellido */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium mb-2" style={{ color: '#8c000f' }}>
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#283655' }}>
                     Nombre *
                   </label>
                   <div className="relative">
@@ -247,7 +247,7 @@ const handleSubmit = async (e) => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2" style={{ color: '#8c000f' }}>
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#283655' }}>
                     Apellido *
                   </label>
                   <div className="relative">
@@ -267,7 +267,7 @@ const handleSubmit = async (e) => {
 
               {/* USERNAME */}
               <div>
-                <label className="block text-sm font-medium mb-2" style={{ color: '#8c000f' }}>
+                <label className="block text-sm font-medium mb-2" style={{ color: '#283655' }}>
                   Nombre de Usuario *
                 </label>
                 <div className="relative">
@@ -287,7 +287,7 @@ const handleSubmit = async (e) => {
 
               {/* Email */}
               <div>
-                <label className="block text-sm font-medium mb-2" style={{ color: '#8c000f' }}>
+                <label className="block text-sm font-medium mb-2" style={{ color: '#283655' }}>
                   Email *
                 </label>
                 <div className="relative">
@@ -307,7 +307,7 @@ const handleSubmit = async (e) => {
               {/* Contraseñas */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium mb-2" style={{ color: '#8c000f' }}>
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#283655' }}>
                     Contraseña *
                   </label>
                   <div className="relative">
@@ -332,7 +332,7 @@ const handleSubmit = async (e) => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2" style={{ color: '#8c000f' }}>
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#283655' }}>
                     Confirmar Contraseña *
                   </label>
                   <div className="relative">
@@ -360,7 +360,7 @@ const handleSubmit = async (e) => {
               {/* Información adicional */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium mb-2" style={{ color: '#8c000f' }}>
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#283655' }}>
                     Teléfono
                   </label>
                   <div className="relative">
@@ -378,7 +378,7 @@ const handleSubmit = async (e) => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2" style={{ color: '#8c000f' }}>
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#283655' }}>
                     Fecha de Nacimiento
                   </label>
                   <div className="relative">
@@ -397,7 +397,7 @@ const handleSubmit = async (e) => {
 
               {/* Dirección */}
               <div>
-                <label className="block text-sm font-medium mb-2" style={{ color: '#8c000f' }}>
+                <label className="block text-sm font-medium mb-2" style={{ color: '#283655' }}>
                   Dirección
                 </label>
                 <div className="relative">
@@ -416,7 +416,7 @@ const handleSubmit = async (e) => {
               {/* Ciudad, Comuna y Código Postal */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-sm font-medium mb-2" style={{ color: '#8c000f' }}>
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#283655' }}>
                     Ciudad
                   </label>
                   <input
@@ -430,7 +430,7 @@ const handleSubmit = async (e) => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2" style={{ color: '#8c000f' }}>
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#283655' }}>
                     Comuna
                   </label>
                   <input
@@ -444,7 +444,7 @@ const handleSubmit = async (e) => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2" style={{ color: '#8c000f' }}>
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#283655' }}>
                     Código Postal
                   </label>
                   <input
@@ -488,8 +488,8 @@ const handleSubmit = async (e) => {
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full py-3 text-white font-medium rounded-lg transition-all duration-300 hover:opacity-90 disabled:opacity-50"
-                style={{ backgroundColor: '#8c000f' }}
+                className="w-full py-3 text-[#283655] font-medium rounded-lg transition-all duration-300 hover:opacity-90 disabled:opacity-50"
+                style={{ backgroundColor: '#D0E1F9' }}
               >
                 {isLoading ? 'Creando cuenta...' : 'Crear Cuenta'}
               </Button>
@@ -501,7 +501,7 @@ const handleSubmit = async (e) => {
                   <a 
                     href="/login" 
                     className="font-medium hover:underline"
-                    style={{ color: '#f83258' }}
+                    style={{ color: '#283655' }}
                   >
                     Inicia Sesión
                   </a>

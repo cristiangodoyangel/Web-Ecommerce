@@ -16,7 +16,7 @@ const categories = [
   { id: 2, img: ellaImg, alt: "Ella", slug: "ella" },
   { id: 3, img: unisexImg, alt: "Unisex", slug: "unisex" },
   { id: 4, img: floralesImg, alt: "Florales", slug: "florales" },
-  { id: 5, img: citricosImg, alt: "Cítricos", slug: "citricos" },
+  { id: 5, img: citricosImg, alt: "Citricos", slug: "citricos" },
   { id: 6, img: amaderadosImg, alt: "Amaderados", slug: "amaderados" },
   { id: 7, img: orientalImg, alt: "Oriental", slug: "oriental" },
 ];

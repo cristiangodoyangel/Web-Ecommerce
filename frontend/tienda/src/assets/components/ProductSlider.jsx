@@ -54,10 +54,10 @@ const ProductSlider = ({ products, title, maxVisible = 4, maxTotal = 8 }) => {
               size="sm"
               onClick={prevSlide}
               disabled={currentIndex === 0}
-              className="p-2 hover:bg-pink-50 transition-colors"
+              className="p-2 bg-white transition-colors"
               style={{
-                borderColor: currentIndex === 0 ? '#ccc' : '#f83258',
-                color: currentIndex === 0 ? '#ccc' : '#f83258'
+                borderColor: currentIndex === 0 ? '#4D648D' : '#283655',
+                color: currentIndex === 0 ? '#4D648D' : '#283655'
               }}
             >
               <ChevronLeft className="h-4 w-4" />
@@ -67,10 +67,10 @@ const ProductSlider = ({ products, title, maxVisible = 4, maxTotal = 8 }) => {
               size="sm"
               onClick={nextSlide}
               disabled={currentIndex === totalSlides - 1}
-              className="p-2 hover:bg-pink-50 transition-colors"
+              className="p-2 bg-white transition-colors"
               style={{
-                borderColor: currentIndex === totalSlides - 1 ? '#ccc' : '#f83258',
-                color: currentIndex === totalSlides - 1 ? '#ccc' : '#f83258'
+                borderColor: currentIndex === totalSlides - 1 ? '#4D648D' : '#283655',
+                color: currentIndex === totalSlides - 1 ? '#4D648D' : '#283655'
               }}
             >
               <ChevronRight className="h-4 w-4" />
@@ -110,11 +110,11 @@ const ProductSlider = ({ products, title, maxVisible = 4, maxTotal = 8 }) => {
               onClick={() => setCurrentIndex(index)}
               className={`w-3 h-3 rounded-full transition-all duration-300 hover:scale-110 ${
                 index === currentIndex 
-                  ? 'bg-red-500 scale-110' 
-                  : 'bg-gray-300 hover:bg-gray-400'
+                  ? 'scale-110' 
+                  : ''
               }`}
               style={{
-                backgroundColor: index === currentIndex ? '#f83258' : '#d1d5db'
+                backgroundColor: index === currentIndex ? '#283655' : '#4D648D'
               }}
               aria-label={`Ir a la página ${index + 1}`}
             />

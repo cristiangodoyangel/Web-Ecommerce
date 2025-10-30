@@ -121,7 +121,7 @@ export default function Carrito() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header de la página */}
-  <div className="bg-[#4D648D] shadow-sm border-b">
+  <div className="bg-[#ffffff] shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 py-4 sm:py-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
@@ -132,11 +132,11 @@ export default function Carrito() {
                 style={{ color: '#283655' }}
               >
                 <ArrowLeft className="h-4 w-4" />
-                <span className="hidden sm:inline">Continuar Comprando</span>
+                <span className="display hidden sm:inline">Continuar Comprando</span>
                 <span className="sm:hidden">Volver</span>
               </Button>
               <div>
-                <h1 className="text-2xl sm:text-3xl font-bold" style={{ color: '#283655' }}>
+                <h1 className="display text-2xl sm:text-3xl font-bold" style={{ color: '#283655' }}>
                   Carrito de Compras
                 </h1>
                 <p className="text-gray-600 mt-1 text-sm sm:text-base">
@@ -216,7 +216,7 @@ export default function Carrito() {
                               handleRemoveItem(item.id);
                             }}
                             disabled={isRemoving === item.id}
-                            className="w-16 h-16 hover:bg-[#283655] text-[#4D648D] hover:shadow-xl transition-all duration-200 flex items-center justify-center transform hover:scale-110 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="w-16 h-16 hover:bg-[#D0E1F9] text-[#4D648D] hover:shadow-xl transition-all duration-200 flex items-center justify-center transform hover:scale-110 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
                             style={{
                               minWidth: '74px',
                               minHeight: '74px'
@@ -242,7 +242,7 @@ export default function Carrito() {
                         <h3 
                           className="font-semibold text-base leading-tight cursor-pointer hover:underline h-88 pt-4 sm:pt-0 pb-3 sm:pb-0"
                           style={{ 
-                            color: '#8c000f',
+                            color: '#283655',
                             WebkitLineClamp: 2,
                             WebkitBoxOrient: 'vertical',
                             overflow: 'hidden',
@@ -352,7 +352,7 @@ export default function Carrito() {
                         <div className="flex justify-between items-start mb-2">
                           <h3 
                             className="font-semibold text-lg cursor-pointer hover:underline line-clamp-2 flex-1 mr-2"
-                            style={{ color: '#8c000f' }}
+                            style={{ color: '#283655' }}
                             onClick={() => handleProductClick(item.producto.id)}
                           >
                             {item.producto.nombre}
@@ -366,7 +366,7 @@ export default function Carrito() {
                               handleRemoveItem(item.id);
                             }}
                             disabled={isRemoving === item.id}
-                            className="ml-3 p-3 text-red-600 hover:text-red-700 hover:bg-red-100 rounded-lg transition-all duration-200 flex items-center justify-center transform hover:scale-110 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed flex-shrink-0 border-2 border-red-200 hover:border-red-300"
+                            className="ml-3 p-3 text-color-#283655 hover:text-red-700 hover:bg-red-100 rounded-lg transition-all duration-200 flex items-center justify-center transform hover:scale-110 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed flex-shrink-0 border-2 border-color-#283655 hover:border-red-300"
                             title="Eliminar producto"
                             style={{
                               minWidth: '44px',
@@ -388,7 +388,7 @@ export default function Carrito() {
 
                         {/* Precio unitario */}
                         <div className="flex items-center gap-3">
-                          <p className="text-lg font-bold" style={{ color: item.tiene_oferta ? '#f83258' : '#8c000f' }}>
+                          <p className="text-lg font-bold" style={{ color: item.tiene_oferta ? '#283655' : '#283655' }}>
                             {formatPrice(item.precio_unitario || item.producto.precio)}
                           </p>
                           {item.tiene_oferta && (
@@ -443,7 +443,7 @@ export default function Carrito() {
                           {/* Subtotal Desktop */}
                           <div className="text-right">
                             <p className="text-xs text-gray-500 mb-1">Subtotal</p>
-                            <p className="text-lg font-bold" style={{ color: '#8c000f' }}>
+                            <p className="text-lg font-bold" style={{ color: '#4D648D' }}>
                               {formatPrice(item.subtotal || (item.precio_unitario || item.producto.precio) * item.cantidad)}
                             </p>
                             {item.tiene_oferta && (
@@ -479,7 +479,7 @@ export default function Carrito() {
                       <div 
                         className={`border-2 rounded-lg p-3 cursor-pointer transition-all ${
                           metodoEntrega === 'delivery' 
-                            ? 'border-pink-500 bg-pink-50' 
+                            ? 'border-[#4D648D] bg-[#D0E1F9]'
                             : 'border-gray-200 hover:border-gray-300'
                         }`}
                         onClick={() => setMetodoEntrega('delivery')}
@@ -493,7 +493,7 @@ export default function Carrito() {
                                 onChange={() => setMetodoEntrega('delivery')}
                                 className="mr-2"
                               />
-                              <Truck className="h-5 w-5 text-pink-600" />
+                              <Truck className="h-5 w-5 text-[#4D648D]" />
                             </div>
                             <div>
                               <p className="font-medium text-gray-900">Delivery a Domicilio</p>
@@ -520,7 +520,7 @@ export default function Carrito() {
                       <div 
                         className={`border-2 rounded-lg p-3 cursor-pointer transition-all ${
                           metodoEntrega === 'retiro' 
-                            ? 'border-pink-500 bg-pink-50' 
+                            ? 'border-[#4D648D] bg-[#D0E1F9]'
                             : 'border-gray-200 hover:border-gray-300'
                         }`}
                         onClick={() => setMetodoEntrega('retiro')}
@@ -534,7 +534,7 @@ export default function Carrito() {
                                 onChange={() => setMetodoEntrega('retiro')}
                                 className="mr-2"
                               />
-                              <Store className="h-5 w-5 text-pink-600" />
+                              <Store className="h-5 w-5 text-[#4D648D]" />
                             </div>
                             <div>
                               <p className="font-medium text-gray-900">Retiro en Tienda</p>

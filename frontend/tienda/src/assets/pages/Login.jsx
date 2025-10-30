@@ -60,7 +60,7 @@ export default function Login() {
             id="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className="w-full p-2 border border-red-300 rounded-md"
+            className="w-full p-2 border border-[#1E1F26] rounded-md"
             placeholder="Ingrese su nombre de usuario"
             required
           />
@@ -80,7 +80,7 @@ export default function Login() {
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full p-2 border border-red-300 rounded-md"
+            className="w-full p-2 border border-[#1E1F26] rounded-md"
             placeholder="Ingrese su contraseña"
             required
           />
@@ -101,7 +101,7 @@ export default function Login() {
 
       <p className="mt-4 text-sm text-center">
         ¿No tienes cuenta?{' '}
-        <a href="/registro" className="text-red-600 hover:underline">
+        <a href="/registro" className="text-[#4D648D] hover:underline">
           Regístrate
         </a>
       </p>

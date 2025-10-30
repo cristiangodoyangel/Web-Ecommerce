@@ -379,9 +379,9 @@ const Checkout = () => {
         <div className="flex items-center justify-center mb-8">
           <div className="flex items-center space-x-4">
             {/* Step 1 */}
-            <div className={`flex items-center ${step >= 1 ? 'text-red-600' : 'text-gray-400'}`}>
+            <div className={`flex items-center ${step >= 1 ? 'text-[#283655]' : 'text-gray-400'}`}>
               <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                step >= 1 ? 'bg-red-600 text-white' : 'bg-gray-200'
+                step >= 1 ? 'bg-[#283655] text-white' : 'bg-gray-200'
               }`}>
                 {step > 1 ? <Check className="h-4 w-4" /> : '1'}
               </div>
@@ -503,14 +503,14 @@ const Checkout = () => {
                         )}
                       </div>
 
-                      <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mt-6">
+                      <div className="bg-[#D0E1F9] border border-[#4D648D] rounded-lg p-4 mt-6">
                         <div className="flex items-center gap-2 mb-2">
-                          <Mail className="h-4 w-4 text-yellow-600" />
-                          <span className="text-sm font-medium text-yellow-800">
+                          <Mail className="h-4 w-4 text-[#4D648D]" />
+                          <span className="text-sm font-medium text-[#4D648D]">
                             Información Importante
                           </span>
                         </div>
-                        <p className="text-sm text-yellow-700">
+                        <p className="text-sm text-[#4D648D]">
                           Como invitado, recibirás la confirmación de tu pedido en el email proporcionado. 
                           Si deseas crear una cuenta para hacer seguimiento de tus pedidos, puedes hacerlo después de completar la compra.
                         </p>
@@ -589,7 +589,7 @@ const Checkout = () => {
             {step === 2 && (
               <Card>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2" style={{ color: '#283655' }}>
+                  <CardTitle className="flex items-center gap-2" style={{ color: '#D0E1F9' }}>
                     <ShoppingBag className="h-5 w-5" />
                     Resumen del Pedido
                   </CardTitle>
@@ -751,7 +751,7 @@ const Checkout = () => {
           <div className="lg:col-span-1">
             <Card className="sticky top-4">
               <CardContent className="p-6">
-                <h3 className="text-lg font-bold mb-4" style={{ color: '#8c000f' }}>
+                <h3 className="text-lg font-bold mb-4" style={{ color: '#4D648D' }}>
                   Resumen
                 </h3>
 
@@ -791,8 +791,8 @@ const Checkout = () => {
                   <hr className="my-4" />
                   
                   <div className="flex justify-between text-lg font-bold">
-                    <span style={{ color: '#8c000f' }}>Total:</span>
-                    <span style={{ color: '#8c000f' }}>
+                    <span style={{ color: '#4D648D' }}>Total:</span>
+                    <span style={{ color: '#4D648D' }}>
                       {formatPrice(calcularTotal())}
                     </span>
                   </div>

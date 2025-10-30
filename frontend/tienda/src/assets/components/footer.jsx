@@ -6,7 +6,9 @@ import {
     Mail,
     Clock,
     Instagram,
-    MessageCircle, // Para WhatsApp
+    MessageCircle, // WhatsApp
+    Facebook,
+    Youtube,
     Shield,
     Truck,
     CreditCard,
@@ -18,15 +20,23 @@ const socialLinks = [
     {
         name: 'Instagram',
         icon: Instagram,
-        href: 'https://www.instagram.com/lifes3xshop.cl/',
+        href: 'https://www.instagram.com/',
         color: '#E1306C'
     },
     {
         name: 'WhatsApp',
         icon: MessageCircle,
-        href: 'https://wa.me/56940044477',
+        href: 'https://wa.me/569999999',
         color: '#25D366'
-    }
+    },
+    {
+        name: 'Facebook',
+        icon: Facebook,
+        href: 'https://facebook.com/',
+        color: '#1877F3'
+    },
+  
+  
 ];
 
 const features = [
@@ -54,7 +64,7 @@ const features = [
 
 export function Footer() {
     return (
-        <footer style={{ background: 'linear-gradient(to bottom, #f6dae7, #fff)', borderTop: '1px solid #f83258' }}>
+        <footer style={{ background: 'linear-gradient(to bottom, #D0E1F9, #fff)', borderTop: '2px solid #4D648D' }}>
             <Separator />
 
             <div className="container mx-auto px-4 py-12">
@@ -63,23 +73,23 @@ export function Footer() {
                         <div className="display flex flex-col md:flex-row items-center md:items-start md:justify-between gap-6">
                             {/* Datos y dirección - Centrado en móvil */}
                             <div className="space-y-3 text-center md:text-left">
-                                <div className="flex items-center justify-center md:justify-start gap-3" style={{ color: '#f83258' }}>
-                                    <MapPin className="h-5 w-5 flex-shrink-0" style={{ color: '#8c000f' }} />
-                                    <span className="text-sm sm:text-base">SALAR GRANDE #59, PARQUE INGLÉS</span>
+                                <div className="flex items-center justify-center md:justify-start gap-3" style={{ color: '#283655' }}>
+                                    <MapPin className="h-5 w-5 flex-shrink-0" style={{ color: '#4D648D' }} />
+                                    <span className="text-sm sm:text-base">AVDA ANTOFAGASTA #1234, ANTOFAGASTA</span>
                                 </div>
-                                <div className="flex items-center justify-center md:justify-start gap-3" style={{ color: '#f83258' }}>
-                                    <Phone className="h-5 w-5 flex-shrink-0" style={{ color: '#8c000f' }} />
-                                    <span className="text-sm sm:text-base">+56 9 4004 4477</span>
+                                <div className="flex items-center justify-center md:justify-start gap-3" style={{ color: '#283655' }}>
+                                    <Phone className="h-5 w-5 flex-shrink-0" style={{ color: '#4D648D' }} />
+                                    <span className="text-sm sm:text-base">+56 9 99999999</span>
                                 </div>
-                                <div className="flex items-center justify-center md:justify-start gap-3" style={{ color: '#f83258' }}>
-                                    <Mail className="h-5 w-5 flex-shrink-0" style={{ color: '#8c000f' }} />
-                                    <span className="text-sm sm:text-base">contacto@lifesexshop.cl</span>
+                                <div className="flex items-center justify-center md:justify-start gap-3" style={{ color: '#283655' }}>
+                                    <Mail className="h-5 w-5 flex-shrink-0" style={{ color: '#4D648D' }} />
+                                    <span className="text-sm sm:text-base">contacto@perfumeria.cl</span>
                                 </div>
                             </div>
                             
                             {/* Redes sociales - Centrado en móvil */}
                             <div className="flex flex-col items-center md:items-end justify-start mt-0">
-                                <h4 className="font-semibold mb-4 text-center md:text-right" style={{ color: '#8c000f' }}>Nuestras redes</h4>
+                                <h4 className="font-semibold mb-4 text-center md:text-right" style={{ color: '#283655' }}>Nuestras redes</h4>
                                 <div className="flex gap-4">
                                     {socialLinks.map((social) => (
                                         <Button
@@ -88,9 +98,9 @@ export function Footer() {
                                             size="lg"
                                             className="social-icon-button border-2 transition-all duration-300 hover:scale-110 hover:shadow-lg"
                                             style={{
-                                                borderColor: '#f83258',
+                                                borderColor: '#4D648D',
                                                 color: social.color,
-                                                background: '#f6dae7'
+                                                background: '#D0E1F9'
                                             }}
                                             onClick={() => window.open(social.href, '_blank')}
                                         >
@@ -107,7 +117,7 @@ export function Footer() {
             <Separator />
             <Separator />
 
-            <div style={{ background: '#8c000f', color: '#fff' }} className="py-3">
+            <div style={{ background: '#283655', color: '#D0E1F9' }} className="py-3">
                 <div className="container mx-auto px-4 text-center">
                     <p className="display text-sm">
                         Sitio desarrollado por <a href="https://www.weblogica.cl" className="weblogicacl">Weblogica.cl</a>

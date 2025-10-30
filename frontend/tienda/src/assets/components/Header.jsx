@@ -8,13 +8,16 @@ import { useCarrito } from '../../context/CarritoContext';
 import { useDeseos } from '../../context/DeseosContext';
 import API_BASE_URL from '../../config';
 
+
 // Categorías con slugs simplificados
 const categories = [
   { name: 'Para Ella', slug: 'ella' },
   { name: 'Para Él', slug: 'el' },
-  { name: 'Parejas', slug: 'parejas' },
-  { name: 'Cena', slug: 'cena' },
-  { name: 'Diario', slug: 'diario' },
+  { name: 'Unisex', slug: 'unisex' },
+  { name: 'Florales', slug: 'florales' },
+  { name: 'Citricos', slug: 'citricos' },
+  { name: 'Amaderados', slug: 'amaderados' },
+  { name: 'Oriental', slug: 'oriental' }
 ];
 
 export function Header({ onSearchResults }) {
