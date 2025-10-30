@@ -83,10 +83,10 @@ const Categorias = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#1E1F26' }}>
-        <div className="text-center">
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#ffffff' }}>
+        <div className="display text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-700 mx-auto mb-4"></div>
-          <p style={{ color: '#D0E1F9' }}>Cargando productos de {categoryName}...</p>
+          <p style={{ color: '#283655' }}>Cargando productos de {categoryName}...</p>
         </div>
       </div>
     );

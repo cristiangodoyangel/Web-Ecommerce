@@ -337,7 +337,7 @@ export function Header({ onSearchResults }) {
                       </div>
                     </>
                   ) : (
-                    <div className="display p-4 text-center" style={{ color: '#d4c709ff' }}>
+                    <div className="display p-4 text-center" style={{ color: '#4D648D' }}>
                       No se encontraron productos para "{searchQuery}"
                     </div>
                   )}

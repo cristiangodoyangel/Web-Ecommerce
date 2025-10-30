@@ -79,10 +79,10 @@ const handleAddToCart = async (producto) => {
         {/* Header */}
         <div className="mb-6 sm:mb-8">
           <div className="flex items-center gap-3 mb-4">
-            <Heart className="h-6 w-6 sm:h-8 sm:w-8 text-red-600 fill-current flex-shrink-0" />
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Mi Lista de Deseos</h1>
+            <Heart className="h-6 w-6 sm:h-8 sm:w-8 text-[#4D648D] fill-current flex-shrink-0" />
+            <h1 className="display text-2xl sm:text-3xl font-bold text-[#1E1F26]">Mi Lista de Deseos</h1>
           </div>
-          <p className="text-red-600 text-sm sm:text-base">
+          <p className="text-[#4D648D] text-sm sm:text-base">
             {resumen.total_items === 0 
               ? 'Tu lista de deseos está vacía' 
               : `Tienes ${resumen.total_items} ${resumen.total_items === 1 ? 'producto' : 'productos'} en tu lista de deseos`
@@ -93,8 +93,8 @@ const handleAddToCart = async (producto) => {
         {/* Content */}
         {items.length === 0 ? (
           <div className="text-center py-12 sm:py-16 px-4">
-            <Heart className="h-16 w-16 sm:h-24 sm:w-24 text-gray-300 mx-auto mb-6" />
-            <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4">
+            <Heart className="h-16 w-16 sm:h-24 sm:w-24 text-[#D0E1F9] mx-auto mb-6" />
+            <h2 className="display text-xl sm:text-2xl font-semibold text-gray-900 mb-4">
               Tu lista de deseos está vacía
             </h2>
             <p className="text-gray-600 mb-6 sm:mb-8 max-w-md mx-auto text-sm sm:text-base">
@@ -103,7 +103,7 @@ const handleAddToCart = async (producto) => {
             </p>
             <Button
               onClick={() => window.location.href = '/'}
-              className="bg-red-600 hover:bg-red-700 text-white px-6 sm:px-8 py-3 rounded-lg w-full sm:w-auto"
+              className="bg-[#D0E1F9] hover:bg-[#B0C4DE] text-[#283655] px-6 sm:px-8 py-3 rounded-lg w-full sm:w-auto"
             >
               <ShoppingBag className="h-5 w-5 mr-2" />
               Explorar Productos
