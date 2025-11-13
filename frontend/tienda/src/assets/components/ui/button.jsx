@@ -11,7 +11,7 @@ const buttonVariants = cva(
         destructive: "bg-red-500 text-white hover:bg-red focus-visible:ring-red-200 dark:bg-red-700",
         outline: "border border-gray-300 bg-white text-gray-800 hover:bg-gray-100 hover:text-gray-900",
         secondary: "bg-gray-200 text-gray-800 hover:bg-gray-300",
-        ghost: "bg-transparent hover:bg-pink-100 hover:text-pink-500",
+        ghost: "bg-transparent hover:bg-[#D0E1F9] hover:text-[#283655]", // <-- LÍNEA MODIFICADA
         link: "text-pink-500 underline-offset-4 hover:underline",
       },
       size: {

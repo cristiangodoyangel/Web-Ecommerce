@@ -115,11 +115,10 @@ export function HeroSection() {
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight animate-slide-up">
                   {slides[current].title}
                 </h1>
-                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 max-w-lg animate-slide-up">
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-blue max-w-lg animate-slide-up">
                   {slides[current].description}
                 </p>
-              </div>
-
+              </div>  
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-4 pl-0 lg:pl-8 xl:pl-16 w-full sm:w-auto items-center lg:items-start">
                 <Button
                   variant="outline"

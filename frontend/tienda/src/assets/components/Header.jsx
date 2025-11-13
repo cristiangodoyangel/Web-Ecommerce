@@ -256,7 +256,7 @@ export function Header({ onSearchResults }) {
   return (
     <header className="sticky top-0 z-50 bg-white border-b shadow">
       {/* Barra de anuncio superior */}
-      <div className="display py-2 px-4 text-center text-white" style={{ background: 'linear-gradient(to right,var(--color-life-principal), var(--color-life-sec))' }}>
+      <div className="display py-2 px-4 text-center text-white" style={{ background: 'var(--color-life-blueberry)' }}>
         <p> Envío gratis en compras sobre $50.000 </p>
       </div>
 

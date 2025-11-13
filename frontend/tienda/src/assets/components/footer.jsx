@@ -64,7 +64,7 @@ const features = [
 
 export function Footer() {
     return (
-        <footer style={{ background: 'linear-gradient(to bottom, #D0E1F9, #fff)', borderTop: '2px solid #4D648D' }}>
+        <footer style={{ background: 'var(--color-life-background)', borderTop: '2px solid #4D648D' }}>
             <Separator />
 
             <div className="container mx-auto px-4 py-12">

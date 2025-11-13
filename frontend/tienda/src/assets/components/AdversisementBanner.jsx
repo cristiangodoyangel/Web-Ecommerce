@@ -42,7 +42,7 @@ const AdvertisementBanner = ({
           Descuentos increíbles en productos seleccionados
         </p>
         <div className="inline-flex items-center justify-center px-8 py-4 bg-white text-red-600 rounded-xl font-bold text-lg hover:bg-pink-50 transition-all duration-300 shadow-lg hover:shadow-xl">
-          <span className="mr-2">🔥</span>
+          <span className="mr-2"></span>
           Ver Todas las Ofertas
           <span className="ml-2">→</span>
         </div>
@@ -67,8 +67,8 @@ const AdvertisementBanner = ({
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300" />
 
             <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300">
-              <div className="bg-white/95 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg" onClick={handleClick}>
-                <span className="text-red-600 font-bold text-lg">🔥 Ver Ofertas Especiales →</span>
+              <div className="bg-[var(--color-life-principal)] backdrop-blur-sm px-6 py-3 rounded-full shadow-lg" onClick={handleClick}>
+                <span className="text-white font-bold text-lg"> Ver Ofertas Especiales →</span>
               </div>
             </div>
           </>
