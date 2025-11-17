@@ -79,7 +79,7 @@ const ProductSlider = ({ products, title, maxVisible = 4, maxTotal = 8 }) => {
         )}
       </div>
 
-      <div className="relative overflow-hidden mobile-slider-container">
+      <div className="relative overflow-hidden mobile-slider-container py-4">
         <div 
           className="flex transition-transform duration-500 ease-in-out mobile-slider-content"
           style={{

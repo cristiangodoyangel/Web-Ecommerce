@@ -9,6 +9,8 @@ import floralesImg from "../img/florales.png";
 import citricosImg from "../img/citricos.png";
 import amaderadosImg from "../img/amaderados.png";
 import orientalImg from "../img/orientales.png";
+import bgImg from "../img/cat.png";  
+
 
 // Añadir identificadores únicos (id) a las categorías y slug para la URL
 const categories = [
@@ -29,36 +31,34 @@ const Categories = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-6">
-      {/* Grid responsive optimizado - Cards más anchas */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3 sm:gap-4 md:gap-6 xl:gap-8">
-        {categories.map((cat) => (
-          <div
-            key={cat.id}
-            className="flex flex-col items-center justify-center rounded-xl shadow-sm transition-all duration-300 cursor-pointer p-4 sm:p-5 md:p-6 xl:p-8 hover:shadow-lg hover:scale-105"
-            style={{
-              background: "#4D648D", // Terciario
-              boxShadow: "0 2px 8px 0 rgba(248,50,88,0.10)" // Sombra rosa suave
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.boxShadow = "0 8px 15px 0 rgba(151, 149, 10, 0.25)"}
-            onMouseLeave={(e) => e.currentTarget.style.boxShadow = "0 2px 8px 0 rgba(207, 194, 12, 0.1)"}
-            onClick={() => handleCategoryClick(cat.slug)}
-          >
-            <img
-              src={cat.img}
-              alt={cat.alt}
-              className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 xl:w-20 xl:h-20 object-cover rounded-full mb-3 md:mb-4"
-            />
-            <h3
-              className="text-xs sm:text-sm md:text-base xl:text-lg font-semibold text-center leading-tight"
-              style={{ color: "#D0E1F9" }}
-            >
-              {cat.alt}
-            </h3>
-          </div>
-        ))}
-      </div>
-    </div>
+<div className="container mx-auto px-2 py-4">
+  <div className="flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6 xl:gap-8">
+    {categories.map((cat) => (
+      <button
+        key={cat.id}
+        onClick={() => handleCategoryClick(cat.slug)}
+        className="group relative flex flex-col items-center justify-center flex-none w-24 sm:w-32 md:w-40 xl:w-48 aspect-square rounded-xl p-1 sm:p-4 transition-all duration-300 hover:scale-105 cursor-pointer shadow-[0_2px_8px_0_#D0E1F9] hover:shadow-[0_15px_15px_0_#D0E1F9]"
+        style={{
+          backgroundImage: `url(${bgImg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+      >
+        <div className="relative z-10 flex flex-col items-center w-full">
+          <img
+            src={cat.img}
+            alt={cat.alt}
+            className="w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 xl:w-20 xl:h-20 object-cover rounded-full mb-1 sm:mb-4 transition-transform duration-300 group-hover:-translate-y-1"
+          />
+          
+          <h3 className="text-[10px] sm:text-sm md:text-base xl:text-lg font-semibold text-center leading-tight px-1 text-[#D0E1F9] w-full truncate">
+            {cat.alt}
+          </h3>
+        </div>
+      </button>
+    ))}
+  </div>
+</div>
   );
 };
 

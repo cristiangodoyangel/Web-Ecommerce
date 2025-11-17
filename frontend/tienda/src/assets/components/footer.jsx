@@ -64,7 +64,7 @@ const features = [
 
 export function Footer() {
     return (
-        <footer style={{ background: 'var(--color-life-background)', borderTop: '2px solid #4D648D' }}>
+        <footer style={{ background: 'var(--color-life-blueberry)', borderTop: '2px solid #4D648D' }}>
             <Separator />
 
             <div className="container mx-auto px-4 py-12">
@@ -73,23 +73,23 @@ export function Footer() {
                         <div className="display flex flex-col md:flex-row items-center md:items-start md:justify-between gap-6">
                             {/* Datos y dirección - Centrado en móvil */}
                             <div className="space-y-3 text-center md:text-left">
-                                <div className="flex items-center justify-center md:justify-start gap-3" style={{ color: '#283655' }}>
-                                    <MapPin className="h-5 w-5 flex-shrink-0" style={{ color: '#4D648D' }} />
+                                <div className="flex items-center justify-center md:justify-start gap-3" style={{ color: '#D0E1F9' }}>
+                                    <MapPin className="h-5 w-5 flex-shrink-0" style={{ color: '#D0E1F9' }} />
                                     <span className="text-sm sm:text-base">AVDA ANTOFAGASTA #1234, ANTOFAGASTA</span>
                                 </div>
-                                <div className="flex items-center justify-center md:justify-start gap-3" style={{ color: '#283655' }}>
-                                    <Phone className="h-5 w-5 flex-shrink-0" style={{ color: '#4D648D' }} />
+                                <div className="flex items-center justify-center md:justify-start gap-3" style={{ color: '#D0E1F9' }}>
+                                    <Phone className="h-5 w-5 flex-shrink-0" style={{ color: '#D0E1F9' }} />
                                     <span className="text-sm sm:text-base">+56 9 99999999</span>
                                 </div>
-                                <div className="flex items-center justify-center md:justify-start gap-3" style={{ color: '#283655' }}>
-                                    <Mail className="h-5 w-5 flex-shrink-0" style={{ color: '#4D648D' }} />
+                                <div className="flex items-center justify-center md:justify-start gap-3" style={{ color: '#D0E1F9' }}>
+                                    <Mail className="h-5 w-5 flex-shrink-0" style={{ color: '#D0E1F9' }} />
                                     <span className="text-sm sm:text-base">contacto@perfumeria.cl</span>
                                 </div>
                             </div>
                             
                             {/* Redes sociales - Centrado en móvil */}
                             <div className="flex flex-col items-center md:items-end justify-start mt-0">
-                                <h4 className="font-semibold mb-4 text-center md:text-right" style={{ color: '#283655' }}>Nuestras redes</h4>
+                                <h4 className="font-semibold mb-4 text-center md:text-right" style={{ color: '#D0E1F9' }}>Nuestras redes</h4>
                                 <div className="flex gap-4">
                                     {socialLinks.map((social) => (
                                         <Button
