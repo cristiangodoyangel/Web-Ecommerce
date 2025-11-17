@@ -127,5 +127,8 @@ MERCADOPAGO_PUBLIC_KEY=tu_public_key
 
 Cristian Godoy Angel Fullstack Developer
 
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/cristian-godoy-angel/)
+
+
 
 
