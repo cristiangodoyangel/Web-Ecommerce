@@ -11,11 +11,11 @@ class CategoriaSimpleSerializer(serializers.ModelSerializer):
 
 class ProductoSerializer(serializers.ModelSerializer):
     categorias = CategoriaSimpleSerializer(many=True, read_only=True)
-    categoria = serializers.SerializerMethodField()  # Campo adicional para compatibilidad
+    categoria = serializers.SerializerMethodField()  
     precio_oferta = serializers.SerializerMethodField()
     en_oferta = serializers.SerializerMethodField()
     porcentaje_descuento = serializers.SerializerMethodField()
-    imagen = serializers.SerializerMethodField()  # Devolver URL completa de la imagen
+    imagen = serializers.SerializerMethodField() 
 
     class Meta:
         model = Producto
@@ -31,7 +31,7 @@ class ProductoSerializer(serializers.ModelSerializer):
         return None
 
     def get_categoria(self, obj):
-        # Devolver el nombre de la primera categoría para compatibilidad con el frontend
+
         categorias = obj.categorias.all()
         return categorias.first().nombre if categorias.exists() else ''
     

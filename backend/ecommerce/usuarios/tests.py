@@ -20,7 +20,7 @@ class UsuarioTests(TestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_login_usuario(self):
-        # Crea un usuario y prueba el login
+
         user = get_user_model().objects.create_user(
             username='usuario_test',
             email='test@correo.com',
@@ -30,7 +30,7 @@ class UsuarioTests(TestCase):
         data = {'username': 'usuario_test', 'password': 'passwordseguro123'}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertIn('access', response.data)  # Verifica que el token de acceso esté en la respuesta
+        self.assertIn('access', response.data)  
 
 
 class UsuarioSeguridadTests(TestCase):
@@ -89,7 +89,7 @@ class UsuarioSeguridadTests(TestCase):
         response = self.client.get(url)
         
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data['results']), 3)  # user1, user2, admin
+        self.assertEqual(len(response.data['results']), 3)  
 
     def test_endpoint_perfil_seguro(self):
         """Verificar que el endpoint /perfil/ funciona correctamente"""

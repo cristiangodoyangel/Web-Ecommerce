@@ -9,7 +9,7 @@ from productos.models import Producto
 
 class CategoriaModelTest(TestCase):
     def test_crear_categoria(self):
-        """Test de creación de categoría"""
+
         categoria = Categoria.objects.create(
             nombre='Electrónicos',
             descripcion='Productos electrónicos y tecnología',
@@ -21,7 +21,7 @@ class CategoriaModelTest(TestCase):
         self.assertTrue(categoria.activo)
 
     def test_categoria_activo_por_defecto(self):
-        """Test de valor por defecto para campo activo"""
+
         categoria = Categoria.objects.create(
             nombre='Deportes',
             descripcion='Artículos deportivos'
@@ -30,7 +30,7 @@ class CategoriaModelTest(TestCase):
         self.assertTrue(categoria.activo)  # Valor por defecto
 
     def test_categoria_sin_descripcion(self):
-        """Test de categoría sin descripción (campo opcional)"""
+
         categoria = Categoria.objects.create(
             nombre='Libros'
         )
@@ -39,7 +39,7 @@ class CategoriaModelTest(TestCase):
         self.assertEqual(categoria.descripcion, '')  # Campo blank=True
 
     def test_str_representation(self):
-        """Test de representación string del modelo"""
+
         categoria = Categoria.objects.create(
             nombre='Ropa y Accesorios'
         )
@@ -47,7 +47,7 @@ class CategoriaModelTest(TestCase):
         self.assertEqual(str(categoria), 'Ropa y Accesorios')
 
     def test_nombre_unico(self):
-        """Test de restricción de nombre único"""
+
         # Crear primera categoría
         Categoria.objects.create(
             nombre='Hogar',
@@ -62,7 +62,7 @@ class CategoriaModelTest(TestCase):
             )
 
     def test_nombre_case_sensitive(self):
-        """Test que el nombre sea case-sensitive"""
+
         # Crear categorías con nombres similares pero diferente case
         categoria1 = Categoria.objects.create(nombre='tecnologia')
         categoria2 = Categoria.objects.create(nombre='Tecnologia')
@@ -72,7 +72,7 @@ class CategoriaModelTest(TestCase):
         self.assertNotEqual(categoria2.nombre, categoria3.nombre)
 
     def test_descripcion_larga(self):
-        """Test con descripción larga"""
+
         descripcion_larga = "Esta es una descripción muy larga " * 100
         
         categoria = Categoria.objects.create(
@@ -83,7 +83,7 @@ class CategoriaModelTest(TestCase):
         self.assertEqual(categoria.descripcion, descripcion_larga)
 
     def test_categoria_inactiva(self):
-        """Test de categoría inactiva"""
+
         categoria = Categoria.objects.create(
             nombre='Categoria Inactiva',
             descripcion='Esta categoría está inactiva',
@@ -93,8 +93,8 @@ class CategoriaModelTest(TestCase):
         self.assertFalse(categoria.activo)
 
     def test_nombre_maximo_caracteres(self):
-        """Test de nombre con máximo de caracteres permitidos"""
-        nombre_largo = 'a' * 100  # El modelo permite max_length=100
+
+        nombre_largo = 'a' * 100 
         
         categoria = Categoria.objects.create(
             nombre=nombre_largo
@@ -109,7 +109,7 @@ class CategoriaModelTest(TestCase):
             descripcion='Todo tipo de bebidas'
         )
         
-        # Crear producto asociado
+
         producto = Producto.objects.create(
             nombre='Coca Cola',
             precio=Decimal('2.50'),
@@ -117,7 +117,7 @@ class CategoriaModelTest(TestCase):
         )
         producto.categorias.add(categoria)
         
-        # Verificar relación
+
         self.assertIn(categoria, producto.categorias.all())
         self.assertIn(producto, categoria.productos.all())
 class CategoriaViewSetTest(APITestCase):
@@ -128,8 +128,7 @@ class CategoriaViewSetTest(APITestCase):
             email='test@example.com',
             password='testpass123'
         )
-        
-        # Crear categorías de prueba
+
         self.categoria1 = Categoria.objects.create(
             nombre='Electrónicos',
             descripcion='Productos electrónicos',
@@ -149,23 +148,23 @@ class CategoriaViewSetTest(APITestCase):
         )
 
     def test_get_categorias_publico(self):
-        """Test de acceso público a categorías"""
+
         url = '/api/categorias/'
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         
-        # Verificar que se muestran las categorías activas
+
         nombres = [cat['nombre'] for cat in response.data['results']]
         self.assertIn('Electrónicos', nombres)
         self.assertIn('Ropa', nombres)
 
     def test_solo_categorias_activas(self):
-        """Test que solo se muestren categorías activas"""
+
         url = '/api/categorias/'
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         
-        # Verificar que no se muestre la categoría inactiva
+
         nombres = [cat['nombre'] for cat in response.data['results']]
         self.assertNotIn('Categoria Inactiva', nombres)
 
@@ -179,8 +178,7 @@ class CategoriaViewSetTest(APITestCase):
         }
         
         response = self.client.post(url, data, format='json')
-        # Dependiendo de la configuración de permisos
-        # self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
 
     def test_crear_categoria_autenticado(self):
         """Test de crear categoría autenticado"""
@@ -194,7 +192,7 @@ class CategoriaViewSetTest(APITestCase):
         }
         
         response = self.client.post(url, data, format='json')
-        # Verificar según los permisos configurados
+
         if response.status_code == status.HTTP_201_CREATED:
             self.assertEqual(response.data['nombre'], 'Deportes')
             self.assertTrue(response.data['activo'])
@@ -219,7 +217,7 @@ class CategoriaViewSetTest(APITestCase):
         }
         
         response = self.client.put(url, data, format='json')
-        # Verificar según los permisos configurados
+        
         if response.status_code == status.HTTP_200_OK:
             categoria_actualizada = Categoria.objects.get(id=self.categoria1.id)
             self.assertEqual(categoria_actualizada.nombre, 'Electrónicos y Tecnología')
@@ -236,7 +234,7 @@ class CategoriaViewSetTest(APITestCase):
         }
         
         response = self.client.put(url, data, format='json')
-        # Verificar según los permisos configurados
+        
         if response.status_code == status.HTTP_200_OK:
             categoria_actualizada = Categoria.objects.get(id=self.categoria1.id)
             self.assertFalse(categoria_actualizada.activo)
@@ -248,7 +246,7 @@ class CategoriaViewSetTest(APITestCase):
         url = f'/api/categorias/{self.categoria2.id}/'
         response = self.client.delete(url)
         
-        # Verificar según los permisos configurados
+        
         if response.status_code == status.HTTP_204_NO_CONTENT:
             self.assertFalse(Categoria.objects.filter(id=self.categoria2.id).exists())
 
@@ -258,23 +256,23 @@ class CategoriaViewSetTest(APITestCase):
         
         url = '/api/categorias/'
         data = {
-            'nombre': 'Electrónicos',  # Nombre que ya existe
+            'nombre': 'Electrónicos', 
             'descripcion': 'Otra descripción',
             'activo': True
         }
         
         response = self.client.post(url, data, format='json')
-        # Debe fallar por nombre duplicado
+        
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_buscar_categorias_por_nombre(self):
         """Test de búsqueda de categorías por nombre"""
-        # Si la API soporta filtrado por nombre
+        
         url = '/api/categorias/?search=Electr'
         response = self.client.get(url)
         
         if response.status_code == status.HTTP_200_OK and 'search' in url:
-            # Verificar que encuentra la categoría que contiene "Electr"
+            
             nombres = [cat['nombre'] for cat in response.data['results']]
             self.assertIn('Electrónicos', nombres)
 
@@ -284,12 +282,12 @@ class CategoriaViewSetTest(APITestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         
-        # Verificar que hay categorías en la respuesta
+        
         self.assertGreater(len(response.data), 0)
 
     def test_categoria_con_productos_asociados(self):
         """Test de categoría con productos asociados"""
-        # Crear producto asociado a la categoría
+        
         producto = Producto.objects.create(
             nombre='iPhone 13',
             precio=Decimal('1299.99'),
@@ -301,7 +299,7 @@ class CategoriaViewSetTest(APITestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         
-        # Si la respuesta incluye productos relacionados
+        
         if 'productos' in response.data:
             productos_nombres = [p['nombre'] for p in response.data['productos']]
             self.assertIn('iPhone 13', productos_nombres)

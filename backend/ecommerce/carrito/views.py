@@ -12,8 +12,8 @@ from productos.models import Producto
 
 class CarritoViewSet(viewsets.ModelViewSet):
     serializer_class = CarritoSerializer
-    pagination_class = None  # Desactivar paginación para compatibilidad con frontend
-    permission_classes = [AllowAny]  # Permitir acceso sin autenticación
+    pagination_class = None 
+    permission_classes = [AllowAny] 
     
     def get_authenticators(self):
         """Usar JWT auth de forma opcional: reconoce usuarios autenticados pero permite guests"""
@@ -24,7 +24,7 @@ class CarritoViewSet(viewsets.ModelViewSet):
         if self.request.user.is_authenticated:
             return Carrito.objects.filter(usuario=self.request.user)
         else:
-            # Para invitados, usar session_key
+
             session_key = self.request.session.session_key
             if not session_key:
                 self.request.session.create()
@@ -36,7 +36,7 @@ class CarritoViewSet(viewsets.ModelViewSet):
         if self.request.user.is_authenticated:
             serializer.save(usuario=self.request.user)
         else:
-            # Para invitados
+
             if not self.request.session.session_key:
                 self.request.session.create()
             serializer.save(session_key=self.request.session.session_key)
@@ -59,14 +59,14 @@ class CarritoViewSet(viewsets.ModelViewSet):
                 status=status.HTTP_404_NOT_FOUND
             )
 
-        # Verificar stock
+
         if cantidad > producto.stock:
             return Response(
                 {'error': f'Stock insuficiente. Disponible: {producto.stock}'}, 
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        # Buscar item existente
+
         if request.user.is_authenticated:
             carrito_item, created = Carrito.objects.get_or_create(
                 usuario=request.user,
@@ -83,7 +83,7 @@ class CarritoViewSet(viewsets.ModelViewSet):
             )
 
         if not created:
-            # Item ya existe, actualizar cantidad
+
             nueva_cantidad = carrito_item.cantidad + cantidad
             if nueva_cantidad > producto.stock:
                 return Response(
@@ -102,12 +102,12 @@ class CarritoViewSet(viewsets.ModelViewSet):
         
         total_items = sum(item.cantidad for item in queryset)
         
-        # Calcular total_precio considerando ofertas activas
+
         total_precio = 0
         now = timezone.now()
         
         for item in queryset:
-            # Buscar oferta activa para este producto
+
             try:
                 oferta_activa = item.producto.ofertas.filter(
                     activo=True,
@@ -124,7 +124,7 @@ class CarritoViewSet(viewsets.ModelViewSet):
                 total_precio += precio_unitario * item.cantidad
                 
             except Exception as e:
-                # Fallback al precio base
+
                 total_precio += float(item.producto.precio) * item.cantidad
         
         result = {
@@ -160,12 +160,12 @@ class CarritoViewSet(viewsets.ModelViewSet):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        # Obtener items del carrito de invitado
+
         items_invitado = Carrito.objects.filter(session_key=session_key)
         migrados = 0
 
         for item in items_invitado:
-            # Verificar si el usuario ya tiene este producto
+
             carrito_usuario, created = Carrito.objects.get_or_create(
                 usuario=request.user,
                 producto=item.producto,
@@ -173,7 +173,7 @@ class CarritoViewSet(viewsets.ModelViewSet):
             )
             
             if not created:
-                # Sumar cantidades si ya existe
+
                 carrito_usuario.cantidad += item.cantidad
                 carrito_usuario.save()
             

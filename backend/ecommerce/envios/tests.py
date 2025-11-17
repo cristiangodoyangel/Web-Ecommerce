@@ -9,8 +9,7 @@ User = get_user_model()
 
 class EnvioModelTest(TestCase):
     def setUp(self):
-        """Configurar datos de prueba"""
-        # Usuario
+
         self.user = User.objects.create_user(
             username='testuser',
             email='user@test.com',

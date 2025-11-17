@@ -31,19 +31,19 @@ class RegistroUsuarioSerializer(serializers.ModelSerializer):
         ]
 
     def create(self, validated_data):
-        # Extraer los campos que van directamente a create_user
+
         password = validated_data.pop('password')
         username = validated_data.pop('username')
         email = validated_data.pop('email')
         
-        # Crear el usuario con los campos requeridos
+
         user = get_user_model().objects.create_user(
             username=username,
             email=email,
             password=password
         )
         
-        # Actualizar con los campos adicionales
+
         for field, value in validated_data.items():
             setattr(user, field, value)
         user.save()

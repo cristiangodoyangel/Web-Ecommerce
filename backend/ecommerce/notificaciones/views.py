@@ -1,13 +1,10 @@
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import get_user_model
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
 from django.contrib import messages
 from .models import ConfiguracionNotificacion, NotificacionCorreo
 from .services import NotificacionService
@@ -16,11 +13,9 @@ from .serializers import ConfiguracionNotificacionSerializer
 User = get_user_model()
 
 class ConfiguracionNotificacionView(APIView):
-    """Vista para manejar la configuración de notificaciones del usuario"""
     permission_classes = [IsAuthenticated]
     
     def get(self, request):
-        """Obtiene la configuración actual del usuario"""
         try:
             config = ConfiguracionNotificacion.objects.get(usuario=request.user)
         except ConfiguracionNotificacion.DoesNotExist:
@@ -30,7 +25,6 @@ class ConfiguracionNotificacionView(APIView):
         return Response(serializer.data)
     
     def put(self, request):
-        """Actualiza la configuración de notificaciones"""
         try:
             config = ConfiguracionNotificacion.objects.get(usuario=request.user)
         except ConfiguracionNotificacion.DoesNotExist:
@@ -43,11 +37,9 @@ class ConfiguracionNotificacionView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class TestEmailView(APIView):
-    """Vista para enviar correos de prueba (solo para desarrollo)"""
     permission_classes = [IsAuthenticated]
     
     def post(self, request):
-        """Envía un correo de prueba al usuario autenticado"""
         if not request.user.is_staff:
             return Response(
                 {"error": "Solo staff puede enviar correos de prueba"}, 
@@ -80,14 +72,11 @@ class TestEmailView(APIView):
             )
 
 def unsubscribe_view(request, user_id):
-    """Vista para darse de baja de las notificaciones"""
     user = get_object_or_404(User, id=user_id)
     
     if request.method == 'POST':
-        # Procesar la baja
         config, created = ConfiguracionNotificacion.objects.get_or_create(usuario=user)
         
-        # Desactivar todas las notificaciones opcionales
         config.recibir_promociones = False
         config.recibir_newsletter = False
         config.recibir_ofertas = False
@@ -97,7 +86,6 @@ def unsubscribe_view(request, user_id):
         messages.success(request, 'Te has dado de baja exitosamente de las notificaciones promocionales.')
         return redirect('notificaciones:unsubscribe', user_id=user_id)
     
-    # Mostrar página de confirmación
     context = {
         'usuario': user,
         'config': getattr(user, 'config_notificaciones', None)
@@ -105,14 +93,12 @@ def unsubscribe_view(request, user_id):
     return render(request, 'notificaciones/unsubscribe.html', context)
 
 def configuracion_view(request):
-    """Vista web para configurar notificaciones"""
     if not request.user.is_authenticated:
         return redirect('login')
     
     config, created = ConfiguracionNotificacion.objects.get_or_create(usuario=request.user)
     
     if request.method == 'POST':
-        # Procesar formulario
         config.recibir_bienvenida = request.POST.get('recibir_bienvenida') == 'on'
         config.recibir_confirmaciones = request.POST.get('recibir_confirmaciones') == 'on'
         config.recibir_orden_updates = request.POST.get('recibir_orden_updates') == 'on'
@@ -124,7 +110,6 @@ def configuracion_view(request):
         messages.success(request, 'Configuración de notificaciones actualizada exitosamente.')
         return redirect('notificaciones:configuracion_web')
     
-    # Obtener estadísticas de notificaciones
     notificaciones_recientes = NotificacionCorreo.objects.filter(
         usuario=request.user
     ).order_by('-fecha_creacion')[:10]
@@ -138,12 +123,10 @@ def configuracion_view(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def historial_notificaciones(request):
-    """API para obtener el historial de notificaciones del usuario"""
     notificaciones = NotificacionCorreo.objects.filter(
         usuario=request.user
     ).order_by('-fecha_creacion')
     
-    # Paginación simple
     page = int(request.GET.get('page', 1))
     per_page = int(request.GET.get('per_page', 20))
     start = (page - 1) * per_page

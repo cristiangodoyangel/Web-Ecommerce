@@ -10,13 +10,13 @@ from productos.models import Producto, Categoria
 
 class OfertaModelTest(TestCase):
     def setUp(self):
-        # Crear categoria
+       
         self.categoria = Categoria.objects.create(
             nombre='Test Categoria',
             descripcion='Test Descripcion'
         )
 
-        # Crear producto y asignar categoria correctamente
+        
         self.producto = Producto.objects.create(
             nombre='Test Producto',
             precio=Decimal('100.00'),
@@ -25,7 +25,7 @@ class OfertaModelTest(TestCase):
         self.producto.categorias.add(self.categoria)
 
     def test_crear_oferta(self):
-        """Test de creación de oferta"""
+        
         oferta = Oferta.objects.create(
             producto=self.producto,
             porcentaje_descuento=25,
@@ -39,7 +39,7 @@ class OfertaModelTest(TestCase):
         self.assertTrue(oferta.activo)
 
     def test_aplicar_descuento(self):
-        """Test del método aplicar_descuento"""
+        
         producto = Producto.objects.create(
             nombre='Test Producto 2',
             precio=Decimal('50.00'),

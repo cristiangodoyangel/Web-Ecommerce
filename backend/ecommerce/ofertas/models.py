@@ -16,23 +16,23 @@ class Oferta(models.Model):
 
     class Meta:
         ordering = ['-created_at']
-        unique_together = ['producto']  # Un producto solo puede tener una oferta activa
+        unique_together = ['producto'] 
 
     def __str__(self):
         return f"Oferta {self.porcentaje_descuento}% - {self.producto.nombre}"
 
     @property
     def precio_con_descuento(self):
-        """Calcula el precio con descuento aplicado"""
+        
         descuento = (self.producto.precio * self.porcentaje_descuento) / 100
         return self.producto.precio - descuento
     
     def aplicar_descuento(self):
-        """Método para aplicar descuento - alias de precio_con_descuento"""
+        
         return self.precio_con_descuento
 
     def is_active(self):
-        """Verifica si la oferta está activa y dentro del rango de fechas"""
+        
         now = timezone.now()
         if not self.activo:
             return False

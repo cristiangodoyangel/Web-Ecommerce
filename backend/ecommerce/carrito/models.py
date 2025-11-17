@@ -4,13 +4,13 @@ from productos.models import Producto
 
 class Carrito(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='carritos', null=True, blank=True)
-    session_key = models.CharField(max_length=40, null=True, blank=True)  # Para invitados
+    session_key = models.CharField(max_length=40, null=True, blank=True)  
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
     cantidad = models.PositiveIntegerField(default=1)
     agregado = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        # Un usuario/sesión puede tener solo un item del mismo producto
+
         constraints = [
             models.UniqueConstraint(
                 fields=['usuario', 'producto'],

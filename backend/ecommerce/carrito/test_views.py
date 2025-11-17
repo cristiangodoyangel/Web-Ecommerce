@@ -20,7 +20,7 @@ class CarritoViewSetTest(TestCase):
             password='testpassword'
         )
         
-        # Crear categoría y producto de prueba
+
         self.categoria = Categoria.objects.create(nombre='Test Category')
         self.producto = Producto.objects.create(
             nombre='Perfume Test',
@@ -52,7 +52,7 @@ class CarritoViewSetTest(TestCase):
         
     def test_agregar_producto_carrito_invitado(self):
         """Probar agregar producto al carrito para invitado"""
-        # Configurar sesión
+
         session = self.client.session
         session.save()
         
@@ -71,7 +71,7 @@ class CarritoViewSetTest(TestCase):
         """Probar actualizar cantidad en carrito"""
         self.client.force_authenticate(user=self.user)
         
-        # Crear item en carrito
+
         carrito_item = Carrito.objects.create(
             usuario=self.user,
             producto=self.producto,
@@ -91,7 +91,6 @@ class CarritoViewSetTest(TestCase):
         """Probar eliminar producto del carrito"""
         self.client.force_authenticate(user=self.user)
         
-        # Crear item en carrito
         carrito_item = Carrito.objects.create(
             usuario=self.user,
             producto=self.producto,
@@ -108,7 +107,7 @@ class CarritoViewSetTest(TestCase):
         """Probar obtener resumen del carrito"""
         self.client.force_authenticate(user=self.user)
         
-        # Agregar productos al carrito
+
         Carrito.objects.create(
             usuario=self.user,
             producto=self.producto,
@@ -127,7 +126,7 @@ class CarritoViewSetTest(TestCase):
         """Probar limpiar carrito completo"""
         self.client.force_authenticate(user=self.user)
         
-        # Agregar productos al carrito
+
         Carrito.objects.create(
             usuario=self.user,
             producto=self.producto,

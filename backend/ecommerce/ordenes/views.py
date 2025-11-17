@@ -15,16 +15,12 @@ class OrdenViewSet(viewsets.ModelViewSet):
     serializer_class = OrdenSerializer
 
     def get_permissions(self):
-        """
-        Permitir crear órdenes sin autenticación SOLO para invitados en endpoints específicos
-        """
-        # Solo aplicar permisos especiales para endpoints de API específicos
         if self.action in ['crear_orden_invitado', 'preparar_pago_invitado']:
-            return []  # Sin autenticación requerida
+            return []  
         elif self.action in ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy']:
-            return [permissions.IsAuthenticated()]  # Requiere autenticación para CRUD estándar
+            return [permissions.IsAuthenticated()]  
         else:
-            return [permissions.IsAuthenticated()]  # Por defecto requiere autenticación
+            return [permissions.IsAuthenticated()]  
 
     def get_queryset(self):
         if self.request.user.is_authenticated:
@@ -33,38 +29,30 @@ class OrdenViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['get'])
     def historial(self, request):
-        """
-        Obtener historial de órdenes del usuario autenticado
-        """
         if not request.user.is_authenticated:
             return Response(
                 {'error': 'Usuario no autenticado'}, 
                 status=status.HTTP_401_UNAUTHORIZED
             )
         
-        ordenes = self.get_queryset().order_by('-fecha')  # Cambié fecha_creacion por fecha
+        ordenes = self.get_queryset().order_by('-fecha')  
         serializer = self.get_serializer(ordenes, many=True)
         return Response(serializer.data)
 
     @action(detail=False, methods=['get'])
     def verificar_orden_pendiente(self, request):
-        """
-        Verificar si el usuario tiene una orden pendiente
-        """
         if not request.user.is_authenticated:
             return Response(
                 {'error': 'Usuario no autenticado'}, 
                 status=status.HTTP_401_UNAUTHORIZED
             )
         
-        # Buscar orden pendiente más reciente
         orden_pendiente = Orden.objects.filter(
             usuario=request.user,
             estado='pendiente'
         ).order_by('-fecha').first()
         
         if orden_pendiente:
-            # Obtener productos de la orden
             productos = []
             for item in orden_pendiente.productos.all():
                 productos.append({
@@ -90,9 +78,6 @@ class OrdenViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['post'])
     def cancelar_orden_pendiente(self, request):
-        """
-        Cancelar orden pendiente y restaurar stock
-        """
         if not request.user.is_authenticated:
             return Response(
                 {'error': 'Usuario no autenticado'}, 
@@ -108,14 +93,12 @@ class OrdenViewSet(viewsets.ModelViewSet):
             )
         
         try:
-            # Buscar la orden
             orden = Orden.objects.get(
                 id=orden_id,
                 usuario=request.user,
                 estado='pendiente'
             )
             
-            # Restaurar stock de cada producto
             for item in orden.productos.all():
                 from productos.models import Producto
                 try:
@@ -125,7 +108,6 @@ class OrdenViewSet(viewsets.ModelViewSet):
                 except Producto.DoesNotExist:
                     pass
             
-            # Cambiar estado a cancelado
             orden.estado = 'cancelado'
             orden.save()
             
@@ -147,16 +129,12 @@ class OrdenViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['post'])
     def crear_orden_usuario(self, request):
-        """
-        Crear orden para usuario autenticado con reducción de stock
-        """
         if not request.user.is_authenticated:
             return Response(
                 {'error': 'Usuario no autenticado'}, 
                 status=status.HTTP_401_UNAUTHORIZED
             )
 
-        # CANCELAR ÓRDENES PENDIENTES ANTERIORES (sin restaurar stock porque nunca se descontó)
         ordenes_pendientes = Orden.objects.filter(
             usuario=request.user,
             estado='pendiente'
@@ -164,11 +142,9 @@ class OrdenViewSet(viewsets.ModelViewSet):
         
         if ordenes_pendientes.exists():
             for orden_pendiente in ordenes_pendientes:
-                # Marcar como cancelada en lugar de eliminar (para mantener historial)
                 orden_pendiente.estado = 'cancelado'
                 orden_pendiente.save()
 
-        # Obtener items del carrito del usuario autenticado
         carrito_items = list(Carrito.objects.filter(usuario=request.user).select_related('producto'))
         
         if not carrito_items:
@@ -177,7 +153,6 @@ class OrdenViewSet(viewsets.ModelViewSet):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        # Verificar stock ANTES de cualquier transacción
         for item in carrito_items:
             if item.cantidad > item.producto.stock:
                 return Response(
@@ -186,21 +161,17 @@ class OrdenViewSet(viewsets.ModelViewSet):
                 )
 
         try:
-            # Obtener método de entrega desde la request (por defecto delivery)
             metodo_entrega = request.data.get('metodo_entrega', 'delivery')
             if metodo_entrega not in ['delivery', 'retiro']:
                 metodo_entrega = 'delivery'
             
-            # Calcular total de productos primero para evaluar envío gratis
             total_productos = 0
             now = timezone.now()
             
             for item in carrito_items:
-                # Calcular precio considerando ofertas activas
                 producto = item.producto
                 precio_unitario = producto.precio
                 
-                # Buscar oferta activa
                 try:
                     oferta_activa = producto.ofertas.filter(
                         activo=True,
@@ -212,19 +183,16 @@ class OrdenViewSet(viewsets.ModelViewSet):
                     if oferta_activa:
                         precio_unitario = oferta_activa.precio_con_descuento
                 except Exception:
-                    pass  # Usar precio base si falla
+                    pass  
                 
                 subtotal = precio_unitario * item.cantidad
                 total_productos += subtotal
             
-            # APLICAR ENVÍO GRATIS SI COMPRA ES SUPERIOR A $50.000
             envio_gratis_desbloqueado = total_productos >= 50000
             costo_envio = 3500 if metodo_entrega == 'delivery' else 0
             if envio_gratis_desbloqueado and metodo_entrega == 'delivery':
                 costo_envio = 0
-                print(f"🎉 [USUARIO-AUTH] ¡ENVÍO GRATIS DESBLOQUEADO! Total productos: ${total_productos}")
             
-            # Crear la orden
             orden = Orden.objects.create(
                 usuario=request.user,
                 metodo_entrega=metodo_entrega,
@@ -232,15 +200,12 @@ class OrdenViewSet(viewsets.ModelViewSet):
                 estado='pendiente'
             )
 
-            total = total_productos  # Reiniciar para calcular productos de orden
+            total = 0  
             
-            # Crear productos de la orden y reducir stock
             for item in carrito_items:
-                # Calcular precio considerando ofertas activas
                 producto = item.producto
                 precio_unitario = producto.precio
                 
-                # Buscar oferta activa
                 try:
                     oferta_activa = producto.ofertas.filter(
                         activo=True,
@@ -252,7 +217,7 @@ class OrdenViewSet(viewsets.ModelViewSet):
                     if oferta_activa:
                         precio_unitario = oferta_activa.precio_con_descuento
                 except Exception:
-                    pass  # Usar precio base si falla
+                    pass  
                 
                 subtotal = precio_unitario * item.cantidad
                 total += subtotal
@@ -261,31 +226,24 @@ class OrdenViewSet(viewsets.ModelViewSet):
                     orden=orden,
                     producto_id=producto.id,
                     nombre_producto=producto.nombre,
-                    precio_producto=precio_unitario,  # Guardar precio con descuento
+                    precio_producto=precio_unitario,  
                     cantidad=item.cantidad,
                     subtotal=subtotal
                 )
 
-                # ⚠️ Stock NO se descuenta aquí - se descuenta cuando se confirma el pago en el webhook
-
-            # Agregar costo de envío al total
             total += costo_envio
 
-            # Actualizar total de la orden
             orden.total = total
             orden.save()
 
-            # Crear pago pendiente
             pago = Pago.objects.create(
                 orden=orden,
                 monto=total,
                 estado='pendiente'
             )
 
-            # Limpiar carrito
             Carrito.objects.filter(usuario=request.user).delete()
             
-            # Respuesta compatible con el frontend
             return Response({
                 'orden_id': orden.id,
                 'total': float(total),
@@ -297,7 +255,6 @@ class OrdenViewSet(viewsets.ModelViewSet):
             }, status=status.HTTP_201_CREATED)
             
         except Exception as e:
-            # En caso de error, intentar limpiar la orden creada
             try:
                 if 'orden' in locals():
                     orden.delete()
@@ -311,15 +268,9 @@ class OrdenViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['post'])
     def preparar_pago_invitado(self, request):
-        """
-        Preparar datos para pago de usuario invitado (NO crear orden todavía)
-        La orden se creará solo cuando el pago se confirme en el webhook
-        """
-        print(f"\n🛒 [PREPARAR-PAGO] Datos recibidos: {request.data}")
         
         serializer = OrdenInvitadoSerializer(data=request.data)
         if not serializer.is_valid():
-            print(f"❌ [PREPARAR-PAGO] Errores de validación: {serializer.errors}")
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         session_key = request.session.session_key
@@ -330,7 +281,6 @@ class OrdenViewSet(viewsets.ModelViewSet):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        # Obtener items del carrito
         carrito_items = Carrito.objects.filter(session_key=session_key)
         
         if not carrito_items.exists():
@@ -340,7 +290,6 @@ class OrdenViewSet(viewsets.ModelViewSet):
             )
 
         try:
-            # Verificar stock disponible ANTES de proceder al pago
             for item in carrito_items:
                 if item.cantidad > item.producto.stock:
                     return Response(
@@ -348,27 +297,19 @@ class OrdenViewSet(viewsets.ModelViewSet):
                         status=status.HTTP_400_BAD_REQUEST
                     )
 
-            # Obtener método de entrega y calcular costo de envío
             metodo_entrega = serializer.validated_data.get('metodo_entrega', 'delivery')
             if metodo_entrega not in ['delivery', 'retiro']:
                 metodo_entrega = 'delivery'
                 
-            # Calcular costo de envío
             costo_envio = 3500 if metodo_entrega == 'delivery' else 0
             
-            print(f"🚚 [PREPARAR-PAGO] Método de entrega: {metodo_entrega}")
-            print(f"💰 [PREPARAR-PAGO] Costo de envío inicial: ${costo_envio}")
-            
-            # Calcular total de productos sin envío primero
             total_productos = 0
             now = timezone.now()
             
             for item in carrito_items:
-                # Calcular precio considerando ofertas activas
                 producto = item.producto
                 precio_unitario = producto.precio
                 
-                # Buscar oferta activa
                 try:
                     oferta_activa = producto.ofertas.filter(
                         activo=True,
@@ -380,21 +321,17 @@ class OrdenViewSet(viewsets.ModelViewSet):
                     if oferta_activa:
                         precio_unitario = oferta_activa.precio_con_descuento
                 except Exception:
-                    pass  # Usar precio base si falla
+                    pass  
                 
                 subtotal = precio_unitario * item.cantidad
                 total_productos += subtotal
 
-            # APLICAR ENVÍO GRATIS SI COMPRA ES SUPERIOR A $50.000
             envio_gratis_desbloqueado = total_productos >= 50000
             if envio_gratis_desbloqueado and metodo_entrega == 'delivery':
                 costo_envio = 0
-                print(f"🎉 [PREPARAR-PAGO] ¡ENVÍO GRATIS DESBLOQUEADO! Total productos: ${total_productos}")
             
-            # Agregar costo de envío al total
             total_final = total_productos + costo_envio
             
-            # Guardar datos del invitado en la sesión para el webhook
             request.session['datos_invitado'] = {
                 'email': serializer.validated_data['email'],
                 'nombre': serializer.validated_data['nombre'],
@@ -408,12 +345,8 @@ class OrdenViewSet(viewsets.ModelViewSet):
             }
             request.session.save()
             
-            print(f"✅ [PREPARAR-PAGO] Datos guardados en sesión para el webhook")
-            print(f"💰 [PREPARAR-PAGO] Total calculado: ${total_final}")
-
-            # NO crear orden, NO limpiar carrito - esto se hace en el webhook
             return Response({
-                'session_key': session_key,  # Para usar como external_reference
+                'session_key': session_key,  
                 'total': total_final,
                 'total_productos': total_productos,
                 'metodo_entrega': metodo_entrega,

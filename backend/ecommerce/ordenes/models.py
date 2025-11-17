@@ -3,12 +3,12 @@ from usuarios.models import Usuario
 
 class Orden(models.Model):
     ESTADO_CHOICES = [
-        ('pendiente', 'Pendiente'),      # Orden creada, esperando pago
-        ('pagado', 'Pagado'),            # Pago confirmado por MercadoPago
-        ('procesando', 'Procesando'),    # Preparando envío
-        ('enviado', 'Enviado'),          # En camino
-        ('entregado', 'Entregado'),      # Completado
-        ('cancelado', 'Cancelado'),      # Pago rechazado o cancelado por usuario
+        ('pendiente', 'Pendiente'),      
+        ('pagado', 'Pagado'),            
+        ('procesando', 'Procesando'),   
+        ('enviado', 'Enviado'),          
+        ('entregado', 'Entregado'),      
+        ('cancelado', 'Cancelado'),      
     ]
     
     METODO_ENTREGA_CHOICES = [
@@ -17,15 +17,15 @@ class Orden(models.Model):
     ]
     
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='ordenes', null=True, blank=True)
-    session_key = models.CharField(max_length=40, null=True, blank=True)  # Para invitados
+    session_key = models.CharField(max_length=40, null=True, blank=True) 
     
-    # Información del invitado (solo se usa cuando usuario=None)
+    
     email_invitado = models.EmailField(null=True, blank=True)
     nombre_invitado = models.CharField(max_length=100, null=True, blank=True)
     telefono_invitado = models.CharField(max_length=20, null=True, blank=True)
     direccion_invitado = models.TextField(null=True, blank=True)
     
-    # Método de entrega
+   
     metodo_entrega = models.CharField(
         max_length=20,
         choices=METODO_ENTREGA_CHOICES,
@@ -55,10 +55,10 @@ class Orden(models.Model):
     def direccion_envio(self):
         """Obtiene la dirección de envío según el tipo de usuario"""
         if self.usuario:
-            # Usuario logueado: usar dirección del perfil
+
             return self.usuario.direccion
         else:
-            # Usuario invitado: usar dirección proporcionada
+
             return self.direccion_invitado
     
     @property
@@ -82,9 +82,9 @@ class Orden(models.Model):
 class OrdenProducto(models.Model):
     """Productos en una orden específica"""
     orden = models.ForeignKey(Orden, on_delete=models.CASCADE, related_name='productos')
-    producto_id = models.IntegerField()  # ID del producto
-    nombre_producto = models.CharField(max_length=200)  # Nombre al momento de la compra
-    precio_producto = models.DecimalField(max_digits=10, decimal_places=2)  # Precio al momento de la compra
+    producto_id = models.IntegerField()  
+    nombre_producto = models.CharField(max_length=200) 
+    precio_producto = models.DecimalField(max_digits=10, decimal_places=2) 
     cantidad = models.PositiveIntegerField()
     subtotal = models.DecimalField(max_digits=10, decimal_places=2)
 

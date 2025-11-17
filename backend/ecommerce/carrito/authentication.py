@@ -10,4 +10,4 @@ class CsrfExemptSessionAuthentication(SessionAuthentication):
     SessionAuthentication sin verificación CSRF
     """
     def enforce_csrf(self, request):
-        return  # No hacer nada = no verificar CSRF
+        return  

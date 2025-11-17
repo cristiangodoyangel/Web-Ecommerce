@@ -12,7 +12,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 class SendGridService:
-    """Servicio para envío de correos con SendGrid"""
+    
     
     def __init__(self):
         self.api_key = getattr(settings, 'EMAIL_HOST_PASSWORD', '')
@@ -23,18 +23,7 @@ class SendGridService:
             self.client = SendGridAPIClient(api_key=self.api_key)
     
     def enviar_correo(self, destinatario, asunto, template_name, contexto=None):
-        """
-        Envía correo usando SendGrid
-        
-        Args:
-            destinatario: Email del destinatario
-            asunto: Asunto del correo
-            template_name: Nombre del template HTML
-            contexto: Datos para el template
-        
-        Returns:
-            dict: Resultado del envío
-        """
+   
         if not self.client:
             return {
                 'success': False,
@@ -42,11 +31,11 @@ class SendGridService:
             }
         
         try:
-            # Renderizar contenido HTML
+
             if contexto is None:
                 contexto = {}
                 
-            # Agregar datos globales al contexto
+
             contexto.update({
                 'site_name': 'Life Sex Shop',
                 'site_url': getattr(settings, 'SITE_URL', 'http://localhost:8000'),
@@ -55,15 +44,15 @@ class SendGridService:
             
             html_content = render_to_string(f'emails/{template_name}', contexto)
             
-            # Crear mensaje
+
             message = Mail(
-                from_email=Email(self.from_email, "Life Sex Shop"),
+                from_email=Email(self.from_email, "Perfumerpia 💖"),
                 to_emails=To(destinatario),
                 subject=asunto,
                 html_content=Content("text/html", html_content)
             )
             
-            # Enviar
+
             response = self.client.send(message)
             
             logger.info(f"Correo enviado a {destinatario}: {response.status_code}")
@@ -86,7 +75,7 @@ class SendGridService:
             }
     
     def enviar_bienvenida(self, usuario):
-        """Envía correo de bienvenida"""
+
         contexto = {
             'usuario': usuario,
             'nombre': usuario.first_name or usuario.username,
@@ -94,13 +83,13 @@ class SendGridService:
         
         return self.enviar_correo(
             destinatario=usuario.email,
-            asunto=f"¡Bienvenido/a a Life Sex Shop, {contexto['nombre']}! 🎉",
+            asunto=f"¡Bienvenido/a a Perfumerpia, {contexto['nombre']}! 🎉",
             template_name='bienvenida.html',
             contexto=contexto
         )
     
     def enviar_orden_confirmada(self, orden):
-        """Envía correo de orden confirmada"""
+
         contexto = {
             'orden': orden,
             'usuario': orden.usuario,
@@ -114,7 +103,7 @@ class SendGridService:
         )
     
     def test_conexion(self):
-        """Prueba la conexión con SendGrid"""
+
         if not self.client:
             return {
                 'success': False,
@@ -122,7 +111,7 @@ class SendGridService:
             }
         
         try:
-            # Prueba básica enviando a un email de testing
+
             test_email = getattr(settings, 'EMAIL_TESTING', 'test@example.com')
             
             result = self.enviar_correo(

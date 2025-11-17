@@ -4,4 +4,3 @@ from .models import Carrito
 
 admin.site.register(Carrito)
 
-# Register your models here.

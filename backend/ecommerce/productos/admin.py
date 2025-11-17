@@ -6,7 +6,7 @@ from django.urls import path
 from django.shortcuts import redirect
 from .models import Producto
 
-# Filtros personalizados
+
 class StockFilter(admin.SimpleListFilter):
     title = 'Estado de Stock'
     parameter_name = 'stock_status'
@@ -54,16 +54,16 @@ class PrecioFilter(admin.SimpleListFilter):
 @admin.register(Producto)
 class ProductoAdmin(admin.ModelAdmin):
     
-    # Agregar botón personalizado de "Añadir Oferta"
+
     change_list_template = "admin/productos/producto_changelist.html"
     
     list_display = [
-        'thumbnail_display',    # Imagen
-        'nombre',              # Nombre
-        'precio',              # Precio
-        'stock',               # Stock
-        'estado_stock',        # Estado
-        'acciones_display'     # Acciones
+        'thumbnail_display',   
+        'nombre',            
+        'precio',              
+        'stock',               
+        'estado_stock',        
+        'acciones_display'     
     ]
     
     list_filter = [
@@ -91,11 +91,11 @@ class ProductoAdmin(admin.ModelAdmin):
     
     ordering = ['-creado']
     
-    # Filtros personalizados
+
     def get_queryset(self, request):
         return super().get_queryset(request).prefetch_related('categorias')
     
-    # Displays personalizados
+
     def thumbnail_display(self, obj):
         if obj.imagen:
             return format_html(
@@ -111,7 +111,7 @@ class ProductoAdmin(admin.ModelAdmin):
         categorias = obj.categorias.all()
         if categorias:
             badges = []
-            for categoria in categorias[:3]:  # Máximo 3 categorías mostradas
+            for categoria in categorias[:3]: 
                 badges.append(f'<span style="background: #3498db; color: white; padding: 2px 6px; border-radius: 10px; font-size: 11px; margin-right: 2px;">{categoria.nombre}</span>')
             if categorias.count() > 3:
                 badges.append(f'<span style="color: #666; font-size: 11px;">+{categorias.count() - 3} más</span>')
@@ -179,7 +179,7 @@ class ProductoAdmin(admin.ModelAdmin):
         )
     acciones_display.short_description = "Acciones"
     
-    # Configuración de fieldsets para el formulario - TODO EN UNA PÁGINA
+
     fieldsets = (
         ('📝 Crear/Editar Producto', {
             'fields': (
@@ -196,15 +196,15 @@ class ProductoAdmin(admin.ModelAdmin):
         }),
     )
     
-    # Configuración adicional
+
     save_on_top = True
-    save_as = True  # Permite "Guardar como nuevo"
+    save_as = True  
     
-    # Configuración para hacer más amigable el formulario
-    autocomplete_fields = []  # Si tuvieras muchas categorías, esto ayudaría
-    filter_horizontal = ('categorias',)  # Widget más amigable para seleccionar categorías múltiples
+
+    autocomplete_fields = []  
+    filter_horizontal = ('categorias',)  
     
-    # Texto de ayuda personalizado
+
     help_texts = {
         'nombre': 'Nombre del producto que aparecerá en la tienda.',
         'descripcion': 'Descripción detallada del producto para los clientes.',
@@ -214,7 +214,7 @@ class ProductoAdmin(admin.ModelAdmin):
         'activo': 'Desmarcar para ocultar el producto de la tienda sin eliminarlo.',
     }
     
-    # Acciones personalizadas
+
     actions = ['activar_productos', 'desactivar_productos', 'marcar_sin_stock', 'reporte_inventario']
     
     def activar_productos(self, request, queryset):

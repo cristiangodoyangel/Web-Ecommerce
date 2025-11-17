@@ -12,4 +12,4 @@ class ProductoViewSet(viewsets.ModelViewSet):
     search_fields = ['nombre', 'descripcion']
     ordering_fields = ['nombre', 'precio', 'creado']
     ordering = ['nombre']
-    pagination_class = None  # Desactivar paginación para compatibilidad con frontend
+    pagination_class = None  

@@ -5,7 +5,7 @@ from django.utils import timezone
 User = get_user_model()
 
 class TipoNotificacion(models.TextChoices):
-    """Tipos de notificaciones disponibles"""
+
     BIENVENIDA = 'bienvenida', 'Bienvenida'
     CONFIRMACION_REGISTRO = 'confirmacion_registro', 'Confirmación de Registro'
     CONFIRMACION_EMAIL = 'confirmacion_email', 'Confirmación de Email'
@@ -22,14 +22,14 @@ class TipoNotificacion(models.TextChoices):
     PROMOCION = 'promocion', 'Promoción'
 
 class EstadoNotificacion(models.TextChoices):
-    """Estados de las notificaciones"""
+
     PENDIENTE = 'pendiente', 'Pendiente'
     ENVIADA = 'enviada', 'Enviada'
     FALLIDA = 'fallida', 'Fallida'
     PROGRAMADA = 'programada', 'Programada'
 
 class TemplateCorreo(models.Model):
-    """Plantillas para los correos electrónicos"""
+
     tipo = models.CharField(
         max_length=50,
         choices=TipoNotificacion.choices,
@@ -57,7 +57,7 @@ class TemplateCorreo(models.Model):
         return f"{self.nombre} ({self.get_tipo_display()})"
 
 class NotificacionCorreo(models.Model):
-    """Registro de notificaciones enviadas"""
+
     usuario = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -107,7 +107,7 @@ class NotificacionCorreo(models.Model):
         verbose_name="Datos Adicionales"
     )
     
-    # Campos para errores
+
     mensaje_error = models.TextField(
         blank=True,
         null=True,
@@ -153,7 +153,7 @@ class ConfiguracionNotificacion(models.Model):
         verbose_name="Usuario"
     )
     
-    # Configuraciones por tipo de notificación
+    
     recibir_bienvenida = models.BooleanField(default=True, verbose_name="Recibir Bienvenida")
     recibir_confirmaciones = models.BooleanField(default=True, verbose_name="Recibir Confirmaciones")
     recibir_orden_updates = models.BooleanField(default=True, verbose_name="Recibir Actualizaciones de Órdenes")

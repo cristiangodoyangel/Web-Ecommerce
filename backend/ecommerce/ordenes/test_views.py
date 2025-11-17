@@ -21,7 +21,7 @@ class OrdenViewSetTest(TestCase):
             password='testpassword'
         )
         
-        # Crear categoría y producto de prueba
+
         self.categoria = Categoria.objects.create(nombre='Test Category')
         self.producto = Producto.objects.create(
             nombre='Perfume Test',
@@ -34,36 +34,35 @@ class OrdenViewSetTest(TestCase):
         
     def test_crear_orden_usuario_autenticado_exitoso(self):
         """Probar creación exitosa de orden para usuario autenticado"""
-        # Autenticar usuario
+
         self.client.force_authenticate(user=self.user)
         
-        # Agregar producto al carrito
+
         Carrito.objects.create(
             usuario=self.user,
             producto=self.producto,
             cantidad=2
         )
         
-        # Realizar petición POST
+
         url = reverse('orden-list')
         response = self.client.post(url, {}, format='json')
         
-        # Verificar respuesta
+
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertIn('orden', response.data)
         self.assertIn('message', response.data)
         
-        # Verificar que se creó la orden
+
         self.assertEqual(Orden.objects.count(), 1)
         orden = Orden.objects.first()
         self.assertEqual(orden.usuario, self.user)
         self.assertEqual(orden.productos.count(), 1)
         
-        # Verificar que se redujo el stock
+
         self.producto.refresh_from_db()
         self.assertEqual(self.producto.stock, 8)
-        
-        # Verificar que se limpió el carrito
+
         self.assertEqual(Carrito.objects.filter(usuario=self.user).count(), 0)
         
     def test_crear_orden_carrito_vacio(self):
@@ -81,11 +80,11 @@ class OrdenViewSetTest(TestCase):
         """Probar creación de orden con stock insuficiente"""
         self.client.force_authenticate(user=self.user)
         
-        # Agregar más cantidad que el stock disponible
+
         Carrito.objects.create(
             usuario=self.user,
             producto=self.producto,
-            cantidad=15  # Stock disponible: 10
+            cantidad=15  
         )
         
         url = reverse('orden-list')
@@ -97,19 +96,19 @@ class OrdenViewSetTest(TestCase):
         
     def test_crear_orden_invitado_exitoso(self):
         """Probar creación exitosa de orden para invitado"""
-        # Configurar sesión
+
         session = self.client.session
         session.save()
         session_key = session.session_key
         
-        # Agregar producto al carrito por sesión
+
         Carrito.objects.create(
             session_key=session_key,
             producto=self.producto,
             cantidad=1
         )
         
-        # Datos del invitado
+
         datos_invitado = {
             'email': 'invitado@test.com',
             'nombre': 'Test Invitado',
@@ -124,12 +123,12 @@ class OrdenViewSetTest(TestCase):
         self.assertIn('orden_id', response.data)
         self.assertIn('total', response.data)
         
-        # Verificar que se creó la orden
+
         self.assertEqual(Orden.objects.count(), 1)
         orden = Orden.objects.first()
         self.assertEqual(orden.email_invitado, 'invitado@test.com')
         
-        # Verificar que se redujo el stock
+
         self.producto.refresh_from_db()
         self.assertEqual(self.producto.stock, 9)
         
@@ -144,7 +143,7 @@ class OrdenViewSetTest(TestCase):
         """Probar historial para usuario autenticado"""
         self.client.force_authenticate(user=self.user)
         
-        # Crear una orden de prueba
+
         orden = Orden.objects.create(
             usuario=self.user,
             estado='entregada',

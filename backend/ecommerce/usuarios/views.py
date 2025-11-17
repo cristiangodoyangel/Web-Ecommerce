@@ -12,10 +12,10 @@ class IsOwnerOrAdmin(permissions.BasePermission):
     """Permiso personalizado: solo el propietario o admin pueden ver/editar"""
     
     def has_object_permission(self, request, view, obj):
-        # Admin puede ver todo
+
         if request.user.is_staff:
             return True
-        # El usuario solo puede ver/editar su propia información
+
         return obj == request.user
 
 class UsuarioViewSet(viewsets.ModelViewSet):
@@ -25,10 +25,10 @@ class UsuarioViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         """Cada usuario solo puede ver su propia información"""
         if self.request.user.is_staff:
-            # Admin puede ver todos los usuarios
+
             return Usuario.objects.all()
         else:
-            # Usuario normal solo ve su propia información
+
             return Usuario.objects.filter(id=self.request.user.id)
     
     def get_serializer_class(self):
@@ -43,7 +43,7 @@ class UsuarioViewSet(viewsets.ModelViewSet):
         serializer = UsuarioProfileSerializer(request.user)
         return Response(serializer.data) 
 
-# VISTA SIMPLIFICADA PARA PRUEBAS
+
 @api_view(['POST'])
 @permission_classes([AllowAny])
 @authentication_classes([])

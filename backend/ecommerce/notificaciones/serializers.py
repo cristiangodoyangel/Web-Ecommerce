@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import ConfiguracionNotificacion, NotificacionCorreo, TemplateCorreo
 
 class ConfiguracionNotificacionSerializer(serializers.ModelSerializer):
-    """Serializer para la configuración de notificaciones"""
+
     
     class Meta:
         model = ConfiguracionNotificacion
@@ -19,7 +19,7 @@ class ConfiguracionNotificacionSerializer(serializers.ModelSerializer):
         read_only_fields = ['fecha_creacion', 'fecha_modificacion']
 
 class NotificacionCorreoSerializer(serializers.ModelSerializer):
-    """Serializer para las notificaciones de correo"""
+
     tipo_display = serializers.CharField(source='get_tipo_display', read_only=True)
     estado_display = serializers.CharField(source='get_estado_display', read_only=True)
     usuario_email = serializers.CharField(source='usuario.email', read_only=True)
@@ -49,7 +49,7 @@ class NotificacionCorreoSerializer(serializers.ModelSerializer):
         ]
 
 class TemplateCorreoSerializer(serializers.ModelSerializer):
-    """Serializer para los templates de correo"""
+
     tipo_display = serializers.CharField(source='get_tipo_display', read_only=True)
     
     class Meta:

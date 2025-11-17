@@ -9,7 +9,7 @@ class Pago(models.Model):
     fecha = models.DateTimeField(auto_now_add=True)
     estado = models.CharField(max_length=30, default='pendiente')
     
-    # Campos para pasarela de pagos
+
     preference_id = models.CharField(max_length=100, null=True, blank=True)
     payment_id = models.CharField(max_length=100, null=True, blank=True)
     payment_method = models.CharField(max_length=50, null=True, blank=True)

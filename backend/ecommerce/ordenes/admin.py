@@ -2,10 +2,10 @@ from django.contrib import admin
 from django.utils.html import format_html
 from django.urls import reverse
 from django.utils.safestring import mark_safe
+from django.db import transaction
 from .models import Orden, OrdenProducto
 from envios.models import Envio
 
-# Filtros personalizados para Ordenes
 class EstadoOrdenFilter(admin.SimpleListFilter):
     title = 'Estado de la Orden'
     parameter_name = 'estado_orden'
@@ -58,7 +58,6 @@ class MontoFilter(admin.SimpleListFilter):
         elif self.value() == 'premium':
             return queryset.filter(total__gte=500000)
 
-# Inline para productos de la orden
 class OrdenProductoInline(admin.TabularInline):
     model = OrdenProducto
     extra = 0
@@ -68,7 +67,6 @@ class OrdenProductoInline(admin.TabularInline):
     def has_add_permission(self, request, obj=None):
         return False
 
-# Inline mejorado para envíos con gestión completa
 class EnvioInline(admin.TabularInline):
     model = Envio
     extra = 0
@@ -84,8 +82,8 @@ class OrdenAdmin(admin.ModelAdmin):
         'cliente_display',
         'tipo_cliente_display',
         'total_formateado',
-        'estado',  # Campo editable
-        'estado_con_envio',  # Estado combinado orden+envío (solo lectura)
+        'estado',
+        'estado_con_envio',
         'fecha_display',
         'acciones_display'
     ]
@@ -105,7 +103,7 @@ class OrdenAdmin(admin.ModelAdmin):
         'nombre_invitado'
     ]
     
-    list_editable = ['estado']  # Estado editable directamente
+    list_editable = ['estado']
     
     date_hierarchy = 'fecha'
     
@@ -115,7 +113,6 @@ class OrdenAdmin(admin.ModelAdmin):
     
     inlines = [OrdenProductoInline, EnvioInline]
     
-    # Configuración de fieldsets
     fieldsets = (
         ('Información de la Orden', {
             'fields': ('estado', 'total'),
@@ -135,7 +132,9 @@ class OrdenAdmin(admin.ModelAdmin):
     
     readonly_fields = ['fecha']
     
-    # Displays personalizados
+    def get_queryset(self, request):
+        return super().get_queryset(request).select_related('usuario').prefetch_related('envios')
+
     def numero_orden(self, obj):
         return format_html(
             '<strong style="color: #2c3e50; font-size: 14px;">#{}</strong>',
@@ -180,8 +179,6 @@ class OrdenAdmin(admin.ModelAdmin):
     total_formateado.admin_order_field = 'total'
     
     def estado_con_envio(self, obj):
-        """Muestra el estado de la orden y del envío de forma integrada"""
-        # Estado de la orden
         estado_colors = {
             'pendiente': '#f39c12',
             'enviado': '#27ae60',
@@ -189,7 +186,6 @@ class OrdenAdmin(admin.ModelAdmin):
         
         color_orden = estado_colors.get(obj.estado, '#95a5a6')
         
-        # Estado del envío (si existe)
         envio = obj.envios.first()
         envio_info = ""
         if envio:
@@ -229,46 +225,47 @@ class OrdenAdmin(admin.ModelAdmin):
         )
     acciones_display.short_description = "Acciones"
     
-    # Acciones personalizadas
     actions = ['marcar_pendiente', 'marcar_pagado', 'marcar_procesando', 'marcar_enviado', 'marcar_entregado', 'marcar_cancelado', 'reporte_ventas']
     
+    @transaction.atomic
     def marcar_pendiente(self, request, queryset):
         count = queryset.update(estado='pendiente')
-        # También actualizar envíos a "pendiente" si existen
         for orden in queryset:
             orden.envios.update(estado='pendiente')
         self.message_user(request, '{} órdenes marcadas como "Pendiente" y envíos actualizados.'.format(count))
     marcar_pendiente.short_description = "Marcar como Pendiente"
     
+    @transaction.atomic
     def marcar_pagado(self, request, queryset):
         count = queryset.update(estado='pagado')
         self.message_user(request, '{} órdenes marcadas como "Pagado".'.format(count))
     marcar_pagado.short_description = "Marcar como Pagado"
     
+    @transaction.atomic
     def marcar_procesando(self, request, queryset):
         count = queryset.update(estado='procesando')
-        # También actualizar envíos a "preparando" si existen
         for orden in queryset:
             orden.envios.update(estado='preparando')
         self.message_user(request, '{} órdenes marcadas como "Procesando" y envíos actualizados.'.format(count))
     marcar_procesando.short_description = "Marcar como Procesando"
     
+    @transaction.atomic
     def marcar_enviado(self, request, queryset):
         count = queryset.update(estado='enviado')
-        # También actualizar envíos a "en_camino" si existen
         for orden in queryset:
             orden.envios.update(estado='en_camino')
         self.message_user(request, '{} órdenes marcadas como "Enviado" y envíos actualizados.'.format(count))
     marcar_enviado.short_description = "Marcar como Enviado"
     
+    @transaction.atomic
     def marcar_entregado(self, request, queryset):
         count = queryset.update(estado='entregado')
-        # También actualizar envíos a "entregado" si existen
         for orden in queryset:
             orden.envios.update(estado='entregado')
         self.message_user(request, '{} órdenes marcadas como "Entregado" y envíos actualizados.'.format(count))
     marcar_entregado.short_description = "Marcar como Entregado"
     
+    @transaction.atomic
     def marcar_cancelado(self, request, queryset):
         count = queryset.update(estado='cancelado')
         self.message_user(request, '{} órdenes marcadas como "Cancelado".'.format(count))

@@ -16,7 +16,7 @@ class OrdenModelTest(TestCase):
             password='testpassword'
         )
         
-        # Crear categoría y producto de prueba
+
         self.categoria = Categoria.objects.create(nombre='Test Category')
         self.producto = Producto.objects.create(
             nombre='Perfume Test',

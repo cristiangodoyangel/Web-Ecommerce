@@ -116,7 +116,7 @@ class NotificacionCorreoAdmin(admin.ModelAdmin):
     marcar_como_pendiente.short_description = "Marcar como pendiente"
 
     def reenviar_notificaciones(self, request, queryset):
-        # Importar aquí para evitar importación circular
+
         from .services import NotificacionService
         
         service = NotificacionService()
@@ -172,7 +172,7 @@ class ConfiguracionNotificacionAdmin(admin.ModelAdmin):
         qs = super().get_queryset(request)
         return qs.select_related('usuario')
 
-# Personalización adicional del admin
+
 admin.site.site_header = "Life Sex Shop - Administración"
 admin.site.site_title = "Life Sex Shop Admin"
 admin.site.index_title = "Panel de Administración"

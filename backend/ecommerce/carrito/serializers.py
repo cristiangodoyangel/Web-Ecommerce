@@ -18,8 +18,8 @@ class CarritoSerializer(serializers.ModelSerializer):
         read_only_fields = ['usuario', 'agregado']
 
     def get_precio_unitario(self, obj):
-        """Obtiene el precio unitario considerando ofertas activas"""
-        # Buscar oferta activa para este producto
+
+
         now = timezone.now()
         try:
             oferta_activa = obj.producto.ofertas.filter(
@@ -37,12 +37,12 @@ class CarritoSerializer(serializers.ModelSerializer):
             return float(obj.producto.precio)
 
     def get_subtotal(self, obj):
-        """Calcula el subtotal considerando ofertas activas"""
+
         precio_unitario = self.get_precio_unitario(obj)
         return precio_unitario * obj.cantidad
 
     def get_tiene_oferta(self, obj):
-        """Verifica si el producto tiene oferta activa"""
+        
         now = timezone.now()
         try:
             return obj.producto.ofertas.filter(
