@@ -268,7 +268,7 @@ export function Header({ onSearchResults }) {
             <img 
               src={logo} 
               alt="Logo Life" 
-              className="h-22 sm:h-26 w-auto object-contain cursor-pointer" 
+              className="h-16 md:h-18 lg:h-20 w-auto object-contain cursor-pointer" 
               onClick={handleLogoClick}
             />
           </div>
