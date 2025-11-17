@@ -129,12 +129,7 @@ const Inicio = () => {
             <AdvertisementBanner2/>
           </div>
 
-          {/* Categorías */}
-          <div style={{ backgroundColor: '#ffffff', boxShadow: '0 2px 8px rgba(44, 62, 80, 0.08)', borderRadius: '1rem' }}>
-            <section className="py-6 sm:py-8">
-              <Categories />
-            </section>
-          </div>
+          
         </div>
       </div>
     </div>
