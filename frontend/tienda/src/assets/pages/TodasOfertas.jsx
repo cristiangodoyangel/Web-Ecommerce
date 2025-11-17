@@ -23,7 +23,7 @@ const TodasOfertas = () => {
         if (response.ok) {
           const data = await response.json();
           
-          // Transformar las ofertas para que funcionen con ProductCard
+          
           const ofertasTransformadas = data.map(oferta => ({
             ...oferta.producto,
             precio_oferta: oferta.precio_con_descuento,
@@ -50,7 +50,7 @@ const TodasOfertas = () => {
     fetchOfertas();
   }, []);
 
-  // Filtrar ofertas por búsqueda
+ 
   useEffect(() => {
     if (searchQuery.trim() === '') {
       setFilteredOfertas(ofertas);
@@ -64,7 +64,7 @@ const TodasOfertas = () => {
     }
   }, [searchQuery, ofertas]);
 
-  // Ordenar ofertas
+  
   const sortOfertas = (ofertas) => {
     return [...ofertas].sort((a, b) => {
       switch (sortBy) {
@@ -146,9 +146,9 @@ const TodasOfertas = () => {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#ffffff" }}>
       <div className="max-w-7xl mx-auto px-4 py-8">
-        {/* Header de la página */}
+        
         <div className="mb-8">
-          {/* Banner de ofertas */}
+        
           <div
             className="rounded-xl p-8 mb-8 text-center text-white relative overflow-hidden mt-4"
             style={{
@@ -180,10 +180,10 @@ const TodasOfertas = () => {
           </div>
 
           <div className="displayflex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            {/* Controles de vista y ordenamiento */}
+            
             {sortedOfertas.length > 0 && (
               <div className="flex flex-col gap-3">
-                {/* Selector de ordenamiento */}
+                
                 <div className="flex items-center gap-2">
                   <Filter
                     className="h-4 w-4 flex-shrink-0"
@@ -213,7 +213,7 @@ const TodasOfertas = () => {
                   </select>
                 </div>
 
-                {/* Selector de vista */}
+                
                 <div className="flex justify-center">
                   <div
                     className="flex items-center border rounded-lg"
@@ -252,7 +252,7 @@ const TodasOfertas = () => {
           </div>
         </div>
 
-        {/* Contenido de ofertas */}
+        
         {sortedOfertas.length === 0 ? (
           <div className="text-center py-16">
             <div className="text-6xl mb-6">🏷️</div>
@@ -307,7 +307,7 @@ const TodasOfertas = () => {
                 >
                   <CardContent className="p-0">
                     <div className="flex items-center gap-4 p-4">
-                      {/* Badge de descuento flotante */}
+                      
                       <div className="relative">
                         <img
                           src={oferta.imagen}

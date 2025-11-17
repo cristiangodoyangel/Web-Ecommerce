@@ -25,13 +25,13 @@ const TodosProductos = () => {
           const data = await response.json();
           setProductos(data);
           
-          // Organizar productos por sus categorías reales
+          
           const productosAgrupados = {};
           
           data.forEach(producto => {
             let categoriasProducto = [];
             
-            // Obtener categorías del producto
+            
             if (producto.categorias && Array.isArray(producto.categorias)) {
               categoriasProducto = producto.categorias.map(cat => cat.nombre);
             } else if (producto.categoria) {
@@ -40,7 +40,7 @@ const TodosProductos = () => {
               categoriasProducto = ['Sin Categoría'];
             }
             
-            // Agregar el producto a cada una de sus categorías
+            
             categoriasProducto.forEach(categoria => {
               if (!productosAgrupados[categoria]) {
                 productosAgrupados[categoria] = [];
@@ -49,7 +49,7 @@ const TodosProductos = () => {
             });
           });
           
-          // Ordenar las categorías alfabéticamente
+          
           const categoriasOrdenadas = Object.keys(productosAgrupados).sort();
           const productosOrdenados = {};
           categoriasOrdenadas.forEach(categoria => {
@@ -71,7 +71,7 @@ const TodosProductos = () => {
     fetchProductos();
   }, []);
 
-  // Filtrar productos por búsqueda
+  
   useEffect(() => {
     if (searchQuery.trim() === '') {
       setFilteredProductos(productosPorCategoria);
@@ -90,7 +90,7 @@ const TodosProductos = () => {
     }
   }, [searchQuery, productosPorCategoria]);
 
-  // Ordenar productos
+ 
   const sortProducts = (products) => {
     return [...products].sort((a, b) => {
       switch (sortBy) {
@@ -156,7 +156,7 @@ const TodosProductos = () => {
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#ffffff' }}>
       <div className="display max-w-7xl mx-auto px-4 py-8">
-        {/* Botón Volver */}
+       
         <Button
           variant="ghost"
           onClick={handleBackClick}
@@ -167,7 +167,7 @@ const TodosProductos = () => {
           Volver
         </Button>
 
-        {/* Header de la página */}
+   
         <div className="mb-8">
           <div className="flex flex-col gap-4">
             <div>
@@ -182,10 +182,10 @@ const TodosProductos = () => {
               </p>
             </div>
 
-            {/* Controles de vista y ordenamiento */}
+            
             {totalProductos > 0 && (
               <div className="flex flex-col gap-3">
-                {/* Selector de ordenamiento */}
+            
                 <div className="flex items-center gap-2">
                   <Filter className="h-4 w-4 flex-shrink-0" style={{ color: '#4D648D' }} />
                   <select
@@ -201,7 +201,7 @@ const TodosProductos = () => {
                   </select>
                 </div>
 
-                {/* Selector de vista */}
+           
                 <div className="flex justify-center">
                   <div className="flex items-center border rounded-lg" style={{ borderColor: '#283655' }}>
                     <Button
@@ -235,7 +235,7 @@ const TodosProductos = () => {
           </div>
         </div>
 
-        {/* Contenido de productos por categoría */}
+      
         {totalProductos === 0 ? (
           <div className="text-center py-16">
             <div className="text-6xl mb-6">🛍️</div>
@@ -274,7 +274,7 @@ const TodosProductos = () => {
 
               return (
                 <div key={categoria} className="space-y-6">
-                  {/* Título de categoría */}
+        
                     <div className="border-b-2 pb-4" style={{ borderColor: '#283655' }}>
                       <h2 className="text-2xl font-bold flex items-center gap-3" style={{ color: '#283655' }}>
                       {categoria}
@@ -284,7 +284,7 @@ const TodosProductos = () => {
                     </h2>
                   </div>
 
-                  {/* Productos de la categoría - Solo mejorar el responsive del grid */}
+           
                   <div className={
                     viewMode === 'grid' 
                       ? 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6'
@@ -292,7 +292,7 @@ const TodosProductos = () => {
                   }>
                     {productosCategoria.map((producto) => (
                       viewMode === 'grid' ? (
-                        // Wrapper para hacer ProductCard más ancho solo en esta página
+              
                         <div key={producto.id} className="w-full max-w-md mx-auto">
                           <ProductCard product={producto} />
                         </div>

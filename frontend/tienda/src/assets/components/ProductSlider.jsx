@@ -6,10 +6,10 @@ import ProductCard from './ProductCard.jsx';
 const ProductSlider = ({ products, title, maxVisible = 4, maxTotal = 8 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   
-  // Limitar los productos al máximo total
+
   const limitedProducts = products.slice(0, maxTotal);
   
-  // Calcular cuántos slides podemos mostrar
+
   const totalSlides = Math.ceil(limitedProducts.length / maxVisible);
   
   const nextSlide = () => {
@@ -37,7 +37,7 @@ const ProductSlider = ({ products, title, maxVisible = 4, maxTotal = 8 }) => {
     );
   }
 
-  // Calcular el ancho de cada card basado en maxVisible
+
   const cardWidth = `calc(${100 / maxVisible}% - ${(maxVisible - 1) * 1.5 / maxVisible}rem)`;
 
   return (

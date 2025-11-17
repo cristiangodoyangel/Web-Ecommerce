@@ -18,7 +18,7 @@ const Categorias = () => {
 
 
 
-    // Mapeo de slugs del frontend a nombres de categorías del backend
+
     const categoryMapping = {
       'ella': 'Para Ella',
       'el': 'Para Él', 
@@ -29,7 +29,7 @@ const Categorias = () => {
       'oriental': 'Oriental'
     };
 
-    // Obtener el nombre real de la categoría desde el slug
+
     const categoryName = categoryMapping[categoriaNombre] || categoriaNombre;
 
   useEffect(() => {
@@ -40,10 +40,9 @@ const Categorias = () => {
     setLoading(true);
     setError(null);
     try {
-      // Usar el nombre mapeado de la categoría para la consulta al backend
+
       let url = `${API_BASE_URL}/productos/?categorias__nombre=${encodeURIComponent(categoryName)}`;
-      
-      // Agregar ordenamiento
+
       if (sortBy === 'precio_asc') {
         url += '&ordering=precio';
       } else if (sortBy === 'precio_desc') {
@@ -54,7 +53,7 @@ const Categorias = () => {
         url += '&ordering=-creado';
       }
 
-       // Para debugging
+
 
       const response = await fetch(url);
       
@@ -109,9 +108,9 @@ const Categorias = () => {
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#ffffff' }}>
       <div className="max-w-xl mx-auto xl:max-w-7xl px-4 py-8">
-        {/* Header de la página */}
+
   <div className="mb-8">
-          {/* Layout responsivo: vertical en móvil, horizontal en tablets (768x1024+) */}
+
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
               <h1 className="display text-3xl font-bold mb-2" style={{ color: '#1E1F26' }}>
@@ -125,10 +124,10 @@ const Categorias = () => {
               </p>
             </div>
 
-            {/* Controles de vista y ordenamiento - Column en móvil, row en tablets 640px+ */}
+
             {productos.length > 0 && (
               <div className="flex flex-col sm:flex-row items-center gap-4">
-                {/* Selector de ordenamiento */}
+
                 <div className="flex items-center gap-2">
                   <Filter className="h-4 w-4" style={{ color: '#4D648D' }} />
                   <select
@@ -144,7 +143,7 @@ const Categorias = () => {
                   </select>
                 </div>
 
-                {/* Selector de vista */}
+ 
                 <div className="inline-flex rounded-md border" style={{ borderColor: '#283655' }}>
                   <button
                     onClick={() => setViewMode('grid')}
@@ -181,7 +180,7 @@ const Categorias = () => {
           </div>         
         </div>
 
-        {/* Contenido principal */}
+
         {productos.length === 0 ? (
           <div className="text-center py-16">
             <ShoppingCart className="h-24 w-24 mx-auto mb-6" style={{ color: '#4D648D' }} />
@@ -201,7 +200,7 @@ const Categorias = () => {
             </Button>
           </div>
         ) : (
-          // Grid responsivo - columna vertical hasta 1280px, luego grid normal
+
           <div className={
             viewMode === 'grid' 
               ? 'grid grid-cols-1 xl:grid-cols-4 gap-6'

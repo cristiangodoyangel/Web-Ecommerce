@@ -1,7 +1,6 @@
 import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
-import { cn } from "./utils"; // Asegúrate de que tu archivo 'utils.js' esté correctamente configurado
-
+import { cn } from "./utils"; 
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 outline-none focus-visible:border-pink-500 focus-visible:ring-pink-200 focus-visible:ring-2",
   {
@@ -11,7 +10,7 @@ const buttonVariants = cva(
         destructive: "bg-red-500 text-white hover:bg-red focus-visible:ring-red-200 dark:bg-red-700",
         outline: "border border-gray-300 bg-white text-gray-800 hover:bg-gray-100 hover:text-gray-900",
         secondary: "bg-gray-200 text-gray-800 hover:bg-gray-300",
-        ghost: "bg-transparent hover:bg-[#D0E1F9] hover:text-[#283655]", // <-- LÍNEA MODIFICADA
+        ghost: "bg-transparent hover:bg-[#D0E1F9] hover:text-[#283655]", 
         link: "text-pink-500 underline-offset-4 hover:underline",
       },
       size: {

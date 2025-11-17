@@ -9,7 +9,7 @@ export default function Productos() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        // Corregido: usar fetch en lugar de api.get (que no está definido)
+        
         const response = await fetch(`${API_BASE_URL}/productos/`);
         if (response.ok) {
           const data = await response.json();

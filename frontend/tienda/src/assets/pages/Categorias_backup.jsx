@@ -16,7 +16,7 @@ const Categorias = () => {
   const [viewMode, setViewMode] = useState('grid');
   const [totalProducts, setTotalProducts] = useState(0);
 
-  // Mapeo de slugs del frontend a nombres de categorías del backend
+
   const categoryMapping = {
     'ella': 'Para Ella',
     'el': 'Para Él', 
@@ -27,7 +27,7 @@ const Categorias = () => {
     'linea-premium': 'Línea Premium'
   };
 
-  // Obtener el nombre real de la categoría desde el slug
+
   const categoryName = categoryMapping[categoriaNombre] || categoriaNombre;
 
   useEffect(() => {
@@ -38,10 +38,10 @@ const Categorias = () => {
     setLoading(true);
     setError(null);
     try {
-      // Usar el nombre mapeado de la categoría para la consulta al backend
+
       let url = `${API_BASE_URL}/productos/?categorias__nombre=${encodeURIComponent(categoryName)}`;
       
-      // Agregar ordenamiento
+
       if (sortBy === 'precio_asc') {
         url += '&ordering=precio';
       } else if (sortBy === 'precio_desc') {
@@ -52,7 +52,7 @@ const Categorias = () => {
         url += '&ordering=-creado';
       }
 
-       // Para debugging
+
 
       const response = await fetch(url);
       
@@ -115,9 +115,9 @@ const Categorias = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="display px-4 py-4">
-        {/* Header de la página */}
+
         <div className="mb-8">
-          {/* Layout responsivo: vertical en móvil, horizontal en tablets (768x1024+) */}
+
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
               <h1 className="text-3xl font-bold" style={{ color: '#283655' }}>
@@ -131,10 +131,9 @@ const Categorias = () => {
               </p>
             </div>
 
-            {/* Controles de vista y ordenamiento - Column en móvil, row en tablets 640px+ */}
             {productos.length > 0 && (
               <div className="flex flex-col sm:flex-row items-center gap-4">
-                {/* Selector de ordenamiento */}
+
                 <div className="display flex items-center gap-2">
                   <Filter className="h-4 w-4" style={{ color: '#283655' }} />
                   <select
@@ -150,7 +149,7 @@ const Categorias = () => {
                   </select>
                 </div>
 
-                {/* Selector de vista */}
+
                 <div className="inline-flex rounded-md border" style={{ borderColor: '#4D648D' }}>
                   <button
                     onClick={() => setViewMode('grid')}
@@ -187,7 +186,7 @@ const Categorias = () => {
           </div>         
         </div>
 
-        {/* Contenido principal */}
+
         {productos.length === 0 ? (
           <div className="text-center py-16 px-4">
             <ShoppingCart className="h-24 w-24 text-gray-300 mx-auto mb-6" />
@@ -207,7 +206,7 @@ const Categorias = () => {
             </Button>
           </div>
         ) : (
-          // Grid responsivo: 1 col móvil, 2 cols sm(640px+), 3 cols tablets md(768x1024+), 4 cols lg(1024px+)
+
           <div className={
             viewMode === 'grid' 
               ? 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'
@@ -215,7 +214,7 @@ const Categorias = () => {
           }>
             {productos.map((producto) => (
               viewMode === 'grid' ? (
-                // Wrapper específico para tablets 768x1024 - cards más altas
+
                 <div key={producto.id} className="md:h-[650px]">
                   <ProductCard product={producto} />
                 </div>

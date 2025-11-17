@@ -12,7 +12,7 @@ const ProcesarPago = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [preferencia, setPreferencia] = useState(null);
-  const [estado, setEstado] = useState('cargando'); // cargando | listo | procesando | error
+  const [estado, setEstado] = useState('cargando'); 
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat('es-CL', {
@@ -58,7 +58,7 @@ const ProcesarPago = () => {
 
   const handleVolver = () => navigate('/carrito');
 
-  // Estados visuales
+  
   if (loading || estado === 'cargando') {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -110,7 +110,7 @@ const ProcesarPago = () => {
           </CardHeader>
 
           <CardContent className="space-y-6">
-            {/* Resumen de pago */}
+            
             <div className="bg-gray-50 rounded-lg p-4">
               <h3 className="font-semibold mb-2">Resumen del Pago</h3>
               <div className="flex justify-between items-center">
@@ -121,7 +121,7 @@ const ProcesarPago = () => {
               </div>
             </div>
 
-            {/* Métodos de pago */}
+            
             <div className="bg-blue-50 rounded-lg p-4">
               <h3 className="font-semibold mb-2 text-blue-800">Métodos de Pago Disponibles</h3>
               <ul className="text-sm text-blue-700 space-y-1">
@@ -135,7 +135,7 @@ const ProcesarPago = () => {
               </p>
             </div>
 
-            {/* Botón de pago */}
+           
             <Button
               onClick={procesarPagoMercadoPago}
               disabled={estado === 'procesando'}

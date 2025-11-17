@@ -19,19 +19,19 @@ export default function ProductoDetalle() {
   const { agregarProducto } = useCarrito();
   const { toggleProducto, items: deseosItems } = useDeseos();
 
-  // Verificar si el producto está en la wishlist
+  
   const isWishlisted = deseosItems.some(item => item.producto.id === parseInt(id));
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        // Obtener producto
+        
         const productResponse = await fetch(`${API_BASE_URL}/productos/${id}/`);
         if (productResponse.ok) {
           const productData = await productResponse.json();
           setProduct(productData);
           
-          // Verificar si hay ofertas activas para este producto
+          
           try {
             const ofertasResponse = await fetch(`${API_BASE_URL}/ofertas/`);
             if (ofertasResponse.ok) {
@@ -48,7 +48,7 @@ export default function ProductoDetalle() {
           } catch (ofertaError) {
                       }
         } else {
-          navigate('/productos'); // Redirigir si no se encuentra el producto
+          navigate('/productos');
         }
       } catch (error) {
         navigate('/productos');
@@ -73,9 +73,9 @@ export default function ProductoDetalle() {
  const handleAddToCart = async () => {
   setIsAddingToCart(true);
   try {
-    await agregarProducto(product.id, quantity); // Funciona para autenticados E invitados
+    await agregarProducto(product.id, quantity);
   } catch (error) {
-    // Error handling
+    
   } finally {
     setIsAddingToCart(false);
   }
@@ -91,7 +91,7 @@ export default function ProductoDetalle() {
     try {
       await toggleProducto(product.id);
     } catch (error) {
-      // Error handling silencioso
+      
     } finally {
       setIsTogglingWishlist(false);
     }
@@ -133,7 +133,7 @@ export default function ProductoDetalle() {
       <div className="max-w-4xl mx-auto px-4 py-8 mb-0">
 
         <div className="flex flex-col gap-8 bg-white rounded-lg shadow-lg p-6">
-          {/* Imagen del producto */}
+         
           <div className="relative max-w-md mx-auto">
             <img
               src={product.imagen}
@@ -143,7 +143,7 @@ export default function ProductoDetalle() {
                 e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjZjNmNGY2Ii8+CjxwYXRoIGQ9Ik0yMDAgMzAwQzI1NS4yMjggMzAwIDMwMCAyNTUuMjI4IDMwMCAyMDBDMzAwIDE0NC43NzIgMjU1LjIyOCAxMDAgMjAwIDEwMEMxNDQuNzcyIDEwMCAxMDAgMTQ0Ljc3MiAxMDAgMjAwQzEwMCAyNTUuMjI4IDE0NC43NzIgMzAwIDIwMCAzMDBaIiBmaWxsPSIjZTFlNWU5Ii8+Cjwvc3ZnPgo=';
               }}
             />
-            {/* Badge de oferta */}
+            
             {oferta && (
               <div 
                 className="absolute top-4 left-4 px-3 py-1 rounded-full text-white text-sm font-bold"
@@ -152,7 +152,7 @@ export default function ProductoDetalle() {
                 -{oferta.porcentaje_descuento}% OFF
               </div>
             )}
-            {/* Botón de wishlist en la imagen */}
+            
             <Button
               size="sm"
               variant="ghost"
@@ -171,7 +171,7 @@ export default function ProductoDetalle() {
             </Button>
           </div>
 
-          {/* Información del producto */}
+          
           <div className="space-y-6 max-w-lg mx-auto">
             <div>
               <p className="display text-sm font-medium uppercase tracking-wide mb-2 text-center" style={{ color: '#4D648D' }}>
@@ -181,7 +181,7 @@ export default function ProductoDetalle() {
                 {product.nombre}
               </h1>
               
-              {/* Precio */}
+              
               <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4 mb-6">
                 {oferta ? (
                   <>
@@ -202,7 +202,7 @@ export default function ProductoDetalle() {
                 )}
               </div>
 
-              {/* Stock */}
+              
               <div className="mb-6 text-center">
                 <span 
                   className="text-sm font-medium"
@@ -213,7 +213,7 @@ export default function ProductoDetalle() {
               </div>
             </div>
 
-            {/* Descripción */}
+            
             <div>
               <h3 className="text-lg font-semibold mb-2" style={{ color: '#283655' }}>
                 Descripción
@@ -223,7 +223,7 @@ export default function ProductoDetalle() {
               </p>
             </div>
 
-            {/* Cantidad y botones */}
+           
             {hasStock && isActive && (
               <div className="space-y-4">
                 <div className="flex flex-col items-center gap-3">
@@ -304,7 +304,7 @@ export default function ProductoDetalle() {
                 <p style={{ color: '#283655' }}>
                   {!isActive ? 'Producto no disponible' : 'Producto sin stock'}
                 </p>
-                {/* Botón de wishlist aún disponible cuando no hay stock */}
+                
                 {!hasStock && isActive && (
                   <Button
                     variant="outline"
@@ -337,7 +337,7 @@ export default function ProductoDetalle() {
           </div>
         </div>
 
-        {/* Botón de volver */}
+        
         <Button
           variant="ghost"
           onClick={() => navigate(-1)}

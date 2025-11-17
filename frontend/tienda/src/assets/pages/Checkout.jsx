@@ -8,7 +8,7 @@ import { ArrowLeft, CreditCard, User, Mail, Phone, MapPin, ShoppingBag, Check, T
 
 const Checkout = () => {
   const { items, resumen, isAuthenticated, isLoading } = useCarrito();
-  const [step, setStep] = useState(1); // 1: Info, 2: Resumen, 3: Confirmación
+  const [step, setStep] = useState(1);
   const [processing, setProcessing] = useState(false);
   const [ordenCreada, setOrdenCreada] = useState(null);
   const [userProfile, setUserProfile] = useState(null);
@@ -19,12 +19,12 @@ const Checkout = () => {
     nombre: '',
     telefono: '',
     direccion: '',
-    metodo_entrega: 'delivery' // Valor por defecto
+    metodo_entrega: 'delivery' 
   });
   
   const [errors, setErrors] = useState({});
 
-  // Cargar datos del localStorage al inicializar
+  
   useEffect(() => {
     const metodoEntregaGuardado = localStorage.getItem('metodo_entrega');
     if (metodoEntregaGuardado) {
@@ -36,18 +36,18 @@ const Checkout = () => {
   }, []);
 
   useEffect(() => {
-    // Esperar un momento para que el carrito se cargue antes de redirigir
+    
     const timer = setTimeout(() => {
-      // Solo redirigir si ya no está cargando y definitivamente no hay items
+      
       if (!isLoading && items.length === 0) {
         window.location.href = '/carrito';
       }
-    }, 1000); // Esperar 1 segundo
+    }, 1000); 
 
     return () => clearTimeout(timer);
   }, [items, isLoading]);
 
-  // Cargar información del usuario autenticado
+  
   useEffect(() => {
     const cargarPerfilUsuario = async () => {
       if (isAuthenticated && !userProfile) {
@@ -63,19 +63,19 @@ const Checkout = () => {
     cargarPerfilUsuario();
   }, [isAuthenticated, userProfile]);
 
-  // Limpiar órdenes pendientes previas al montar el componente
+  
   useEffect(() => {
-    // Limpiar cualquier orden pendiente almacenada localmente
+    
     const ordenPendiente = localStorage.getItem('orden_pendiente');
     if (ordenPendiente) {
       localStorage.removeItem('orden_pendiente');
     }
     
-    // Resetear estados al montar
+   
     setOrdenCreada(null);
     setProcessing(false);
     setErrors({});
-  }, []); // Solo se ejecuta al montar
+  }, []); 
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat('es-CL', {
@@ -85,7 +85,7 @@ const Checkout = () => {
     }).format(price);
   };
 
-  // Calcular costo de envío basado en los datos almacenados
+
   const calcularCostoEnvio = () => {
     const totalProductos = resumen.total_precio || 0;
     const envioGratisDesbloqueado = totalProductos >= 50000;
@@ -105,7 +105,7 @@ const Checkout = () => {
     return totalProductos >= 50000 && formData.metodo_entrega === 'delivery';
   };
 
-  // Calcular total incluyendo envío
+
   const calcularTotal = () => {
     return resumen.total_precio + calcularCostoEnvio();
   };
@@ -127,7 +127,7 @@ const Checkout = () => {
       newErrors.telefono = 'El teléfono es requerido';
     }
     
-    // La dirección solo es requerida si se selecciona delivery
+
     if (formData.metodo_entrega === 'delivery' && !formData.direccion.trim()) {
       newErrors.direccion = 'La dirección es requerida para delivery';
     }
@@ -147,7 +147,7 @@ const Checkout = () => {
       [name]: value
     }));
     
-    // Limpiar error cuando el usuario empiece a escribir
+
     if (errors[name]) {
       setErrors(prev => ({
         ...prev,
@@ -163,10 +163,10 @@ const Checkout = () => {
       }
     }
     
-    // Si va al paso 2, automáticamente crear orden y preferencia
+  
     if (step === 1) {
       setStep(2);
-      // Crear orden inmediatamente al llegar al paso 2
+     
       setTimeout(() => {
         handleFinalizarCompra();
       }, 100);
@@ -179,7 +179,7 @@ const Checkout = () => {
     setStep(prev => prev - 1);
   };
 
-  // Funciones de MercadoPago
+
   const cargarMercadoPagoSDK = () => {
     if (!window.MercadoPago && !mercadoPagoLoaded) {
       const script = document.createElement('script');
@@ -191,7 +191,7 @@ const Checkout = () => {
         }
       };
       script.onerror = () => {
-        console.error('Error al cargar SDK de MercadoPago');
+        
         setErrors({ general: 'Error al cargar el sistema de pagos' });
       };
       document.head.appendChild(script);
@@ -207,7 +207,7 @@ const Checkout = () => {
       const mp = new window.MercadoPago(publicKey);
       const bricksBuilder = mp.bricks();
       
-      // Limpiar contenedor previo
+    
       const container = document.getElementById('checkout_walletBrick_container');
       if (container) {
         container.innerHTML = '';
@@ -218,27 +218,27 @@ const Checkout = () => {
           },
           callbacks: {
             onReady: () => {
-              // Brick listo
+            
             },
             onSubmit: () => {
-              // Redirigir a MercadoPago - el usuario volverá a las URLs configuradas
+            
             },
             onError: (error) => {
-              console.error('Error en Wallet Brick:', error);
+              
               setErrors({ general: 'Error en el sistema de pagos' });
             }
           }
         });
       } else {
-        console.error('Contenedor de Wallet Brick no encontrado');
+      
       }
     } catch (error) {
-      console.error('Error al renderizar Wallet Brick:', error);
+    
       setErrors({ general: 'Error al inicializar el sistema de pagos' });
     }
   };
 
-  // Cargar MercadoPago cuando se crea la orden y hay preference_id
+ 
   useEffect(() => {
     if (ordenCreada?.preference_id && ordenCreada?.mercadopago_ready) {
       cargarMercadoPagoSDK();
@@ -251,22 +251,22 @@ const Checkout = () => {
     try {
       let result;
       
-      // Asegurarse de obtener los datos del localStorage para usuarios invitados
+    
       const metodoEntregaGuardado = localStorage.getItem('metodo_entrega') || 'delivery';
       const datosParaEnvio = {
         ...formData,
         metodo_entrega: metodoEntregaGuardado
       };
       
-      console.log('📦 Datos enviados al backend:', datosParaEnvio);
+      
       
       if (isAuthenticated) {
-        // Usuario autenticado - mantener flujo anterior (por ahora)
+        
         result = await ordenService.crearOrdenUsuario({ 
           metodo_entrega: metodoEntregaGuardado 
         });
         
-        // Crear preferencia con orden_id para usuarios autenticados
+        
         const ordenId = result.orden_id || result.orden?.id;
         if (ordenId) {
           const preferenciaResponse = await mercadoPagoService.crearPreferencia(ordenId);
@@ -289,10 +289,10 @@ const Checkout = () => {
           }
         }
       } else {
-        // Usuario invitado - NUEVO FLUJO: Preparar pago sin crear orden
+        
         result = await ordenService.prepararPagoInvitado(datosParaEnvio);
         
-        // Crear preferencia directamente con session_key (sin crear orden)
+        
         const sessionKey = result.session_key;
         if (sessionKey) {
           const preferenciaResponse = await mercadoPagoService.crearPreferenciaDesdeCarrito(sessionKey);
@@ -307,7 +307,7 @@ const Checkout = () => {
               mercadopago_ready: true,
               metodo_entrega: result.metodo_entrega,
               costo_envio: result.costo_envio,
-              es_invitado: true // Flag para identificar el nuevo flujo
+              es_invitado: true 
             };
             
             setOrdenCreada(ordenCompleta);
@@ -320,9 +320,9 @@ const Checkout = () => {
       }
       
     } catch (error) {
-      console.error('Error al procesar la orden:', error);
       
-      // Mejor manejo de errores
+      
+     
       let errorMessage = 'Error al procesar la orden';
       if (error.response?.data?.error) {
         errorMessage = error.response.data.error;
@@ -349,7 +349,7 @@ const Checkout = () => {
 
   return (
     <div className="display min-h-screen bg-gray-50">
-      {/* Header */}
+ 
       <div className="bg-white shadow-sm border-b">
         <div className="max-w-4xl mx-auto px-4 py-6">
           <div className="flex items-center gap-4">
@@ -375,10 +375,10 @@ const Checkout = () => {
       </div>
 
       <div className="max-w-4xl mx-auto px-4 py-8">
-        {/* Progress Steps */}
+    
         <div className="flex items-center justify-center mb-8">
           <div className="flex items-center space-x-4">
-            {/* Step 1 */}
+    
             <div className={`flex items-center ${step >= 1 ? 'text-[#283655]' : 'text-gray-400'}`}>
               <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
                 step >= 1 ? 'bg-[#283655] text-white' : 'bg-gray-200'
@@ -392,7 +392,7 @@ const Checkout = () => {
             
             <div className="w-12 h-px bg-gray-300"></div>
             
-            {/* Step 2 */}
+    
             <div className={`flex items-center ${step >= 2 ? 'text-red-600' : 'text-gray-400'}`}>
               <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
                 step >= 2 ? 'bg-red-600 text-white' : 'bg-gray-200'
@@ -404,7 +404,7 @@ const Checkout = () => {
             
             <div className="w-12 h-px bg-gray-300"></div>
             
-            {/* Step 3 */}
+
             <div className={`flex items-center ${step >= 3 ? 'text-red-600' : 'text-gray-400'}`}>
               <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
                 step >= 3 ? 'bg-red-600 text-white' : 'bg-gray-200'
@@ -417,7 +417,7 @@ const Checkout = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Contenido Principal */}
+  
           <div className="lg:col-span-2">
             {step === 1 && (
               <Card>
@@ -637,7 +637,7 @@ const Checkout = () => {
                   )}
 
                   <div className="pt-6">
-                    {/* Mostrar loading mientras se crea la orden, luego botón de pago */}
+
                     {ordenCreada?.mercadopago_ready && ordenCreada?.preference_id ? (
                       <div>
                         <h4 className="text-lg font-semibold mb-4 text-center">
@@ -645,7 +645,7 @@ const Checkout = () => {
                         </h4>
                         <div id="checkout_walletBrick_container" className="mb-4"></div>
                         
-                        {/* Botón de volver */}
+
                         <div className="text-center">
                           <Button
                             variant="outline"
@@ -672,7 +672,7 @@ const Checkout = () => {
                       </div>
                     )}
                     
-                    {/* Mostrar errores si los hay */}
+
                     {errors.general && (
                       <div className="mt-4 bg-red-50 border border-red-200 rounded-lg p-3">
                         <p className="text-red-700 text-sm">{errors.general}</p>
@@ -680,7 +680,7 @@ const Checkout = () => {
                           <Button
                             onClick={() => {
                               setErrors({});
-                              handleFinalizarCompra(); // Reintentar
+                              handleFinalizarCompra();
                             }}
                             className="px-4 py-2 text-white text-sm"
                             style={{ backgroundColor: '#f83258' }}
@@ -747,7 +747,7 @@ const Checkout = () => {
             )}
           </div>
 
-          {/* Resumen lateral */}
+
           <div className="lg:col-span-1">
             <Card className="sticky top-4">
               <CardContent className="p-6">
@@ -755,7 +755,7 @@ const Checkout = () => {
                   Resumen
                 </h3>
 
-                {/* Mensaje de felicitaciones por envío gratis */}
+
                 {estaEnvioGratis() && (
                   <div className="mb-6 p-4 bg-gradient-to-r from-green-50 to-green-100 border-2 border-green-200 rounded-lg">
                     <div className="flex items-center gap-2 mb-2">

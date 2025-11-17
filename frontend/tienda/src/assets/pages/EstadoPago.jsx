@@ -13,7 +13,7 @@ const EstadoPago = () => {
   const [datosPago, setDatosPago] = useState(null);
   const [error, setError] = useState('');
 
-  // Parámetros que MercadoPago envía en la URL de retorno
+ 
   const collection_status = searchParams.get('collection_status');
   const payment_id = searchParams.get('payment_id');
   const status = searchParams.get('status');
@@ -22,10 +22,9 @@ const EstadoPago = () => {
 
   useEffect(() => {
     const currentPath = window.location.pathname;
-    
-    // Si es una URL de procesar pago, crear preferencia y redirigir
+
     if (currentPath.includes('/pago/procesar/') && ordenId) {
-      // Si ya viene preference_id en la URL, usarlo directamente
+    
       if (preference_id) {
         inicializarMercadoPago(preference_id);
         setEstado('listo');
@@ -43,7 +42,7 @@ const EstadoPago = () => {
       const response = await mercadoPagoService.crearPreferencia(ordenId);
       
       if (response.preference_id) {
-        // Inicializar MercadoPago con la preferencia
+        
         inicializarMercadoPago(response.preference_id);
         setEstado('listo');
       } else {
@@ -57,7 +56,7 @@ const EstadoPago = () => {
   };
 
   const inicializarMercadoPago = (preferenceId) => {
-    // Cargar script de MercadoPago si no está cargado
+    
     if (!window.MercadoPago) {
       const script = document.createElement('script');
       script.src = 'https://sdk.mercadopago.com/js/v2';
@@ -76,14 +75,14 @@ const EstadoPago = () => {
 
   const renderizarBotonPago = (preferenceId) => {
     try {
-      // Inicializar SDK con Public Key desde variables de entorno
-      const publicKey = import.meta.env.VITE_MERCADOPAGO_PUBLIC_KEY || 'APP_USR-c551ad7e-92fc-461c-a4a6-b4fd364d08f4';
+      
+   
       const mp = new window.MercadoPago(publicKey);
       
-      // Crear Wallet Brick según documentación oficial
+     
       const bricksBuilder = mp.bricks();
       
-      // Limpiar contenedor previo
+      
       const container = document.getElementById('walletBrick_container');
       if (container) {
         container.innerHTML = '';
@@ -105,8 +104,7 @@ const EstadoPago = () => {
     try {
       setEstado('verificando');
 
-      // TODO: Implementar verificación de pago cuando se configure la pasarela
-      // Determinar estado basado en URL por ahora
+    
       const currentPath = window.location.pathname;
       if (currentPath.includes('exitoso')) {
         setEstado('exitoso');
@@ -115,7 +113,7 @@ const EstadoPago = () => {
       } else if (currentPath.includes('pendiente')) {
         setEstado('pendiente');
       } else {
-        // Si no hay información específica, usar los parámetros de la URL
+     
         if (status === 'approved' || collection_status === 'approved') {
           setEstado('exitoso');
         } else if (status === 'rejected' || collection_status === 'rejected') {
@@ -292,7 +290,7 @@ const EstadoPago = () => {
               </p>
             </div>
 
-            {/* Container para el botón de MercadoPago */}
+          
             <div id="walletBrick_container" className="mb-6"></div>
 
             <div className="text-center">
@@ -329,14 +327,14 @@ const EstadoPago = () => {
           </CardHeader>
           
           <CardContent className="space-y-6">
-            {/* Mensaje principal */}
+          
             <div className="text-center">
               <p className="text-gray-600 text-lg">
                 {estadoInfo.message}
               </p>
             </div>
 
-            {/* Información del pago */}
+          
             {datosPago && (
               <div className="bg-gray-50 rounded-lg p-4">
                 <h3 className="font-semibold mb-3">Detalles del Pago</h3>
@@ -369,7 +367,7 @@ const EstadoPago = () => {
               </div>
             )}
 
-            {/* Acciones */}
+          
             <div className="space-y-3">
               {estadoInfo.actions.map((action, index) => (
                 <Button
@@ -392,7 +390,7 @@ const EstadoPago = () => {
               ))}
             </div>
 
-            {/* Información adicional */}
+          
             {estado === 'exitoso' && (
               <div className="bg-blue-50 rounded-lg p-4">
                 <h4 className="font-semibold text-blue-800 mb-2">¿Qué sigue?</h4>

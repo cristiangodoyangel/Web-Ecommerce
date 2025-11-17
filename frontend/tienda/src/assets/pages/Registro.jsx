@@ -25,7 +25,7 @@ const Registro = () => {
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false); // NUEVO ESTADO
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -204,11 +204,11 @@ const handleSubmit = async (e) => {
 
   return (
     <div className="min-h-screen bg-white py-12 px-4">
-      {/* MOSTRAR MENSAJE DE ÉXITO */}
+      
       {showSuccess && <SuccessMessage />}
       
       <div className="max-w-2xl mx-auto">
-        {/* Header */}
+       
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-[#283655] rounded-full mb-4">
             <User className="h-8 w-8 text-white" />
@@ -221,12 +221,12 @@ const handleSubmit = async (e) => {
           </p>
         </div>
 
-        {/* Formulario */}
+        
         <Card className="display  shadow-xl border-0">
           <CardContent className="p-8">
             <form onSubmit={handleSubmit} className="space-y-6">
               
-              {/* Nombre y Apellido */}
+       
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-2" style={{ color: '#283655' }}>
@@ -265,7 +265,7 @@ const handleSubmit = async (e) => {
                 </div>
               </div>
 
-              {/* USERNAME */}
+              
               <div>
                 <label className="block text-sm font-medium mb-2" style={{ color: '#283655' }}>
                   Nombre de Usuario *
@@ -285,7 +285,7 @@ const handleSubmit = async (e) => {
                 {errors.username && <p className="text-red-500 text-sm mt-1">{errors.username}</p>}
               </div>
 
-              {/* Email */}
+              
               <div>
                 <label className="block text-sm font-medium mb-2" style={{ color: '#283655' }}>
                   Email *
@@ -304,7 +304,7 @@ const handleSubmit = async (e) => {
                 {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
               </div>
 
-              {/* Contraseñas */}
+              
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-2" style={{ color: '#283655' }}>
@@ -357,7 +357,7 @@ const handleSubmit = async (e) => {
                 </div>
               </div>
 
-              {/* Información adicional */}
+              
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-2" style={{ color: '#283655' }}>
@@ -395,7 +395,7 @@ const handleSubmit = async (e) => {
                 </div>
               </div>
 
-              {/* Dirección */}
+              
               <div>
                 <label className="block text-sm font-medium mb-2" style={{ color: '#283655' }}>
                   Dirección
@@ -413,7 +413,7 @@ const handleSubmit = async (e) => {
                 </div>
               </div>
 
-              {/* Ciudad, Comuna y Código Postal */}
+              
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-2" style={{ color: '#283655' }}>
@@ -458,7 +458,7 @@ const handleSubmit = async (e) => {
                 </div>
               </div>
 
-              {/* Términos y Condiciones */}
+              
               <div className="flex items-start space-x-2">
                 <input
                   type="checkbox"
@@ -477,14 +477,14 @@ const handleSubmit = async (e) => {
               </div>
               {errors.terms && <p className="text-red-500 text-sm">{errors.terms}</p>}
 
-              {/* Error general */}
+              
               {errors.submit && (
                 <div className="bg-red-50 border border-red-200 rounded-lg p-4">
                   <p className="text-red-600 text-sm">{errors.submit}</p>
                 </div>
               )}
 
-              {/* Botón de registro */}
+              
               <Button
                 type="submit"
                 disabled={isLoading}
@@ -494,7 +494,7 @@ const handleSubmit = async (e) => {
                 {isLoading ? 'Creando cuenta...' : 'Crear Cuenta'}
               </Button>
 
-              {/* Link a login */}
+              
               <div className="text-center pt-4">
                 <p className="text-gray-600">
                   ¿Ya tienes cuenta?{' '}

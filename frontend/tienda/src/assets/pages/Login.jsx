@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import api from "../../api"; // Asegúrate de que la ruta al archivo 'api.js' sea correcta
+import api from "../../api"; 
 
 export default function Login() {
   const [username, setUsername] = useState('');
@@ -9,29 +9,29 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
 
   const handleLogin = async (e) => {
-    e.preventDefault(); // Evitamos el comportamiento predeterminado del formulario
+    e.preventDefault(); 
 
-    // Indicamos que está cargando
+    
     setLoading(true);
     setError('');
 
     try {
-      // Realizamos la petición de login
+      
       const response = await api.post('login/', {
         username: username,
         password: password,
       });
 
-      // Guardamos el token en el localStorage
+      
       localStorage.setItem('access_token', response.data.access);
 
-      // Redirigimos al usuario a la página principal
-      window.location.href = '/'; // O puedes usar React Router para redirigir
+      
+      window.location.href = '/'; 
     } catch (err) {
-      // En caso de error mostramos el mensaje
+      
       setError('Credenciales incorrectas, por favor intente nuevamente.');
           } finally {
-      // Indicamos que terminó el proceso de carga
+      
       setLoading(false);
     }
   };

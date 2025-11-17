@@ -7,7 +7,7 @@ const ResponsiveTest = () => {
         🎯 Test Responsive Life Sex Shop
       </h1>
       
-      {/* Grid de prueba */}
+
       <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-4 mb-8">
         {[1,2,3,4,5,6,7].map(num => (
           <div 
@@ -19,7 +19,7 @@ const ResponsiveTest = () => {
         ))}
       </div>
 
-      {/* Indicadores de breakpoint */}
+
       <div className="bg-gray-100 p-4 rounded-lg">
         <h2 className="text-lg font-semibold mb-4">Breakpoint Actual:</h2>
         <div className="space-y-2">
@@ -33,7 +33,7 @@ const ResponsiveTest = () => {
         </div>
       </div>
 
-      {/* Cards responsive */}
+
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div className="bg-white p-6 rounded-xl shadow-lg">
           <h3 className="text-lg font-semibold mb-2">📱 Móvil</h3>

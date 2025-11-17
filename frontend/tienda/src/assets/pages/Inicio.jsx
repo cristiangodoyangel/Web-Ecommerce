@@ -14,13 +14,13 @@ const Inicio = () => {
   const [loadingOfertas, setLoadingOfertas] = useState(true);
 
   useEffect(() => {
-    // Cargar productos nuevos
+  
     const fetchProducts = async () => {
       try {
         const response = await fetch(`${API_BASE_URL}/productos/`);
         if (response.ok) {
           const data = await response.json();
-          // Ordenar por fecha de creación (más nuevos primero)
+          
           const sortedProducts = data.sort((a, b) => 
             new Date(b.creado) - new Date(a.creado)
           );
@@ -33,13 +33,13 @@ const Inicio = () => {
       }
     };
 
-    // Cargar ofertas activas
+    
     const fetchOfertas = async () => {
       try {
   const response = await fetch(`${API_BASE_URL}/ofertas/`);
         if (response.ok) {
           const data = await response.json();
-           // Para debug
+           
              const ofertasTransformadas = data.map(oferta => ({
             ...oferta.producto,
             precio_oferta: oferta.precio_con_descuento,
@@ -90,7 +90,7 @@ const Inicio = () => {
             </div>
           )}
 
-          {/* Banner publicitario - oculto en móvil */}
+          {/* Banner publicitario */}
           <div className="hidden md:block my-6">
             <AdvertisementBanner />
           </div>
@@ -124,7 +124,7 @@ const Inicio = () => {
             </div>
           )}
 
-          {/* Banner publicitario - oculto en móvil */}
+          {/* Banner publicitario */}
           <div className="hidden md:block my-6">
             <AdvertisementBanner2/>
           </div>

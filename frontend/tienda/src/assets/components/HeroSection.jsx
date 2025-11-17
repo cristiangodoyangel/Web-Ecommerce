@@ -70,7 +70,7 @@ export function HeroSection() {
   const prevSlide = () => setCurrent((current - 1 + slides.length) % slides.length);
   const goToSlide = (index) => setCurrent(index);
 
-  // Auto-play funcionalidad
+  
   useEffect(() => {
     if (!isAutoPlaying) return;
 
@@ -81,7 +81,7 @@ export function HeroSection() {
     return () => clearInterval(interval);
   }, [current, isAutoPlaying]);
 
-  // Pausar auto-play al hacer hover
+  
   const handleMouseEnter = () => setIsAutoPlaying(false);
   const handleMouseLeave = () => setIsAutoPlaying(true);
 
@@ -138,7 +138,7 @@ export function HeroSection() {
                 </Button>
               </div>
             </div>
-            {/* Hero image */}
+            
             <div className="hidden lg:block relative">
               <div className="relative">
                 <ImageWithFallback
@@ -150,7 +150,7 @@ export function HeroSection() {
             </div>
           </div>
         </div>
-        {/* Auto-play indicator - oculto en móvil */}
+        
         <div className="hidden sm:block absolute top-2 sm:top-4 md:top-6 right-2 sm:right-4 md:right-8 z-20">
           <Button
             variant="ghost"

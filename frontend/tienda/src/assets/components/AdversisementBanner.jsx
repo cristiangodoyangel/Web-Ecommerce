@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const AdvertisementBanner = ({ 
-  imagePath = "/descuentos.png", // Imagen desde public/
+  imagePath = "/descuentos.png",
   alt = "Ofertas y descuentos especiales",
   link = "/TodasOfertas",
   className = ""
@@ -20,7 +20,7 @@ const AdvertisementBanner = ({
     setImageError(true);
   };
 
-  // Banner promocional elegante como fallback
+ 
   const fallbackBanner = () => (
     <div 
       className="w-mid h-64 md:h-80 flex items-center justify-center text-white cursor-pointer group"

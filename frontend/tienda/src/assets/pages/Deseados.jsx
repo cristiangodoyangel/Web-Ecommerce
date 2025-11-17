@@ -41,7 +41,7 @@ const Deseados = () => {
 const handleAddToCart = async (producto) => {
   setProcessingItems(prev => new Set(prev).add(`cart-${producto.id}`));
   try {
-    const result = await agregarProducto(producto.id, 1); // Funciona para ambos
+    const result = await agregarProducto(producto.id, 1); 
     if (result.success) {
           } else {
             if (result.error?.detail) {
@@ -76,7 +76,7 @@ const handleAddToCart = async (producto) => {
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+        
         <div className="mb-6 sm:mb-8">
           <div className="flex items-center gap-3 mb-4">
             <Heart className="h-6 w-6 sm:h-8 sm:w-8 text-[#4D648D] fill-current flex-shrink-0" />
@@ -90,7 +90,7 @@ const handleAddToCart = async (producto) => {
           </p>
         </div>
 
-        {/* Content */}
+        
         {items.length === 0 ? (
           <div className="text-center py-12 sm:py-16 px-4">
             <Heart className="h-16 w-16 sm:h-24 sm:w-24 text-[#D0E1F9] mx-auto mb-6" />
@@ -131,7 +131,7 @@ const handleAddToCart = async (producto) => {
                           e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZjNmNGY2Ii8+CjxwYXRoIGQ9Ik0xMDAgMTUwQzEyOC44NjcgMTUwIDE1MCAxMjguODY3IDE1MCAxMDBDMTUwIDcxLjEzMyAxMjguODY3IDUwIDEwMCA1MEM3MS4xMzMgNTAgNTAgNzEuMTMzIDUwIDEwMEM1MCAxMjguODY3IDcxLjEzMyAxNTAgMTAwIDE1MFoiIGZpbGw9IiNlMWU1ZTkiLz4KPC9zdmc+';
                         }}
                       />
-                      {/* Remove button */}
+                      
                       <Button
                         size="sm"
                         variant="ghost"
@@ -147,14 +147,14 @@ const handleAddToCart = async (producto) => {
                       </Button>
                     </div>
 
-                    {/* Product Info */}
+                   
                     <div className="p-3 sm:p-4 space-y-2 sm:space-y-3">
-                      {/* Category */}
+                    
                       <div className="text-xs font-medium uppercase tracking-wide text-red-800">
                         {producto.categoria}
                       </div>
 
-                      {/* Title */}
+                    
                       <h3 
                         className="font-semibold text-gray-900 hover:text-red-600 transition-colors line-clamp-2 cursor-pointer text-sm sm:text-base"
                         onClick={() => handleProductClick(producto.id)}
@@ -162,19 +162,19 @@ const handleAddToCart = async (producto) => {
                         {producto.nombre}
                       </h3>
 
-                      {/* Description */}
+                     
                       <p className="text-xs sm:text-sm text-gray-600 line-clamp-2">
                         {producto.descripcion}
                       </p>
 
-                      {/* Stock info */}
+                     
                       <div className="text-xs text-right">
                         <span className={hasStock ? 'text-green-600' : 'text-red-600'}>
                           {hasStock ? `Disponible` : 'Sin stock'}
                         </span>
                       </div>
 
-                      {/* Price */}
+                    
                       <div className="text-left">
                         <span className="text-lg sm:text-xl font-bold text-gray-900 block">
                           {formatPrice(producto.precio)}
@@ -186,7 +186,7 @@ const handleAddToCart = async (producto) => {
                         )}
                       </div>
 
-                      {/* Actions */}
+                    
                       <div className="flex gap-2 pt-2">
                         <Button
                           className="flex-1 bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm py-2"
@@ -221,7 +221,7 @@ const handleAddToCart = async (producto) => {
           </div>
         )}
 
-        {/* Summary Footer */}
+       
         {items.length > 0 && (
           <div className="mt-8 sm:mt-12 bg-white rounded-lg shadow-md p-4 sm:p-6">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">

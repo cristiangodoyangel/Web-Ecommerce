@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const AdvertisementBanner2 = ({ 
-  imagePath = "/secreto.png", // Imagen desde public/
+  imagePath = "/secreto.png",
   alt = "Ofertas y descuentos especiales",
   link = "/TodasOfertas",
   className = ""
@@ -20,7 +20,7 @@ const AdvertisementBanner2 = ({
     setImageError(true);
   };
 
-  // Banner promocional elegante como fallback
+ 
 
   return (
     <section className={`py-4 ${className}`}>

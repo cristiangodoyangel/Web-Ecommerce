@@ -20,7 +20,7 @@ const ProductCard = ({ product }) => {
   const { agregarProducto, isAuthenticated, agregarProductoInvitado } = useCarrito();
   const { toggleProducto, items: deseosItems } = useDeseos();
 
-  // Detectar si estamos en móvil
+
   useEffect(() => {
     const checkIsMobile = () => {
       setIsMobile(window.innerWidth <= 740);
@@ -32,7 +32,6 @@ const ProductCard = ({ product }) => {
     return () => window.removeEventListener('resize', checkIsMobile);
   }, []);
 
-  // Función para truncar título a 4 palabras
   const truncateToWords = (text, wordCount = 4) => {
     if (!text) return '';
     const words = text.split(' ');
@@ -45,12 +44,12 @@ const ProductCard = ({ product }) => {
     return <div>Producto no disponible</div>;
   }
 
-  // Verificar si el producto está en la wishlist
+
   const isWishlisted = deseosItems.some(item => 
     (item.producto && item.producto.id === product.id) || item.id === product.id
   );
 
-  // Determinar si el producto está en oferta
+
   const isOnSale = product.en_oferta || product.precio_oferta;
   const displayPrice = isOnSale ? product.precio_oferta : product.precio;
   const originalPrice = isOnSale ? (product.precio_original || product.precio) : null;
@@ -71,7 +70,7 @@ const ProductCard = ({ product }) => {
   const handleWishlistToggle = async (e) => {
     e.stopPropagation();
     
-    // La lista de deseos SOLO funciona para usuarios autenticados
+
     if (!isAuthenticated) {
       showAuthMessage('Debes iniciar sesión para agregar productos a tu lista de deseos');
       return;
@@ -92,7 +91,7 @@ const ProductCard = ({ product }) => {
     e.stopPropagation();
     
     if (isAuthenticated) {
-      // Usuario autenticado - agregar directamente
+      
       setIsAddingToCart(true);
       try {
         const result = await agregarProducto(product.id, 1);
@@ -106,7 +105,7 @@ const ProductCard = ({ product }) => {
         setIsAddingToCart(false);
       }
     } else {
-      // Usuario invitado - mostrar modal para datos
+      
       setPendingProductId(product.id);
       setShowGuestModal(true);
     }
@@ -115,7 +114,7 @@ const ProductCard = ({ product }) => {
   const handleGuestDataSubmit = async (guestData) => {
     setIsAddingToCart(true);
     try {
-      // Aquí agregamos la funcionalidad para invitados
+      
       const result = await agregarProductoInvitado(pendingProductId, 1, guestData);
       if (result.success) {
                 setShowGuestModal(false);
@@ -134,12 +133,12 @@ const ProductCard = ({ product }) => {
     e.stopPropagation();
       };
 
-  // Función para navegar al producto
+  
   const handleProductClick = () => {
     window.location.href = `/producto/${product.id}`;
   };
 
-  // Verificar stock usando el campo correcto del modelo Django
+
   const hasStock = product.stock && product.stock > 0;
   const isActive = product.activo !== false; 
 
@@ -173,7 +172,6 @@ const ProductCard = ({ product }) => {
         )}
 
         <CardContent className="p-0 flex flex-col h-full">
-          {/* Imagen - altura fija */}
           <div className="relative overflow-hidden" style={{ height: '250px' }}>
             <img
               src={product.imagen || '/placeholder-product.jpg'}
@@ -233,14 +231,14 @@ const ProductCard = ({ product }) => {
             </div>
           </div>
 
-          {/* Contenido - flex-1 para ocupar el espacio restante */}
+          
           <div className="p-4 flex flex-col flex-1" style={{ minHeight: '170px' }}>
-            {/* Categoría - altura fija */}
+          
             <div className="text-xs font-medium uppercase tracking-wide mb-2" style={{ color: '#8c000f', height: '16px' }}>
               {product.categoria}
             </div>
             
-            {/* Título - altura fija con overflow - CORREGIDO */}
+            
             <h3 
               className="display font-semibold group-hover:underline transition-colors mb-2" 
               style={{ 
@@ -256,7 +254,7 @@ const ProductCard = ({ product }) => {
               {isMobile ? truncateToWords(product.nombre, 2) : product.nombre}
             </h3>
             
-            {/* Descripción - altura fija con overflow */}
+          
             <p 
               className="display text-sm mb-3" 
               style={{ 
@@ -273,17 +271,17 @@ const ProductCard = ({ product }) => {
               {product.descripcion}
             </p>
             
-            {/* Spacer para empujar el contenido inferior hacia abajo */}
+          
             <div className="flex-1"></div>
             
-            {/* Stock - altura fija */}
+          
             <div className="display flex items-center justify-center mb-3" style={{ height: '20px' }}>
               <div className="text-xs" style={{ color: hasStock ? '#066803ff' : '#f83258' }}>
                 {hasStock ? `Disponible` : 'Sin stock'}
               </div>
             </div>
 
-            {/* Precios - altura fija */}
+          
             <div className="display flex items-center justify-center gap-2 mb-6" style={{ height: '32px' }}>
               <span className="text-lg font-bold" style={{ color: isOnSale ? '#f83258' : '#8c000f' }}>
                 {formatPrice(displayPrice)}
@@ -300,7 +298,7 @@ const ProductCard = ({ product }) => {
               )}
             </div>
 
-            {/* Botón móvil - altura fija */}
+           
             <div className="md:hidden" style={{ height: '40px' }}>
               <Button
                 className="w-full h-full"

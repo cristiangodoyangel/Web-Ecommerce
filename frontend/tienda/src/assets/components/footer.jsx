@@ -71,7 +71,6 @@ export function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                     <div className="lg:col-span-2">
                         <div className="display flex flex-col md:flex-row items-center md:items-start md:justify-between gap-6">
-                            {/* Datos y dirección - Centrado en móvil */}
                             <div className="space-y-3 text-center md:text-left">
                                 <div className="flex items-center justify-center md:justify-start gap-3" style={{ color: '#D0E1F9' }}>
                                     <MapPin className="h-5 w-5 flex-shrink-0" style={{ color: '#D0E1F9' }} />

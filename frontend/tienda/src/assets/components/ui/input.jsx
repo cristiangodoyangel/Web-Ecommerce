@@ -1,5 +1,5 @@
 import React from "react";
-import { cn } from "./utils"; // Asegúrate de que 'utils.js' esté correctamente configurado
+import { cn } from "./utils"; 
 
 function Input({ className, type, ...props }) {
   return (

@@ -9,7 +9,6 @@ import { useDeseos } from '../../context/DeseosContext';
 import API_BASE_URL from '../../config';
 
 
-// Categorías con slugs simplificados
 const categories = [
   { name: 'Para Ella', slug: 'ella' },
   { name: 'Para Él', slug: 'el' },
@@ -36,7 +35,7 @@ export function Header({ onSearchResults }) {
   const searchRef = useRef(null);
   const searchTimeout = useRef(null);
 
-  // Función para verificar si el token está expirado
+
   const isTokenExpired = (token) => {
     if (!token) return true;
     
@@ -49,11 +48,11 @@ export function Header({ onSearchResults }) {
     }
   };
 
-  // Función para validar y limpiar token expirado
+
   const validateToken = () => {
     const token = localStorage.getItem('access_token');
     if (token && isTokenExpired(token)) {
-      // Token expirado, limpiar almacenamiento
+      
       localStorage.removeItem('access_token');
       localStorage.removeItem('refresh_token');
       setUserName('');
@@ -62,7 +61,7 @@ export function Header({ onSearchResults }) {
     return token;
   };
 
-  // Función para obtener datos del usuario
+  
   const fetchUserData = async (userId, token) => {
     try {
       const response = await fetch(`${API_BASE_URL}/usuarios/${userId}/`, {
@@ -80,7 +79,7 @@ export function Header({ onSearchResults }) {
                            `Usuario ${userId}`;
         setUserName(displayName);
       } else if (response.status === 401) {
-        // Token expirado o inválido
+        
         validateToken();
       } else {
                 setUserName(`Usuario ${userId}`);
@@ -90,7 +89,7 @@ export function Header({ onSearchResults }) {
     }
   };
 
-  // Función para buscar productos en el backend
+ 
   const searchProducts = async (query) => {
     if (!query.trim()) {
       setSearchResults([]);
@@ -100,7 +99,7 @@ export function Header({ onSearchResults }) {
 
     setIsSearching(true);
     try {
-      // Buscar usando el parámetro search del backend con Django Filter
+      
       const response = await fetch(
   `${API_BASE_URL}/productos/?search=${encodeURIComponent(query)}`,
         {
@@ -112,10 +111,10 @@ export function Header({ onSearchResults }) {
       
       if (response.ok) {
         const products = await response.json();
-        setSearchResults(products.slice(0, 8)); // Limitar a 8 resultados para el dropdown
+        setSearchResults(products.slice(0, 8)); 
         setShowSearchResults(true);
         
-        // Si hay una función callback para manejar resultados completos
+        
         if (onSearchResults) {
           onSearchResults(products, query);
         }
@@ -131,44 +130,43 @@ export function Header({ onSearchResults }) {
     }
   };
 
-  // Debounce para la búsqueda
+  
   const handleSearchChange = (e) => {
     const query = e.target.value;
     setSearchQuery(query);
 
-    // Limpiar timeout anterior
+    
     if (searchTimeout.current) {
       clearTimeout(searchTimeout.current);
     }
 
-    // Establecer nuevo timeout
+    
     searchTimeout.current = setTimeout(() => {
       searchProducts(query);
-    }, 300); // Esperar 300ms después de que el usuario deje de escribir
+    }, 300); 
   };
 
-  // Manejar envío del formulario de búsqueda
+  
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       searchProducts(searchQuery);
       setShowSearchResults(false);
-      // Aquí podrías redirigir a una página de resultados
-      // window.location.href = `/buscar?q=${encodeURIComponent(searchQuery)}`;
+     
     }
   };
 
-  // Manejar clic en un resultado de búsqueda
+  
   const handleSearchResultClick = (product) => {
     setShowSearchResults(false);
     setSearchQuery('');
-    // Navegar al producto específico
+    
     window.location.href = `/producto/${product.id}`;
   };
 
-  // Verificar si el usuario está logueado
+  
   useEffect(() => {
-    const token = validateToken(); // Usar la función de validación
+    const token = validateToken(); 
     
     if (token) {
       try {
@@ -182,25 +180,25 @@ export function Header({ onSearchResults }) {
                   }
         
       } catch (error) {
-                validateToken(); // Limpiar si hay error en la decodificación
+                validateToken(); 
       }
     }
   }, []);
 
-  // Verificar token periódicamente
+  
   useEffect(() => {
     const interval = setInterval(() => {
       const token = validateToken();
       if (!token && userName) {
-        // Token expiró, limpiar estado del usuario
+        
         setUserName('');
       }
-    }, 30000); // Verificar cada 30 segundos
+    }, 30000); 
 
     return () => clearInterval(interval);
   }, [userName]);
 
-  // Cerrar submenú al hacer click afuera
+ 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (subMenuRef.current && !subMenuRef.current.contains(event.target)) {
@@ -220,7 +218,7 @@ export function Header({ onSearchResults }) {
     };
   }, [isSubMenuOpen, showSearchResults]);
 
-  // Limpiar timeout al desmontar
+  
   useEffect(() => {
     return () => {
       if (searchTimeout.current) {
@@ -248,22 +246,22 @@ export function Header({ onSearchResults }) {
     }).format(price);
   };
 
-  // Función para manejar clic en logo (ir a inicio)
+  
   const handleLogoClick = () => {
     window.location.href = '/';
   };
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b shadow">
-      {/* Barra de anuncio superior */}
+      
       <div className="display py-2 px-4 text-center text-white" style={{ background: 'var(--color-life-blueberry)' }}>
         <p> Envío gratis en compras sobre $50.000 </p>
       </div>
 
-      {/* Header principal */}
+      
       <div className="max-w-7xl mx-auto px-2 sm:px-4">
         <div className="flex items-center justify-between h-14 sm:h-26 gap-2 sm:gap-4">
-          {/* Logo */}
+      
           <div className="flex items-center flex-shrink-0 pl-0 sm:pl-8">
             <img 
               src={logo} 
@@ -273,7 +271,7 @@ export function Header({ onSearchResults }) {
             />
           </div>
 
-          {/* Barra de búsqueda */}
+      
           <div className="hidden md:flex flex-1 max-w-2xl mx-8" ref={searchRef}>
             <form onSubmit={handleSearchSubmit} className="relative w-full">
               <Search className="display absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4" style={{ color: '#e4f5ffff' }} />
@@ -290,7 +288,7 @@ export function Header({ onSearchResults }) {
                 }}
               />
               
-              {/* Dropdown de resultados de búsqueda */}
+      
               {showSearchResults && (
                 <div className="display absolute top-full left-0 right-0 mt-2 bg-white border rounded-md shadow-lg z-50 max-h-96 overflow-y-auto">
                   {isSearching ? (
