@@ -13,7 +13,7 @@ Una plataforma completa que gestiona desde el catálogo de productos hasta el pr
 
 | Home Page |
 |:---:|
-| ![Home Page](./frontend/tienda/src/assets/img/banner/ecommerce.png) |
+| ![Home Page](./frontend/tienda/src/assets/img/banner/ecommerce.webp) |
 
 ---
 
@@ -70,36 +70,36 @@ MySQL (o SQLite por defecto)
 1. Configuración del Backend (Django)
 Bash
 
-### Entrar a la carpeta del backend
+#### Entrar a la carpeta del backend
 cd backend/ecommerce
 
-### Crear entorno virtual (Opcional pero recomendado)
+#### Crear entorno virtual (Opcional pero recomendado)
 python -m venv venv
 source venv/bin/activate  # En Windows: venv\Scripts\activate
 
-### Instalar dependencias
+#### Instalar dependencias
 pip install -r requirements.txt
 
-### Migraciones de base de datos
+#### Migraciones de base de datos
 python manage.py migrate
 
-### Crear superusuario (para el admin)
+#### Crear superusuario (para el admin)
 python manage.py createsuperuser
 
-### Correr el servidor
+#### Correr el servidor
 python manage.py runserver
 El backend correrá en http://localhost:8000
 
 2. Configuración del Frontend (React)
 Bash
 
-### Entrar a la carpeta del frontend (en una nueva terminal)
+#### Entrar a la carpeta del frontend (en una nueva terminal)
 cd frontend/tienda
 
-### Instalar dependencias
+#### Instalar dependencias
 npm install
 
-### Correr el servidor de desarrollo
+#### Correr el servidor de desarrollo
 npm run dev
 El frontend correrá en http://localhost:5173 (o el puerto que asigne Vite)
 
@@ -112,16 +112,19 @@ Fragmento de código
 
 SECRET_KEY=tu_clave_secreta_django
 DEBUG=True
-### Base de datos (si usas MySQL/Postgres)
+
+#### Base de datos (si usas MySQL/Postgres)
 DB_NAME=nombre_db
 DB_USER=usuario
 DB_PASSWORD=password
 DB_HOST=localhost
-### MercadoPago
+
+#### MercadoPago
 MERCADOPAGO_ACCESS_TOKEN=tu_access_token_de_prueba
 MERCADOPAGO_PUBLIC_KEY=tu_public_key
 
 ## 👤 Autor
 
 Cristian Godoy Angel Fullstack Developer | Python & React Specialist
+
 
