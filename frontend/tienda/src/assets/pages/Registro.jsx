@@ -142,10 +142,10 @@ const handleSubmit = async (e) => {
 
         const data = await response.json();
         if (response.ok) {
-      // MOSTRAR MENSAJE DE ÉXITO ELEGANTE
+      
             setShowSuccess(true);
       
-      // Redirigir después de 3 segundos
+      
       setTimeout(() => {
         window.location.href = '/login';
       }, 3000);
@@ -165,16 +165,16 @@ const handleSubmit = async (e) => {
       }
 };
 
-  // COMPONENTE DEL MENSAJE DE ÉXITO
+  
   const SuccessMessage = () => (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <Card className="mx-4 w-full max-w-md">
         <CardContent className="p-8 text-center">
           <div className="mb-6">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mb-4">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-emerald-500 rounded-full mb-4">
               <CheckCircle className="h-8 w-8 text-white" />
             </div>
-            <h2 className="text-2xl font-bold mb-2" style={{ color: '#8c000f' }}>
+            <h2 className="text-2xl font-bold mb-2" style={{ color: '#4D648D' }}>
               ¡Registro Exitoso!
             </h2>
             <p className="text-gray-600 mb-6">
@@ -193,7 +193,7 @@ const handleSubmit = async (e) => {
           <Button
             onClick={() => window.location.href = '/login'}
             className="mt-4"
-            style={{ backgroundColor: '#8c000f', color: '#fff' }}
+            style={{ backgroundColor: '#4D648D', color: '#ffffff' }}
           >
             Ir al Login Ahora
           </Button>
