@@ -9,7 +9,7 @@ Una plataforma completa que gestiona desde el catálogo de productos hasta el pr
 
 ---
 
-## 📸 Vistas Previas
+## 📸 Sistema Responsivo
 
 | Home Page |
 |:---:|
@@ -125,6 +125,7 @@ MERCADOPAGO_PUBLIC_KEY=tu_public_key
 
 ## 👤 Autor
 
-Cristian Godoy Angel Fullstack Developer | Python & React Specialist
+Cristian Godoy Angel Fullstack Developer
+
 
 
